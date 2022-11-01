@@ -2,9 +2,9 @@
 
 ### Milestones
 
-|Milestone| Revision | Comments |
-|------|:---:|:----|
-| [MS1](#milestone-1) | V1.0 | |
+|Milestone| Revision | Overview | Comments |
+|------|:---:|:----|:----| 
+| [MS1](#milestone-1) | V1.0 | [Watch](https://youtu.be/NsQK5V7hQN0)|  |
 
 
 Your task for the project for this semester is to create an application that keeps track of a Valet Parking that can park Cars and Motorcycles in a parking and retrieve them back when requested. 
