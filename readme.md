@@ -369,7 +369,7 @@ cout << "You selected " << choice << endl;
 Add other member functions to the Menu if needed.
 
 
-## Date Tester program
+## MS1 Tester program
 
 Write your own tester or use the following tester program to test and debug your Date class.
 
