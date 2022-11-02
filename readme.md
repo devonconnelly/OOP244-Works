@@ -174,7 +174,8 @@ The function will return a reference of an **istream** and will receive a refere
 
 We will start the development of the project by creating its user interface (MS1, Menu system). Then we will create a mockup application that represents what the application will look like and act without actually doing anything(MS2 Parking app). In short, we are creating a prototype of the application (in ms1 and ms2) then coding its engine (in ms3 and ms4) and finally adding functionality to Parking (ms2) to make it fully functional (in ms5).
 
-# Milestone 1 (The Menu Module)
+# Milestone 1
+## The Menu Module
 
 This Module contains two classes; MenuItem and Menu. MenuItem is a fully private class owned by the Menu Class (Menu is a friend of MenuItem). Therfore, Only the Menu class can construct and use the MenuItem and because of this the two classes reside in the same module.
 
