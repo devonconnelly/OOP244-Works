@@ -1,10 +1,14 @@
 # Project: Valet Parking Application
 
+## Latest Release
+**Milestone 2** 
+
 ### Milestones
 
 |Milestone| Revision | Overview | Comments |
 |------|:---:|:----|:----| 
 | [MS1](#milestone-1) | V1.0 | [Watch](https://youtu.be/NsQK5V7hQN0)|  |
+| [MS2](#milestone-2) | V1.0 | |  |
 
 
 Your task for the project for this semester is to create an application that keeps track of a Valet Parking that can park Cars and Motorcycles in a parking and retrieve them back when requested. 
@@ -629,13 +633,463 @@ and follow the instructions.
 
 ## [Back to milestones](#milestones)
 
-
 # Milestone 2
 
-To be continued
+## The Parking module:
+
+The parking module is the skeleton of your final project and will be revisited at the final stage of the application development. In milestone 2 you will build the main structure of the application that gives the user all the options needed for managing the Valet Parking. 
+
+For now, when these options are selected you will only print the name of the action. In the following milestones, you will develop the facilities needed to provide the actual requested actions by the user. 
+
+### The Parking module runs as follows:
+It loads a data file from the hard disk that holds the information about the parked cars in the Parking. (the actual loading will be implemented in the last milestone) Then it will display the following menu:
+
+```text
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+>
+```
+If the user selects the first option, a submenu as follows with one indentation to right will be displayed:
+
+```text
+    Select type of the vehicle:
+    1- Car
+    2- Motorcycle
+    3- Cancel
+    >
+```
+
+
+### Mock-up messages
+For now, print the following messages based on the user's selections:
+
+#### Park Vehicle / Car:
+
+```text
+---------------------------------
+Parking Car
+---------------------------------
+```
+#### Park Vehicle / Motorcycle:
+```text
+---------------------------------
+Parking Motorcycle
+---------------------------------
+```
+#### Park Vehicle / Cancel:
+```text
+---------------------------------
+Cancelled parking
+---------------------------------
+```
+#### Return Vehicle:
+```text
+---------------------------------
+Returning Vehicle
+---------------------------------
+```
+#### List Parked Vehicles:
+```text
+---------------------------------
+Listing Parked Vehicles
+---------------------------------
+```
+#### Find Vehicle
+```text
+---------------------------------
+Finding a Vehicle
+---------------------------------
+```
+#### Close Parking (End of day):
+Selecting this option ends the parking application for the day<br />
+If the exit program option is selected first display the message:
+```text
+This will close the parking; All the vehicles will be removed!
+Are you sure? (Y)es/(N)o:
+```
+And wait for the user to enter either “Y” or “N” (lowercase or uppercase) and exit if the response is yes.
+
+If the user enters an invalid response then print:
+```text
+Invalid response, only (Y)es or (N)o are acceptable, retry:
+```
+And repeat until a proper response is entered.
+
+#### Exit Program:
+
+Selecting this option ends the parking application temporarily.<br />
+If the exit program option is selected first display the message:
+```text
+This will terminate the application and save the data!
+Are you sure? (Y)es/(N)o:
+```
+And wait for the user to enter either “Y” or “N” (lowercase or uppercase) and exit if the response is yes.
+
+If the user enters an invalid response then print:
+```text
+Invalid response, only (Y)es or (N)o are acceptable, retry:
+```
+And repeat until a proper response is entered.
+
+To accomplish the above Parking module functionality, implement the following:
+
+### The Parking class implementation:
+#### Properties: (member variables and objects)
+##### Filename:
+Parking holds a C-style string with an unknown size to hold the data path and file name of the application. (for example: `"../data/datafile.dat"`)
+##### Parking menu: 
+Parking has a Menu object for the main menu of the application.
+
+Initialize the Parking Menu with the following (see the constructor for more detail):
+
+- Indentation: `0`
+- Parking Menu Title: `"Parking Menu, select an action:"`
+
+And then populate the menu items with the following in the constructor:
+
+```text
+"Park Vehicle"
+"Return Vehicle"
+"List Parked Vehicles"
+"Find Vehicle"
+"Close Parking (End of day)"
+"Exit Program"
+```
+##### Vehicle Selection menu: 
+Parking has a Menu object for the Vehicle selection menu that is displayed as a submenu when option one of the Parking Menu is selected.
+
+Initialize the Vehicle Menu with the following (see the constructor for more detail):
+
+- Indentation: `1`<br />
+- Vehicle Menu Title: `"Select type of the vehicle:"`<br />
+
+And then populate the menu items with the following in the constructor
+
+```text
+"Car"
+"Motorcycle"
+"Cancel"
+```
+
+##### Other properties: 
+Add other properties if, or when needed. 
+
+#### Constructor implementation:
+Parking can be created by a constant C-style character string with an unknown size, to be used to set the name of the file and its path. 
+
+If the string is nullptr or empty then Parking is set to an invalid empty state.
+
+Call the Load Data File function (see list of member functions) and if it returns true, then populate the Parking and Vehicle menus. 
+
+If the Load Data File function returns false, then print:
+
+```text
+Error in data file<NEWLINE>
+```
+and set the class to an invalid empty state.
+#### Destructor implementation:
+- Call the Save Data File function (see list of member functions), and Make sure there is no memory leak when the Parking goes out of scope.
+
+#### Copy and Assignment:
+Copy and assignment are denied in the Parking class. (Parking class can not be copied or assigned to another Parking object)
+
+### Private Member function implementations:
+For now, these are just mock-up functions that mostly print the messages displayed in the [Mock-up Messages](#mock-up-messages)
+
+#### isEmpty() function
+Write an isEmpty function that returns true if the Parking is in an invalid empty State or false if the parking is valid and usable.
+
+#### Parking Status function 
+This function does not receive or return anything and at this stage only prints:
+```text
+****** Valet Parking ******<NEWLINE>
+```
+
+#### Park Vehicle function 
+This function does not receive or return anything.<br />
+The function displays the Vehicle Selection sub-menu. Then based on the user's selection; Car, Motorcycle or Cancel, it will print [the corresponding message](#mock-up-messages). Afterwards, it goes to a new line. 
+
+#### Return Vehicle function 
+This function does not receive or return anything and only prints [the corresponding message](#mock-up-messages).
+
+#### List Parked Vehicles function 
+This function does not receive or return anything and only prints [the corresponding message](#mock-up-messages).
+
+#### Close Parking function 
+This function does not receive anything and returns a Boolean.<br />
+Follow the instruction in the [Close Parking (End of day)](#close-parking-end-of-day) menu selection and then return true, if the user’s response is Yes. Otherwise, return false if the user’s response is No.
+
+#### Exit Parking App Function 
+This function does not receive anything and returns a Boolean.<br />
+Follow the instruction in the [Exit program](#exit-program) menu selection and then return true, if the user’s response is Yes. Otherwise, return false if the user’s response is No.
+
+#### Load Data File function 
+This function does not receive anything and returns a Boolean.<br />
+If the Parking is not in an invalid empty state,  Print the following: `"loading data from "` and then print the name of the data file followed by a `<NEWLINE>` and finally return true.<br />
+If the Parking is in an invalid empty state, return false (and print nothing).
+
+#### Save Data File function 
+This function does not receive or return anything and if the Parking is not in an invalid empty state it prints:
+`"Saving data into "` then prints the name of the data file followed by a `<NEWLINE>`.
+
+### Public Methods
+
+#### int Parking::run(); 
+
+Run is the only public member function in Parking and runs the whole Parking Application exactly as stated in The Parking class overview section using the following functions calls and logic:
+
+If the Parking is not in an invalid empty state:
+
+1. The Run function calls the Parking Status function and then displays the Parking menu and waits for the user’s response.  
+2. If any of menu options 1, 2, 3 or 4 are selected, it will call one of the Park Vehicle, Return Vehicle, List Parked Vehicles or findVehicle functions respectively and goes back to step **1**.
+3. If menu option 5 is selected it will call the Close Parking function. If the Close Parking Function returns true it will exit and end the Run function. Otherwise, it goes back to step **1**.
+4. If menu option 6 is selected it will call the Exit Parking App function and exits the Run function only if a true value is returned. Otherwise, it goes back to step **1**.
+
+When Run exits, it should return 1 if the Parking is in an invalid empty state, otherwise, it should return 0. 
+
+Note: As you see options 5 and 6 can both exit the program. In future implementations, there will be a difference between the two: 
+
+Closing Parking is an end-of-the-day action; which results in towing all the remaining vehicles out of the parking since this is not an overnight parking application.
+
+The Exit Program option acts as a pause in the application execution. In this case, the program (in future implementations) will save all its information in the data file and when it is executed again it will load all the data back and continue where it left off last time. 
+
+### Other member functions:
+-	Add other member functions to the Parking if needed.
+
+## Tester program
+```C++
+/* ------------------------------------------------------
+Final Project Milestone 2
+Module: Parking
+Filename: main.cpp
+Version 1.0
+Author	Fardad Soleimanloo
+Revision History
+-----------------------------------------------------------
+Date      Reason
+-----------------------------------------------------------*/
+#include "Parking.h"
+#include <iostream>
+using namespace sdds;
+int main() {
+   Parking P("ParkingData.csv"), bad1(nullptr),bad2("");
+   bad1.run();
+   bad2.run();
+   P.run();
+   std::cout << std::endl << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl<<std::endl;
+   P.run();
+   return 0;
+}
+```
+## Execution output
+### data entry
+```text
+1
+1
+1
+2
+1
+3
+2
+3
+4
+5
+a
+y
+6
+N   << this is Capital N
+6
+a
+Y   << this is Capital Y
+
+```
+### Output
+```text
+---------------------------------
+loading data from ParkingData.csv
+---------------------------------
+
+Error in data file
+Error in data file
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 1
+    Select type of the vehicle:
+    1- Car
+    2- Motorcycle
+    3- Cancel
+    > 1
+---------------------------------
+Parking Car
+---------------------------------
+
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 1
+    Select type of the vehicle:
+    1- Car
+    2- Motorcycle
+    3- Cancel
+    > 2
+---------------------------------
+Parking Motorcycle
+---------------------------------
+
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 1
+    Select type of the vehicle:
+    1- Car
+    2- Motorcycle
+    3- Cancel
+    > 3
+---------------------------------
+Cancelled parking
+---------------------------------
+
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 2
+---------------------------------
+Returning Vehicle
+---------------------------------
+
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 3
+---------------------------------
+Listing Parked Vehicles
+---------------------------------
+
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 4
+---------------------------------
+Finding a Vehicle
+---------------------------------
+
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 5
+This will close the parking; All the vehicles will be removed!
+Are you sure? (Y)es/(N)o: a
+Invalid response, only (Y)es or (N)o are acceptable, retry: y
+Ending application!
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 6
+This will terminate the application and save the data!
+Are you sure? (Y)es/(N)o: N
+****** Valet Parking ******
+Parking Menu, select an action:
+1- Park Vehicle
+2- Return Vehicle
+3- List Parked Vehicles
+4- Find Vehicle
+5- Close Parking (End of day)
+6- Exit Program
+> 6
+This will terminate the application and save the data!
+Are you sure? (Y)es/(N)o: a
+Invalid response, only (Y)es or (N)o are acceptable, retry: Y
+Exiting application!
+---------------------------------
+Saving data into ParkingData.csv
+---------------------------------
+```
+
+
+
+
+## MS2 Submission 
+
+> If you would like to successfully complete the project and be on time, **start early** and try to meet all the due dates of the milestones.
+
+Upload your source code and the tester program to your `matrix` account. Compile and run your code using the `g++` compiler [as shown in the introduction](#compiling-and-testing-your-program) and make sure that everything works properly.
+
+Then, run the following command from your account (replace `profname.proflastname` with your professor’s Seneca userid):
+```
+~profname.proflastname/submit 2??/prj/m2
+```
+and follow the instructions.
+
+- *2??* is replaced with your subject code
+
+
+### The submit program's options:
+```bash
+~prof_name.prof_lastname/submit DeliverableName [-submission options]<ENTER>
+[-submission option] acceptable values:
+  "-due":
+       Shows due dates only
+       This option cannot be used in combination with any other option.
+  "-skip_spaces":
+       Do the submission regardless of incorrect horizontal spacing.
+       This option may attract penalty.
+  "-skip_blank_lines":
+       Do the submission regardless of incorrect vertical spacing.
+       This option may attract penalty.
+  "-feedback":
+       Check the program execution without submission.
+```
 
 ## [Back to milestones](#milestones)
-
 
 # Milestone 3
 
