@@ -8,6 +8,7 @@
 |Milestone| Revision | Overview | Comments |
 |------|:---:|:----|:----| 
 | [MS1](#milestone-1) | V1.0 | [Watch](https://youtu.be/NsQK5V7hQN0)|  |
+|  | V1.1 | [clear()](#clear-function) | Added description to what clear function does |
 | [MS2](#milestone-2) | V1.0 | |  |
 
 
@@ -310,6 +311,9 @@ If the string is invalid (null) then the Menu is set to an invalid empty state a
 The add function should use the C-string argument to add a MenuItem to the Menu if possible. 
 
 If the MenuItem array is full, then the function should silently ignore the addition and exit. Also, the add function will do nothing and exit silently if the Menu is in an invalid empty state.
+
+#### clear function
+This function removes all the menu items and the title and therefore sets the menu to an empty menu.
 
 #### left shift operator overload (“<<”)
 Overload the left shift operator to insert a constant character C-string into the Menu as a MenuItem. This overload should work exactly like the add function and work as follows: 
