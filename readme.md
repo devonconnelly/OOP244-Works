@@ -9,7 +9,8 @@
 |------|:---:|:----|:----| 
 | [MS1](#milestone-1) | V1.0 | [Watch](https://youtu.be/NsQK5V7hQN0)|  |
 |  | V1.1 | [clear()](#clear-function) | Added description to what clear function does |
-| [MS2](#milestone-2) | V1.0 | |  |
+| [MS2](#milestone-2) | V1.0 | [Watch](https://youtu.be/P1ZU2qF1IDU) |  |
+|  | V1.1 | [Find Vehicle](#find-vehicle) | Added Find Vehicle description  |
 
 
 Your task for the project for this semester is to create an application that keeps track of a Valet Parking that can park Cars and Motorcycles in a parking and retrieve them back when requested. 
@@ -822,6 +823,9 @@ The function displays the Vehicle Selection sub-menu. Then based on the user's s
 This function does not receive or return anything and only prints [the corresponding message](#mock-up-messages).
 
 #### List Parked Vehicles function 
+This function does not receive or return anything and only prints [the corresponding message](#mock-up-messages).
+
+#### Find Vehicle function 
 This function does not receive or return anything and only prints [the corresponding message](#mock-up-messages).
 
 #### Close Parking function 
