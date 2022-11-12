@@ -1,7 +1,7 @@
 # Project: Valet Parking Application
 
 ## Latest Release
-**Milestone 2** 
+**Milestone 3** 
 
 ### Milestones
 
@@ -11,6 +11,7 @@
 |  | V1.1 | [clear()](#clear-function) | Added description to what clear function does |
 | [MS2](#milestone-2) | V1.0 | [Watch](https://youtu.be/P1ZU2qF1IDU) |  |
 |  | V1.1 | [Find Vehicle](#find-vehicle) | Added Find Vehicle description  |
+| [MS3](#milestone-3) | V1.0 |  |  |
 
 
 Your task for the project for this semester is to create an application that keeps track of a Valet Parking that can park Cars and Motorcycles in a parking and retrieve them back when requested. 
@@ -1100,8 +1101,579 @@ and follow the instructions.
 ## [Back to milestones](#milestones)
 
 # Milestone 3
+## Milestone 3.1
+To continue with the project, we need to have an abstract base class to make our future Car and Motorcycle classes read/writable. We call this class ReadWritable
 
-To be continued
+### The ReadWritable module:
+Create a class called ReadWritable. ReadWritable class should force Read and Write capability to all its derived classes in two different ways; Comma Separated Values or Screen format. 
+
+### The ReadWritable class implementation:
+#### Comma Separated Values flag attribute
+Add a bool flag as an attribute for the class to keep the stat of reading or writing the object in Comma Separated mode or not.
+
+#### Other properties: 
+Add other properties if, or when needed. 
+### Constructor implementation:
+- ReadWritable Has only a no-argument constructor that sets the Comma Separated Values flag to false.
+
+### Destructor implementation:
+- Create an empty virtual destructor for ReadWritable Class.
+
+### Public Member function implementations:
+-	bool isCsv()const;
+
+    This query returns the Comma Separated Values flag;
+-	void setCsv(bool value); 
+
+    This function set the Comma Separated Values flag to the incoming bool value.
+-	Read and Write 
+    
+    Create two pure virtual functions to read and write this object in future derived class implementations.
+    The read and write function signatures have been described in milestone 1. 
+    Helper insertion and extraction operator overloads for istream and ostream:
+    
+-	Implement the operator<< and operator>> to make any ReadWritable class Writable or Readable using ostream and istream.
+
+### Other member functions:
+-	Add other member functions to the ReadWritable class if needed.
+
+## MS3.1 Tester program
+Use this tester program to test your ReadWritable implementation. This will be part one of your milestone-3 main tester.
+
+```C++
+/* ------------------------------------------------------
+Final Project Milestone 3.1
+Module: N/A
+Filename: RW_Tester.cpp
+Version 1.0
+Author	Fardad Soleimanloo
+Revision History
+-----------------------------------------------------------
+Date      Reason
+-----------------------------------------------------------*/
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+#include "ReadWritable.h"
+using namespace sdds;
+class Box :public ReadWritable {
+   int m_width;
+   int m_height;
+public:
+   Box(int width = 0, int height = 0) {
+      m_width = width;
+      m_height = height;
+   }
+   std::istream& read(std::istream& istr = std::cin) {
+      if (isCsv()) {
+         istr >> m_width;
+         istr.ignore();
+         istr >> m_height;
+      }
+      else {
+         cout << "Width: ";
+         istr >> m_width;
+         cout << "Height: ";
+         istr >> m_height;
+      }
+      return istr;
+   }
+   std::ostream& write(std::ostream& ostr = std::cout)const {
+      if (isCsv()) {
+         ostr << m_width << "," << m_height;
+      }
+      else {
+         int i;
+         int j; 
+         for (cout << "*", i = 0; i < m_width - 1; cout << " *", i++);
+         ostr << endl;
+         for (j = 0; j < m_height - 2; j++) {
+            for (cout << "* ",i = 0; i < m_width - 2; i++, cout << "  ");
+            cout << "*" << endl;
+         }
+         for (cout << "*", i = 0; i < m_width - 1; cout << " *", i++);
+      }
+      return ostr;
+   }
+};
+
+void pause();
+void test1();
+void test2();
+void test3();
+void test4();
+int main() {
+   test1();
+   pause();
+   test2();
+   pause();
+   test3();
+   pause();
+   test4();
+   return 0;
+}
+
+void pause() {
+   cout << "Press Enter to continue.";
+   cin.ignore(1000, '\n');
+}
+void test1() {
+   int i;
+   Box B[2] = { {3,3},{30,3} };
+   cout << "Testing operator<< overload (pass 1): " << endl;
+   cout << "These two outputs should match" << endl;
+   cout << "Output 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" << endl;
+   for (i = 0; i < 2; i++) {
+      cout << B[i] << endl;
+      B[i].setCsv(true);
+      cout << B[i] << endl;
+   }
+   cout << "Output 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2" << endl;
+   cout
+      << "* * *" << endl
+      << "*   *" << endl
+      << "* * *" << endl
+      << "3,3" << endl
+      << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << endl
+      << "*                                                         *" << endl
+      << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << endl
+      << "30,3" << endl;
+   cout << "**************************************************************" << endl;
+}
+void test2() {
+   int i;
+   ofstream bxout("boxes.csv");
+   Box B[2] = { {3,3},{30,3} };
+   for (i = 0; i < 2; i++) {
+      B[i].setCsv(true);
+      bxout << B[i] << endl;
+   }
+   bxout.close();
+   ifstream bxin("boxes.csv");
+   cout << "Testing operator<< overload (pass 2): " << endl;
+   cout << "These two outputs should match" << endl;
+   cout << "Output 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" << endl;
+   while (bxin) {
+      cout << char(bxin.get());
+   }
+   cout << "\rOutput 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2" << endl;
+   cout << "3,3\n30,3\n";
+   cout << "**************************************************************" << endl;
+}
+void test3() {
+   Box B;
+   cout << "Testing operator>> overload (pass 1): " << endl;
+   cout << "Enter the following: " << endl;
+   cout << "4 <ENTER>" << endl;
+   cout << "5 <ENTER>" << endl;
+   cin >> B;
+   cout << B << endl;
+}
+void test4() {
+   int i;
+   ifstream bxin("boxes.csv");
+   Box B[2];
+   for (i = 0; i < 2; i++) {
+      B[i].setCsv(true);
+      bxin >> B[i];
+   }
+   cout << "Testing operator>> overload (pass 2): " << endl;
+   cout << "These two outputs should match" << endl;
+   cout << "Output 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" << endl;
+   for (i = 0; i < 2; i++) {
+      cout << B[i] << endl;
+   }
+   cout << "\rOutput 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2" << endl;
+   cout << "3,3\n30,3\n";
+   cout << "**************************************************************" << endl;
+}
+```
+## MS3.1 Tester output
+```text
+Testing operator<< overload (pass 1):
+These two outputs should match
+Output 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+* * *
+*   *
+* * *
+3,3
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*                                                         *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+30,3
+Output 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+* * *
+*   *
+* * *
+3,3
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*                                                         *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+30,3
+**************************************************************
+Press Enter to continue.
+Testing operator<< overload (pass 2):
+These two outputs should match
+Output 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+3,3
+30,3
+Output 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+3,3
+30,3
+**************************************************************
+Press Enter to continue.
+Testing operator>> overload (pass 1):
+Enter the following:
+4 <ENTER>
+5 <ENTER>
+Width: 4
+Height: 5
+* * * *
+*     *
+*     *
+*     *
+* * * *
+Press Enter to continue.Testing operator>> overload (pass 2):
+These two outputs should match
+Output 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+3,3
+30,3
+Output 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+3,3
+30,3
+**************************************************************
+```
+
+## Milestone 3.2
+
+To build a valet parking application we need to create a class that encapsulates a Vehicle to be parked in a parking spot and can be retrieved when it is needed to be returned to the customer.
+
+### The Vehicle module:
+Derive a class called Vehicle from the ReadWritable abstract base class in milestone 3.1.
+
+A Vehicle class should be able to store a license plate with a maximum of 8 characters, a make and model with an unknown length of more than two characters and a parking spot number that is an integer value. 
+
+### The Vehicle class implementation:
+> When implementing the methods of the class, you are responsible to recognize if a member function can change the state of the Vehicle or not. (i.e. if it is a constant function or not or if the arguments of a function are constants or not)
+
+### Attributes
+#### License plate 
+A license plate can be 1 to 8 characters. 
+
+Example: “ABC123”
+
+#### Make and model
+A make and model Cstring value with unknown length. This value can not be a null address and can not be empty.
+
+Example: “Bmw 320 M” 
+
+#### Parking spot number 
+A parking spot number can be a zero or positive integer number. A Vehicle with a zero (0) parking spot number is considered a vehicle that is not parked.  
+
+### Constructors
+a Vehicle can be created using a no-argument constructor that sets the Vehicle to a safe Invalid empty state. Also, a Vehicle can be created using a license plate and a make and model value. In the latter case, the values are used to set the properties of the Vehicle and the parking spot is set to zero. If either of the licence plate or make and model are pointing to null or are invalid values, the Vehicle is set into an invalid empty state. 
+
+### Rule of three
+Make Sure a Vehicle is copied and assigned to another vehicle safely and also make sure there is no memory leach when going out of scope or deleted.
+
+### Methods 
+#### setEmpty
+sets the Vehicle to an invalid empty state
+#### isEmpty 
+This function returns true if the Vehicle is in an invalid empty state, or else, it returns false.
+#### getLicensePlate 
+This function returns a read-only address of the license plate of the Vehicle.
+#### getMakeModel
+This function returns a read-only address of the make and model of the Vehicle.
+#### setMakeModel
+This function resets the make and model of the Vehicle to a new value. If the new value is null or empty, the object is set to an invalid empty state.
+Public Member function and operator overload implementations:
+#### getParkingSpot
+This function returns the parking spot number of the Vehicle.
+#### setParkingSpot
+Resets the parking spot number to a new value. If the value is invalid, it will set the vehicle to an Invalid empty state.
+#### operator==
+Compares the license plate of the Vehicle with a license plate value and returns true if the two license plates are identical or else it returns false. This comparison is NOT case sensitive (i.e. “123ABC” is the same as “123abc”).
+
+If any value is invalid, this function returns false;
+#### operator==
+Compares two Vehicles and if they have the same license plate, it will return true, or else it returns false. 
+This comparison is NOT case-sensitive.
+
+If any value is invalid, this function returns false;
+
+#### read
+This function overrides the Read of the ReadWritable class. 
+
+If the vehicle is set to Comma Separated mode it will read as follows:
+1.	It will read an integer for the parking spot number into the parking spot number
+2.	It will ignore one character for the delimiter (comma ‘,’)
+3.	It will read up to 8 characters or up to a comma character for the license plate and store it in the license plate number in all UPPERCASE. Either way, it will skip the comma afterwards.
+4.	It will read up to 60 characters or up to a comma character delimiter for make and model and dynamically stores it in the make and model of the Vehicle. Either way, it will skip the comma afterwards.
+
+If the Vehicle is not set to Comma Separated mode it will read as follows:
+
+It will prompt on the screen:<br />
+`"Enter Licence Plate Number: "`<br />
+Then it will read up to 8 characters from the console. If the user enters more than 8 Characters, it will print the following error message and tries again until a proper license plate number is entered.<br />
+`"Invalid Licence Plate, try again: "`<br />
+Then it will prompt:<br />
+`"Enter Make and Model: "`<br />
+Afterwards, it will read 2 to 60 characters from the console. If the user enters a value with an invalid length, it will print the following error message and tries again until a proper make and model are entered.<br />
+`"Invalid Make and model, try again: "`<br />
+Then in any mode (comma separated or not), the Read function will check if the istream object failed while reading. If this was true it will set the Vehicle object to an invalid empty state.
+
+
+Also, license plates are always stored as all UPPERCASE characters and the parking spot number is set to zero (0);
+
+In the end, the istream object is returned.
+
+#### writeType (pure virtual)
+**writeType** receives and returns a reference of ostream.
+
+This pure virtual method in future generations of Vehicle classes will print the type of Vehicle.
+
+#### write
+If the Vehicle is in an invalid empty state, this function will write the following message using the ostream object and returns it.
+
+`"Invalid Vehicle Object"`
+
+Otherwise, it will call the **writeType** method and if the class is in comma-separated mode, it will print the values of the parking spot, license plate and make and model, separated by commas and ending by a comma without going to newline. (i.e `12,ABC123,Bmw 320 M,` )
+
+If the class is not in comma-separated mode, it will print the following using the ostream object:
+1. `"Parking Spot Number: "` 
+2. Parking spot number or "N/A" if the parking spot is zero
+3. NEWLINE
+4. `"License Plate: "`
+5. Vehicle’s license plate
+6. NEWLINE
+7. `"Make and Model: "`
+8. Vehicle’s Make and model
+9. NEWLINE
+
+write returns the ostream object at the end.
+
+### Other member functions:
+Add other member functions to the Vehicle class if needed.
+
+
+## MS3.2 Tester program
+```C++
+/* ------------------------------------------------------
+Final Project Milestone 3.2
+Module: ReadWritable
+Filename: VehicleTester.cpp
+Version 1.0
+Author	Fardad Soleimanloo
+Revision History
+-----------------------------------------------------------
+Date      Reason
+-----------------------------------------------------------*/
+
+
+#include <iostream>
+#include "Vehicle.h"
+using namespace std;
+using namespace sdds;
+class Truck : public Vehicle {
+public:
+   Truck() {};
+   Truck(const char* lp, const char* mm) :Vehicle(lp, mm) {};
+   ostream& writeType(ostream& ostr)const { return ostr; };
+};
+void TestValidations();
+void TestOperatorEqualEqual( Truck A, Truck B);
+void TestIO(Vehicle& V);
+int main() {
+   Truck V;
+   Truck C("abcd", "C car");
+   // you can comment each test to develop your Vehicle step by step: 
+   TestIO(V);
+   TestOperatorEqualEqual(C, V);
+   TestValidations();
+   return 0;
+}
+void TestIO(Vehicle& V) {
+   ReadWritable& rw = V;
+   cout << "Invalid Vehicle Printing:" << endl;
+   cout << rw << endl;
+   cout << "Reading vehicle from console: " << endl;
+   cout << "Enter:" << endl << "abc<ENTER>" << endl << "abc<ENTER>" << endl;
+   rw.setCsv(false);
+   cin >> rw;
+   cout << "Printing a Vehicle that is not parked:" << endl;
+   cout << rw << endl;
+   V.setParkingSpot(12);
+   cout << "Printing a Vehicle that is parked in the spot number 12:" << endl;
+   cout << rw << endl;
+   cout << "Reading and Writing Comma Separated values: " << endl;
+   cout << "Enter: " << endl;
+   cout << "123,abcd,abcd,<ENTER>" << endl;
+   rw.setCsv(true);
+   cin >> rw;
+   cin.ignore(1000, '\n');
+   cout << rw << endl;
+}
+
+void TestValidations() {
+   Vehicle* V;
+   cout << "Construction validations:" << endl;
+   V = new Truck(nullptr, "abc");
+   cout << *V;
+   delete V;
+   V = new Truck("123456789", "abc");
+   cout << *V;
+   delete V;
+   V = new Truck("", "abc");
+   cout << *V;
+   delete V;
+   V = new Truck("ABC", nullptr);
+   cout << *V;
+   delete V;
+   V = new Truck("ABC", "");
+   cout << *V;
+   delete V;
+   V = new Truck("ABC", "A");
+   cout << *V;
+   cout << "Input validations: " << endl;
+   cout << "Enter: " << endl << "123456789<ENTER>" << endl << "abc<ENTER>" << endl << "abc<ENTER>" << endl;
+   cin >> *V;
+   cout << *V << endl;
+   cout << "Enter: " << endl << "abc<ENTER>" << endl << "a<ENTER>" << endl << "ab<ENTER>" << endl;
+   cin >> *V;
+   cout << *V << endl;
+   cout << "Testing setParkingSpot validation: " << endl <<  "Valid setting: " <<endl;
+   V->setParkingSpot(20);
+   cout << *V << endl;
+   cout << "invalid setting: " << endl;
+   V->setParkingSpot(-1);
+   cout << *V << endl;
+   delete V;
+}
+void TestOperatorEqualEqual(Truck A, Truck B) {
+   cout << "opeator== (cstring):" << endl;
+   if (A == "Abcd") {
+      cout << "operator== with cstring works" << endl;
+   }
+   else {
+      cout << "Bad Opertor==, fix your code" << endl;
+   }
+   cout << "opeator== (Vehicle):" << endl;
+   if (A == B) {
+      cout << "operator== with Vehicle works" << endl;
+   }
+   else {
+      cout << "Bad Opertor==, fix your code" << endl;
+   }
+}
+
+```
+## MS3.2 Tester program execution
+```text
+Invalid Vehicle Printing:
+Invalid Vehicle Object
+
+Reading vehicle from console:
+Enter:
+abc<ENTER>
+abc<ENTER>
+Enter License Plate Number: abc
+Enter Make and Model: abc
+Printing a Vehicle that is not parked:
+Parking Spot Number: N/A
+License Plate: ABC
+Make and Model: abc
+
+Printing a Vehicle that is parked in the spot number 12:
+Parking Spot Number: 12
+License Plate: ABC
+Make and Model: abc
+
+Reading and Writing Comma Separated values:
+Enter:
+123,abcd,abcd,<ENTER>
+123,abcd,abcd,
+123,ABCD,abcd,
+opeator== (cstring):
+operator== with cstring works
+opeator== (Vehicle):
+operator== with Vehicle works
+Construction validations:
+Invalid Vehicle Object
+Invalid Vehicle Object
+Invalid Vehicle Object
+Invalid Vehicle Object
+Invalid Vehicle Object
+Invalid Vehicle Object
+Input validations:
+Enter:
+123456789<ENTER>
+abc<ENTER>
+abc<ENTER>
+Enter License Plate Number: 123456789
+Invalid License Plate, try again: abc
+Enter Make and Model: abc
+Parking Spot Number: N/A
+License Plate: ABC
+Make and Model: abc
+
+Enter:
+abc<ENTER>
+a<ENTER>
+ab<ENTER>
+Enter License Plate Number: abc
+Enter Make and Model: a
+Invalid Make and model, try again: ab
+Parking Spot Number: N/A
+License Plate: ABC
+Make and Model: ab
+
+Testing setParkingSpot validation:
+Valid setting:
+Parking Spot Number: 20
+License Plate: ABC
+Make and Model: ab
+
+invalid setting:
+Invalid Vehicle Object
+```
+### MS3 Tester program
+The [`main.cpp`](ms3/main.cpp) tester program is the sum of the two tests (MS3.1 and MS3.2) in one file and the execution output therefore is the sum of the two outputs
+
+## MS3 Submission 
+
+> If you would like to successfully complete the project and be on time, **start early** and try to meet all the due dates of the milestones.
+
+Upload your source code and the tester program to your `matrix` account. Compile and run your code using the `g++` compiler [as shown in the introduction](#compiling-and-testing-your-program) and make sure that everything works properly.
+
+Then, run the following command from your account (replace `profname.proflastname` with your professor’s Seneca userid):
+```
+~profname.proflastname/submit 2??/prj/m3
+```
+and follow the instructions.
+
+- *2??* is replaced with your subject code
+
+
+### The submit program's options:
+```bash
+~prof_name.prof_lastname/submit DeliverableName [-submission options]<ENTER>
+[-submission option] acceptable values:
+  "-due":
+       Shows due dates only
+       This option cannot be used in combination with any other option.
+  "-skip_spaces":
+       Do the submission regardless of incorrect horizontal spacing.
+       This option may attract penalty.
+  "-skip_blank_lines":
+       Do the submission regardless of incorrect vertical spacing.
+       This option may attract penalty.
+  "-feedback":
+       Check the program execution without submission.
+```
+
+
 
 ## [Back to milestones](#milestones)
 
