@@ -7,7 +7,8 @@ Author	Fardad Soleimanloo
 Revision History
 -----------------------------------------------------------
 Date      Reason
-22/11/17  1.1 printed T, in writeType and removed space from box entry
+22/11/17  1.1 printed T, in writeType and removed 
+                                        space from box entry
 -----------------------------------------------------------*/
 
 

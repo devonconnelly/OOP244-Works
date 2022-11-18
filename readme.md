@@ -12,6 +12,8 @@
 | [MS2](#milestone-2) | V1.0 | [Watch](https://youtu.be/P1ZU2qF1IDU) |  |
 |  | V1.1 | [Find Vehicle](#find-vehicle) | Added Find Vehicle description  |
 | [MS3](#milestone-3) | V1.0 |  |  |
+|  | V1.1 |  | Corrected the `license` typo, printed `"T,"` in `writeType`  and removed the space before `<ENTER>` in box entry. If you have already submitted your MS3, you do not need to resubmit it; but make sure to apply the typo correction and test the `writeType()` function before upcoming milestones|
+
 
 
 Your task for the project for this semester is to create an application that keeps track of a Valet Parking that can park Cars and Motorcycles in a parking and retrieve them back when requested. 
@@ -1464,11 +1466,12 @@ Add other member functions to the Vehicle class if needed.
 Final Project Milestone 3.2
 Module: ReadWritable
 Filename: VehicleTester.cpp
-Version 1.0
+Version 1.1
 Author	Fardad Soleimanloo
 Revision History
 -----------------------------------------------------------
 Date      Reason
+22/11/17  Printed "T," in writeType of Truck (line 22)
 -----------------------------------------------------------*/
 
 
@@ -1480,7 +1483,7 @@ class Truck : public Vehicle {
 public:
    Truck() {};
    Truck(const char* lp, const char* mm) :Vehicle(lp, mm) {};
-   ostream& writeType(ostream& ostr)const { return ostr; };
+   ostream& writeType(ostream& ostr)const { return ostr << "T,"; };
 };
 void TestValidations();
 void TestOperatorEqualEqual( Truck A, Truck B);
@@ -1568,6 +1571,8 @@ void TestOperatorEqualEqual(Truck A, Truck B) {
    }
 }
 
+
+
 ```
 ## MS3.2 Tester program execution
 ```text
@@ -1581,12 +1586,12 @@ abc<ENTER>
 Enter License Plate Number: abc
 Enter Make and Model: abc
 Printing a Vehicle that is not parked:
-Parking Spot Number: N/A
+T,Parking Spot Number: N/A
 License Plate: ABC
 Make and Model: abc
 
 Printing a Vehicle that is parked in the spot number 12:
-Parking Spot Number: 12
+T,Parking Spot Number: 12
 License Plate: ABC
 Make and Model: abc
 
@@ -1594,7 +1599,7 @@ Reading and Writing Comma Separated values:
 Enter:
 123,abcd,abcd,<ENTER>
 123,abcd,abcd,
-123,ABCD,abcd,
+T,123,ABCD,abcd,
 opeator== (cstring):
 operator== with cstring works
 opeator== (Vehicle):
@@ -1614,7 +1619,7 @@ abc<ENTER>
 Enter License Plate Number: 123456789
 Invalid License Plate, try again: abc
 Enter Make and Model: abc
-Parking Spot Number: N/A
+T,Parking Spot Number: N/A
 License Plate: ABC
 Make and Model: abc
 
@@ -1625,13 +1630,13 @@ ab<ENTER>
 Enter License Plate Number: abc
 Enter Make and Model: a
 Invalid Make and model, try again: ab
-Parking Spot Number: N/A
+T,Parking Spot Number: N/A
 License Plate: ABC
 Make and Model: ab
 
 Testing setParkingSpot validation:
 Valid setting:
-Parking Spot Number: 20
+T,Parking Spot Number: 20
 License Plate: ABC
 Make and Model: ab
 
