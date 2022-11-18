@@ -2,11 +2,12 @@
 Final Project Milestone 3
 Module: 
 Filename: main.cpp
-Version 1.0
+Version 1.1
 Author	Fardad Soleimanloo
 Revision History
 -----------------------------------------------------------
 Date      Reason
+22/11/17  1.1 printed T, in writeType and removed space from box entry
 -----------------------------------------------------------*/
 
 
@@ -59,7 +60,7 @@ class Truck : public Vehicle {
 public:
    Truck() {};
    Truck(const char* lp, const char* mm) :Vehicle(lp, mm) {};
-   ostream& writeType(ostream& ostr)const { return ostr; };
+   ostream& writeType(ostream& ostr)const { return ostr << "T,"; };
 };
 
 
@@ -165,8 +166,8 @@ void test3() {
    Box B;
    cout << "Testing operator>> overload (pass 1): " << endl;
    cout << "Enter the following: " << endl;
-   cout << "4 <ENTER>" << endl;
-   cout << "5 <ENTER>" << endl;
+   cout << "4<ENTER>" << endl;
+   cout << "5<ENTER>" << endl;
    cin >> B;
    cout << B << endl;
 }
