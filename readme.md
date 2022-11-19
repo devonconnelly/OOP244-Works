@@ -11,9 +11,11 @@
 |  | V1.1 | [clear()](#clear-function) | Added description to what clear function does |
 | [MS2](#milestone-2) | V1.0 | [Watch](https://youtu.be/P1ZU2qF1IDU) |  |
 |  | V1.1 | [Find Vehicle](#find-vehicle) | Added Find Vehicle description  |
-| [MS3](#milestone-3) | V1.0 |  |  |
+| [MS3](#milestone-3) | V1.0 | [Watch](https://youtu.be/ZHcojkR6Y3A) |  |
 |  | V1.1 |  | Corrected the `license` typo, printed `"T,"` in `writeType`  and removed the space before `<ENTER>` in box entry. If you have already submitted your MS3, you do not need to resubmit it; but make sure to apply the typo correction and test the `writeType()` function before upcoming milestones|
-
+| |V1.2 | | Clarified the requirement for a valid make and model value  |
+| [MS4](#milestone-4) | V0.9 |  | under review |
+| [MS5](#milestone-5) | V0.9 |  | under review |
 
 
 Your task for the project for this semester is to create an application that keeps track of a Valet Parking that can park Cars and Motorcycles in a parking and retrieve them back when requested. 
@@ -35,12 +37,12 @@ This project will be done in 5 milestones and each milestone will have its due d
 
 |Milestone 5<br/> Divided into<br/>Six submission| Mark | Due date | Submission Policy|
 |:------|:---:|:---:|-------|
-| m51 (Load and Save) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
-| m52 (Park Vehicle) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
-| m53 (Return Vehicle) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
-| m54 (List Parked Vehicles) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
-| m55 (Find Vehicle) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
-| m56 (Close Parking) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
+| [m51 (exit)](#ms51-submission-test) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
+| [m52 (Load and List)](#ms52-submission-test) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
+| [m53 (load and find)](#ms53-submission-test) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
+| [m54 (load, close, save)](#ms54-submission-test) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
+| [m55 (return)](#ms55-submission-test) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
+| [m56 (park)](#ms56-submission-test) | 10% | Dec 9th| 10% penalty for each day being late up to 5 days|
 
 > The first 4 milestones will not be marked based on the code, but their success and their timely submissions. You may modify or debug your previous code as you are going through the milestones. The only milestone that is going to scrutinized based your code will be milestone 5. If you require any feedback on your first four milestones you need to ask your professor to do so.
 
@@ -1354,7 +1356,7 @@ To build a valet parking application we need to create a class that encapsulates
 ### The Vehicle module:
 Derive a class called Vehicle from the ReadWritable abstract base class in milestone 3.1.
 
-A Vehicle class should be able to store a license plate with a maximum of 8 characters, a make and model with an unknown length of more than two characters and a parking spot number that is an integer value. 
+A Vehicle class should be able to store a license plate with a maximum of 8 characters, a make and model with an unknown length of minimum of two characters and a parking spot number that is an integer value. 
 
 ### The Vehicle class implementation:
 > When implementing the methods of the class, you are responsible to recognize if a member function can change the state of the Vehicle or not. (i.e. if it is a constant function or not or if the arguments of a function are constants or not)
@@ -1366,7 +1368,7 @@ A license plate can be 1 to 8 characters.
 Example: “ABC123”
 
 #### Make and model
-A make and model Cstring value with unknown length. This value can not be a null address and can not be empty.
+A make and model Cstring value with unknown length. This value can not be a null address and must be minimum of two characters.
 
 Example: “Bmw 320 M” 
 
@@ -1685,14 +1687,801 @@ and follow the instructions.
 
 # Milestone 4
 
-To be continued
+## Modification to Vehicle Access Specifiers 
+
+Before starring your milestone 4 modify your Vehicle class and have the following functions under `protected` Access Specifier so they are only accessible by their Derived classes. 
+
+- setEmpty
+- isEmpty
+- getLicensePlate
+- getMakeModel
+- setMakeModel
+
+## Car and Motorcycle
+
+Seneca Valet Parking accepts two kinds of Vehicles; Car and Motorcycle.<br />
+Seneca Valet Parking also provides Carwash for the Cars, while they are parked in the parking.
+It also allows Motorcycles with sidecars to be parked, but this option must be known when the Motorcycle is entering the Parking.
+
+Inherit a Car and a Motorcycle class from the Vehicle class before the final stage of development of this project.
+
+> Note: that it is possible, (but unlikely) that you may have to go back to milestone 4 and do minor modifications to Vehicle to make these classes work properly. 
+
+## The Car module
+Derive a class called Car from the Vehicle Class in milestone 3.2.
+
+### The Car class implementation:
+
+As done before, when implementing the member functions of the class, you are responsible to recognize if a member function can change the state of the class or not. (i.e. if it is a constant function or not or if the arguments of a function are constants or not)
+
+#### Car Attributes 
+
+Only one mandatory attribute is required for a Car:
+
+##### Carwash flag attribute
+
+In addition to what A Vehicle provides, a Car should be able to store having carwash during parking or not. 
+
+#### Constructor implementation:
+
+a Car can be created using a no-argument constructor that sets the Car (and therefore the Base class Vehicle) to a safe Invalid empty state. Also, a Car like its base class can be created using a license plate and a make and model value. In the latter case, the values are used to set the properties of the Vehicle. If one of the licence plates or make and model are pointing to null or if they are invalid values, the Car is set into an invalid empty state. 
+
+#### Rule of three
+A Car should be safely copied and assigned to another car. 
+
+#### Member function implementations:
+
+##### writeType
+Override the pure virtual method `writeType` to write `"C,"` if the object is in comma-separated values format (isCsv()), or otherwise write `Vehicle type: Car"` and a NEWLINE.
+
+##### Read
+This function overrides the read method of the Vehicle class. 
+
+If the Car is set to Comma Separated mode it will read as follows:
+1.	It calls the read of the Base class;
+2.	It reads a Boolean value (integer value of 1 or 0) into the carwash flag. 
+3.	It ignores whatever character is left up to and including a newline character('\n').
+
+If the Car is not set to Comma Separated mode it will read as follows:
+1.	It will prompt on the screen:
+`"Car information entry"` and prints a newline character.
+2.	It will read the Base class.
+3.	Then it will prompt: `"Carwash while parked? (Y)es/(N)o: "`
+    
+    Afterwards, it will wait for the user to enter a ‘Y’ or an ‘N’ (lowercase or uppercase) and based on the user’s response it will set the carwash flag to true or false respectively. 
+    
+    If the user responds with anything thing, other than a single character ‘y’ or ‘n’ it will keep printing:<br />
+    `"Invalid response, only (Y)es or (N)o are acceptable, retry: "`<br />
+    and waits for the user to try again.
+
+    In the end, the istream object is returned.
+
+#### Write
+This function overrides the write method of the Vehicle class. 
+
+If the Car is in an invalid empty state, this function will write the following message using the ostream object and returns the ostream object.<br />
+`"Invalid Car Object"`
+
+When the Car is not in an invalid empty state:
+
+1.	It will write the base class.
+2.	If the class is in comma-separated mode, it will print the carwash flag and goes to newline.
+Otherwise based on the value of the carwash flag being true or false it will print 
+`"With Carwash"` or `"Without Carwash"` respectively and then goes to newline.
+
+At the end, the ostream object is returned.
+
+## The Motorcycle module:
+
+Derive a class called Motorcycle from the Vehicle Class in milestone 3.2.
+
+### The Motorcycle class implementation:
+
+As done before, when implementing the member functions of the class, you are responsible to recognize if a member function can change the state of the class or not. (i.e. if it is a constant function or not or if the arguments of a function are constants or not)
+
+#### Motorcycle attributes
+
+##### Has Sidecar flag attribute
+
+In addition to what A Vehicle provides, a Motorcycle should be able to store if it has a sidecar attached or not.
+
+#### Constructor implementation:
+a Motorcycle can be created using a no-argument constructor that sets the Motorcycle ( and therefore the Base class Vehicle) to a safe Invalid empty state. Also, a Motorcycle like its base class can be created using a license plate and a make and model value. In the latter case, the values are used to set the properties of the Vehicle. If one of the licence plates or make and model are pointing to null or invalid values, the Motorcycle is set into an invalid empty state. 
+
+#### Rule of three
+A Motorcycle should be safely copied and assigned to another Motorcycle. 
+
+
+### Member function implementations:
+
+##### writeType
+Override the pure virtual method `writeType` to write `"M,"` if the object is in comma-separated values format (isCsv()), or otherwise write `"Vehicle type: Motorcycle"` and a NEWLINE.
+
+##### Read
+This function overrides the read method of the Vehicle class. 
+
+If the Motorcycle is set to Comma Separated mode it will read as follows:
+1.	It calls the read of the Base class;
+2.	It reads a Boolean value (integer value of 1 or 0) into the Has Sidecar flag. 
+3.	It ignores whatever character is left up to and including a newline character('\n').
+
+If the Motorcycle is not set to Comma Separated mode it will read as follows:
+1.	It will prompt on the screen:
+`"Motorcycle information entry"` and prints a newline character.
+2.	It will read the Base class.
+3.	Then it will prompt: `"Does the Motorcycle have a sidecar? (Y)es/(N)o: "`
+    
+    Afterwards, it will wait for the user to enter a ‘Y’ or an ‘N’ (lowercase or upper case) and based on the user’s response it will set the Has Sidecar flag to true or false respectively. 
+    
+    If the user responds with anything thing, other than a single character ‘y’ or ‘n’ it will keep printing:<br />
+    `"Invalid response, only (Y)es or (N)o are acceptable, retry: "`<br />
+    and waits for the user to try again.
+
+    In the end, the istream object is returned.
+
+#### Write
+This function overrides the write method of the Vehicle class. 
+
+If the Motorcycle is in an invalid empty state, this function will write the following message using the ostream object and returns the ostream object.<br />
+`"Invalid Motorcycle Object"`
+
+When the Car is not in an invalid empty state:
+
+1.	It will write the base class.
+2.	If the class is in comma-separated mode, it will print the Has Sidecar flag and goes to newline.
+Otherwise, if the Has Sidecar flag is true it will print `"With Sidecar"` and then goes to newline.
+
+In the end, the ostream object is returned.
+
+### Tester program
+```C++
+/* ------------------------------------------------------
+Final Project Milestone 4
+Module: Car and Motorcycle
+Filename: main.cpp
+Version 1.0
+Author	Fardad Soleimanloo
+Revision History
+-----------------------------------------------------------
+Date      Reason
+-----------------------------------------------------------*/
+#include <iostream>
+#include "Car.h"
+#include "Motorcycle.h"
+using namespace std;
+using namespace sdds;
+void  MotorcycleTest(Vehicle*);
+void  CarTest(Vehicle*);
+void CarAfterTest(Car C, Car B);
+void MotorcycleAfterTest(Motorcycle M, Motorcycle N);
+void deallocate(Vehicle*);
+int main() {
+   Car* c = new Car;
+   Motorcycle* m = new Motorcycle;
+   cout << "Milestone 4, Car and Motorcycle: " << endl;
+   CarTest(c);
+   CarAfterTest(*c, *c);
+   deallocate(c);
+   MotorcycleTest(m);
+   MotorcycleAfterTest(*m, *m);
+   deallocate(m);
+   return 0;
+}
+void CarAfterTest(Car C, Car B) {
+   cout << "Copy of Car after test:" << endl << C << endl;
+   B.setParkingSpot(200);
+   B.setCsv(true);
+   C = B;
+   cout << "Assigned Car after test:" << endl << C << endl;
+}
+void MotorcycleAfterTest(Motorcycle M, Motorcycle N) {
+   cout << "Copy of Motorcycle after test:" << endl << M << endl;
+   N.setCsv(true);
+   N.setParkingSpot(400);
+   M = N;
+   cout << "Assigned Motorcycle after test:" << endl << M << endl;
+}
+void deallocate(Vehicle* V) {
+   cout << "Deallocating Vehicle!" << endl;
+   delete V;
+}
+void  MotorcycleTest(Vehicle* V) {
+   cout << "Motorcycle Test:" << endl << endl << "Invalid object printout: " <<endl;
+   cout << *V << endl;
+   cout << "Testing Console Entry, Enter the following: " << endl
+      << "ab12 <ENTER>" << endl
+      << "Harley Davidson <ENTER>" << endl
+      << "yes <ENTER>" << endl
+      << "y <ENTER>" << endl;
+   cin >> *V;
+   V->setCsv(true);
+   cout << endl << "Comma Separated Values: " << endl << *V << endl;
+   V->setCsv(false);
+   cout << "Console Printout: " << endl << *V << endl;
+   cout << "Testing CSV Entry, Enter the following: " << endl
+      << "12,AA22,Honda CD80,0 <ENTER>" << endl;
+   V->setCsv(true);
+   cin >> *V;
+   cout << endl << "Comma Separated Values: " << endl << *V << endl;
+   V->setCsv(false);
+   cout << endl << "Console Printout: " << endl << *V << endl;
+}
+void  CarTest(Vehicle* V) {
+   cout << "Car Test:" << endl << endl << "Invalid object printout: " << endl;
+   cout << *V << endl; 
+   cout << "Testing Console Entry, Enter the following: " << endl
+      << "abc123 <ENTER>" << endl
+      << "Chevy Volt <ENTER>" << endl
+      << "yes <ENTER>" << endl
+      << "y <ENTER>" << endl;
+   cin >> *V;
+   V->setCsv(true);
+   cout << endl << "Comma Separated Values: " << endl << *V << endl;
+   V->setCsv(false);
+   cout << "Console Printout: " << endl << *V << endl;
+   cout << "Testing CSV Entry, Enter the following: " << endl
+      << "12,GVAA123,Nissan Leaf,0 <ENTER>" << endl;
+   V->setCsv(true);
+   cin >> *V;
+   cout << endl << "Comma Separated Values: " << endl << *V << endl;
+   V->setCsv(false);
+   cout << endl << "Console Printout: " << endl << *V << endl;
+}
+
+```
+
+
+### Tester program output
+> :warning: Note: The singe space right before `" <ENTER>"` in data entry is not part of the data and it is added to make copy and pasting simpler when testing.
+
+```text
+Milestone 4, Car and Motorcycle:
+Car Test:
+
+Invalid object printout:
+Invalid Car Object
+
+Testing Console Entry, Enter the following:
+abc123 <ENTER>
+Chevy Volt <ENTER>
+yes <ENTER>
+y <ENTER>
+
+Car information entry
+Enter License Plate Number: abc123
+Enter Make and Model: Chevy Volt
+Carwash while parked? (Y)es/(N)o: yes
+Invalid response, only (Y)es or (N)o are acceptable, retry: y
+
+Comma Separated Values:
+C,0,ABC123,Chevy Volt,1
+
+Console Printout:
+Vehicle type: Car
+Parking Spot Number: N/A
+License Plate: ABC123
+Make and Model: Chevy Volt
+With Carwash
+
+Testing CSV Entry, Enter the following:
+12,GVAA123,Nissan Leaf,0 <ENTER>
+12,GVAA123,Nissan Leaf,0
+
+Comma Separated Values:
+C,12,GVAA123,Nissan Leaf,0
+
+
+Console Printout:
+Vehicle type: Car
+Parking Spot Number: 12
+License Plate: GVAA123
+Make and Model: Nissan Leaf
+Without Carwash
+
+Copy of Car after test:
+Vehicle type: Car
+Parking Spot Number: 12
+License Plate: GVAA123
+Make and Model: Nissan Leaf
+Without Carwash
+
+Assigned Car after test:
+C,200,GVAA123,Nissan Leaf,0
+
+Deallocating Vehicle!
+Motorcycle Test:
+
+Invalid object printout:
+Invalid Motorcycle Object
+
+Testing Console Entry, Enter the following:
+ab12 <ENTER>
+Harley Davidson <ENTER>
+yes <ENTER>
+y <ENTER>
+
+Motorcycle information entry
+Enter License Plate Number: ab12
+Enter Make and Model: Harley Davidson
+Does the Motorcycle have a side car? (Y)es/(N)o: yes
+Invalid response, only (Y)es or (N)o are acceptable, retry: y
+
+Comma Separated Values:
+M,0,AB12,Harley Davidson,1
+
+Console Printout:
+Vehicle type: Motorcycle
+Parking Spot Number: N/A
+License Plate: AB12
+Make and Model: Harley Davidson
+With Sidecar
+
+Testing CSV Entry, Enter the following:
+12,AA22,Honda CD80,0 <ENTER>
+12,AA22,Honda CD80,0
+
+Comma Separated Values:
+M,12,AA22,Honda CD80,0
+
+
+Console Printout:
+Vehicle type: Motorcycle
+Parking Spot Number: 12
+License Plate: AA22
+Make and Model: Honda CD80
+
+Copy of Motorcycle after test:
+Vehicle type: Motorcycle
+Parking Spot Number: 12
+License Plate: AA22
+Make and Model: Honda CD80
+
+Assigned Motorcycle after test:
+M,400,AA22,Honda CD80,0
+
+Deallocating Vehicle!
+
+```
+## MS4 Submission 
+
+> If you would like to successfully complete the project and be on time, **start early** and try to meet all the due dates of the milestones.
+
+Upload your source code and the tester program to your `matrix` account. Compile and run your code using the `g++` compiler [as shown in the introduction](#compiling-and-testing-your-program) and make sure that everything works properly.
+
+Then, run the following command from your account (replace `profname.proflastname` with your professor’s Seneca userid):
+```
+~profname.proflastname/submit 2??/prj/m4
+```
+and follow the instructions.
+
+- *2??* is replaced with your subject code
+
+
+### The submit program's options:
+```bash
+~prof_name.prof_lastname/submit DeliverableName [-submission options]<ENTER>
+[-submission option] acceptable values:
+  "-due":
+       Shows due dates only
+       This option cannot be used in combination with any other option.
+  "-skip_spaces":
+       Do the submission regardless of incorrect horizontal spacing.
+       This option may attract penalty.
+  "-skip_blank_lines":
+       Do the submission regardless of incorrect vertical spacing.
+       This option may attract penalty.
+  "-feedback":
+       Check the program execution without submission.
+```
+
 
 ## [Back to milestones](#milestones)
 
 
 # Milestone 5
 
-To be continued
+To complete your project for this semester, bring all the files in Milestones 2 and4 together into milestone 5. 
+
+You will modify and complete the Parking module to implement a fully functional valet parking system as stated in milestone 2.
+
+## The Parking module:
+- **The Maximum Number of Parking Spots** Constant value:
+
+    Add a constant integer value in the Parking module for the Maximum Number of Parking Spots and initialize it to the value 100.  
+
+### Additional Mandatory Attributes: (member variables)
+
+- **Number of Spots:**
+
+    Add an **integer** property to the Parking class for **the Number of Spots**. This value is always less than the Maximum Number of Parking Spots constant value.
+
+- **Parking Spots:**
+
+    Create an array of Vehicle pointers that act like the Parking Spots in the Parking. Use the Maximum Number of Parking Spots constant value for the size of the array. 
+
+### Additional Recommended Attributes: (member variables)
+
+- **Number of Parked Vehicles**
+
+    Add an integer property to the Parking for the Number of Parked Vehicles in the Parking. This value is always less than the `Number of Spots` Property.
+
+### Constructor Modification:
+
+```C++  
+Parking( const char* datafile, int noOfSpots)
+```
+Add an integer (noOfSpots) argument added the Parking constructor. Set the value of the Number of Spots in the Parking to this value. This is the maximum number of Vehicles the Parking can accept. If this number is invalid (less than 10 or more than the Maximum Number of Parking Spots constant value) then the Parking is set as an Invalid Empty State. 
+
+Also, make sure that all the elements of the Parking Spots array are initialized to nullptr.
+
+The rest of the logic of the constructor remains the same as it was in milestone 2.
+
+### The Parking Module Logic:
+
+Before starting to implement the member functions. Let us clarify how the Parking class manages the Parking Sports Vehicle pointers array.
+
+The following illustration shows how the Parking Spots array is used to keep track of the parked Vehicles in the Parking. 
+
+![Parking Array](images/parking.png)
+
+As a Vehicle arrives, a dynamic object of its type (Car or Motorcycle) will get created and set to the Vehicle’s specifications and the address of the object is kept in the next available (null) element of the Parking Spots array. 
+
+You can keep track of the number of parked Vehicles in a member variable (**Number of Parked Vehicles**) so you can stop when it reaches the Number of Spots in the Parking.
+
+If a Vehicle leaves the Parking, it is deallocated from the memory and the Parking Spot element pointing to it will be set back to nullptr which marks the Parking Spot empty again and ready for parking of the next arriving Vehicle.
+
+## Private Parking method modifications and implementations
+- **isEmpty()** function
+
+  Remains the same as MS2
+    
+- **Parking Status** function 
+
+    This function does not receive or return anything and prints the following:
+
+    - `"****** Seneca Valet Parking ******"<NEWLINE>`
+    - `"*****  Available spots: "`
+    - In 4 spaces, left justified, it will print the number of available Parking Spots
+    - `" *****"<NEWLINE>`
+
+- **Load data-file** function 
+
+  This function does not receive anything and returns a Boolean.
+  
+  Load Data reads Vehicle records from the data file and saves them in the corresponding Parking Spots indices.
+
+    > you may use your own logic or follow these guidelines
+    - Implementation guidelines: 
+    
+        If the Parking is not in an invalid empty state, using an instance of the ifstream class opens the file named in the Filename member variable.  
+              
+        If the opening of the file was not successful or the Parking was in an empty state (which means the Parking app is running for the first time) this function is in a good state (will return true when exits). 
+  
+        Otherwise, Loop through the records of the opened file and read each record into a vehicle pointer as follows:
+  
+        1. Extract one Character from the file and ignore the next. If the read fails, exit the loop since you are at the end of the data file.
+    
+             The extracted character should be either 'M' or 'C'; If the Character is 'M' create a dynamic instance of a Motorcycle and keep the address in the Vehicle pointer. Otherwise, If the Character is 'C' create a dynamic instance of a Car and keep the address in the Vehicle pointer (Hence, in any case; **M** or **C**, Vehicle should point to a Car or a Motorcycle). If the extracted character is not 'M' or 'C', let the Vehicle pointer remain nullptr.
+     
+        2. If either of the two Vehicles is allocated, then set the Vehicle to Comma Separate Value mode and extract its values from the data file. Since the read function is virtual, a car or motorcycle will be read from the file. Otherwise, set the function to a failure state (will return false when exits). 
+  
+        3. If the read was successful (Vehicle pointer is pointing to a Vehicle) add the Vehicle to the Parking by saving the Vehicle pointer in the element of the Parking Spot array that corresponds to the Parking Spot of the Vehicle (example: parking spot 5 is kept in element with index 4) otherwise if the read was unsuccessful deallocate the Vehicle and set the function to a false state and end the loop. 
+  
+        > Note that the index of the element of the Parking Spot array is always the Parking Spot number of the Vehicle minus one.
+  
+        Continue the loop while the number of records read is less than the number of elements of the array.
+  
+        At the end return the state of the function.
+
+- **Save data-file** function 
+
+    Using an instance of the ofstream class open the file named in the Filename member variable. 
+
+    If the file is opened successfully go through all the elements of the Parking Spots that are not null and save the Vehicles pointed by them in the data file in Comma Separated mode.   
+
+- **List Parked Vehicles** function 
+  This function does not receive or return anything and goes through all the Parking Spot elements of the Parking (obviously up to the Number of Spots) and prints all that is not empty (not null) and separates them with the following line: `"-------------------------------"<NEWLINE>`
+
+- **Find Vehicle** Function
+  This function does not receive or return anything.
+
+  Start by printing: `"Vehicle Search"<NEWLINE>` and then start the process by performing the following:
+  
+  Prompt the user for the license plate of the Vehicle that is to be returned:<br />
+  `"Enter Licence Plate Number: "`<br />
+  Receive the license plate value in a C-style character string between 1 to 8 characters. If the length if out of the license plate is less than 1 or more than 8 characters, print:<br />
+  `"Invalid Licence Plate, try again: "`<br />
+  and receive the value again.
+
+  After receiving a valid license plate, search through the parked Vehicles for a matching license plate.
+
+  If not found, print: `"License plate "` and then the **actual license plate value** and `" Not found"<NEWLINE>`
+  
+  If found, print `"Vechicle found:"<NEWLINE>` and print the Vehicle. 
+
+- **Park Vehicle** function 
+
+  This function does not receive or return anything.
+ 
+  If there are no Parking Spots available, the function prints `"Parking is full"` and exits. Otherwise, the function displays the **Vehicle Selection** sub-menu and then based on the user’s selection performs the following:
+  
+  If the user selects Cancel, it will print `"Parking Cancelled"<NEWLINE>` and exits the function. Otherwise, it will dynamically create an instance of a Car or Motorcycle (based on the user’s selection) in a Vehicle pointer. Then it will set it NOT to be in Comma Separated mode and reads it from the console.
+    
+  After receiving the Vehicle information from the console, the function will search through the Parking Spots array and finds the first available (null) Parking Spot and sets it to the Vehicle pointer and also it will set the Parking Spot member variable of the Vehicle to the spot number it was parked in (index + 1) and prints the following: `"Parking Ticket"<NEWLINE>` and prints the Vehicle.
+
+- **Return Vehicle** function 
+
+  This function does not receive or return anything.
+
+  Start by printing: `"Return Vehicle"<NEWLINE>` and then start the process by performing the following:
+  
+  Prompt the user for the license plate of the Vehicle that is to be returned:<br />
+  `"Enter License Plate Number: "`<br />
+  Receive the license plate value in a C-style character string between 1 to 8 characters. If the length if out of the license plate is less than 1 or more than 8 characters, print:<br />
+  `"Invalid License Plate, try again: "`<br />
+  and receive the value again.
+
+  After receiving a valid license plate, search through the parked Vehicles for a matching license plate.
+
+  If not found, print: `"License plate "` and then the **actual license plate value** and `" Not found"<NEWLINE>`
+  
+  If found, print `"Returning:"<NEWLINE>` and print the Vehicle. Then delete the Vehicle from the memory and set the Parking Spot element back to nullptr.
+  
+- **Close Parking** function 
+  This function does not receive anything and returns a Boolean. 
+  
+  If the Parking is empty this function will print:<br />
+  `"Closing Parking" <NEWLINE>`<br />
+  Then exits the function returning true.
+  
+  Otherwise, this function first prints a confirmation message for the user as follows:<br />
+  `"This will Remove and tow all remaining Vehicles from the Parking!"<NEWNLINE>`<br />
+  `"Are you sure? (Y)es/(N)o: "`<br />
+  And waits for the user to enter either “Y” or “N” (lowercase or uppercase). If the user enters an invalid response then prints:<br />
+  `"Invalid response, only (Y)es or (N)o are acceptable, retry: "`<br />
+  and repeats until the proper response is entered.
+
+  If the user response is no, then the function exits returning false. Otherwise, it will first print<br />
+  `"Closing Parking"<NEWLINE>`<br />
+  it will go through all the parked Vehicles as follows:<br />
+  1- Prints a towing ticket:<br />
+  `"Towing request"<NEWLINE>`<br />
+  `"*********************"<NEWLINE>`<br />
+  2- Prints the Vehicle and skips a line.<br />
+  3- Deletes the Vehicle and sets the Parking Spot to null until all the Vehicles are removed from the Parking.
+  then returns true.
+  
+- Exit Parking App Function 
+  
+  This function remains the same as MS2.
+
+### Member function implementations: 
+Add any additional member functions that you find necessary.
+
+## Test and submission
+### Tester program:
+```C++
+/* ------------------------------------------------------
+Final Project Milestone 5
+Module: Car and Motorcycle
+Filename: main.cpp
+Version 1.0
+Author	Fardad Soleimanloo
+Revision History
+-----------------------------------------------------------
+Date      Reason
+-----------------------------------------------------------*/
+#include <fstream>
+#include <iostream>
+#include <ctype.h>
+#include "Parking.h"
+using namespace std;
+using namespace sdds;
+void runParking();
+void Datafile(bool restore = false);
+int main() {
+   runParking();
+   Datafile(true);
+   return 0;
+}
+void runParking() {
+   Parking P("ParkingData.csv", 10);
+   P.run();
+}
+void Datafile(bool restore) {
+   char ch;
+   ifstream file("ParkingData.csv");
+   cout << endl << "Content of ParkingData.csv after the program exits" << endl;
+   cout << "-----------------------------------------------------------" << endl;
+   while(file.get(ch)) {
+      cout << char(tolower(ch));
+   }
+   cout << "-----------------------------------------------------------" << endl;
+   if(restore) {
+      cout << "Restore data file to original values? (y)es/(n)o: ";
+      file.close();
+      if(cin.get() == 'y') {
+         char ch;
+         file.open("ParkingData.csv.bak");
+         ofstream fout("ParkingData.csv");
+         while(file) {
+            ch = file.get();
+            if(file) fout.put(ch);
+         }
+         file.close();
+         fout.close();
+         cout << "Data file restored to orginal values." << endl;
+      } else {
+         cout << "Restoration aborted!" << endl;
+      }
+   }
+}
+
+
+```
+## MS5 Submission
+
+
+For marking see [Final Project Mark and Due dates](#final-project-mark-and-due-dates)
+
+Upload all the source code , the tester program, the data files and your reflection (`reflect.txt`) to your `matrix` account. Compile and run your code using the `g++` compiler [as shown in the introduction](#compiling-and-testing-your-program) and make sure that everything works properly.
+
+Then, run the submission commands stated in the 6 stages of submission from your account (replace `profname.proflastname` with your professor’s Seneca userid)
+
+Each successful submission will earn you 10% of the prject mark (and with 4 submissions of milestones the total will be 100%)
+
+### The submit program's options:
+
+```bash
+~prof_name.prof_lastname/submit DeliverableName [-submission options]<ENTER>
+[-submission option] acceptable values:
+  "-due":
+       Shows due dates only
+       This option cannot be used in combination with any other option.
+  "-skip_spaces":
+       Do the submission regardless of incorrect horizontal spacing.
+       This option may attract penalty.
+  "-skip_blank_lines":
+       Do the submission regardless of incorrect vertical spacing.
+       This option may attract penalty.
+  "-feedback":
+       Check the program execution without submission.
+```
+
+
+## MS51 submission test
+Exit
+### Data entry
+```text
+6
+y
+```
+### Expected outcome
+[m51-correct-output.txt](ms5/m51-correct-output.txt)
+
+### reflection 
+Create a file called `reflect.txt` and add the following:  
+- Your Citation if you have any borrowed code in your project.
+- Any additional (extra) work done that needs your professor's attention.
+- Your overall reflection on the project and work done in the 5 milestones. 
+
+### MS51 Submission command
+```
+~profname.proflastname/submit 2??/prj/m51 
+```
+## MS52 submission test
+Load and list
+### Data entry
+```text
+3
+<ENTER>
+6
+y
+```
+### Expected outcome
+[m52-correct-output.txt](ms5/m52-correct-output.txt)
+
+### MS52 Submission command
+```
+~profname.proflastname/submit 2??/prj/m52
+```
+## [Back to milestones](#milestones)
+
+
+## MS53 submission test
+load and fine vehicle
+
+### Data entry
+```text
+4
+abc
+<ENTER>
+4
+qwe
+<ENTER>
+6
+y
+```
+### Expected outcome
+[m53-correct-output.txt](ms5/m53-correct-output.txt)
+
+### MS53 Submission command
+```
+~profname.proflastname/submit 2??/prj/m53 
+```
+## [Back to milestones](#milestones)
+
+
+## MS54 submission test
+load, close and save
+### Data entry
+```text
+5
+y
+```
+### Expected outcome
+[m54-correct-output.txt](ms5/m54-correct-output.txt)
+
+### MS54 Submission command
+```
+~profname.proflastname/submit 2??/prj/m54 
+```
+## [Back to milestones](#milestones)
+
+## MS55 submission test
+### Data entry
+```text
+2
+abc
+<ENTER>
+2
+qwe
+<ENTER>
+6
+y
+```
+### Expected outcome
+[m55-correct-output.txt](ms5/m55-correct-output.txt)
+
+### MS55 Submission command
+```
+~profname.proflastname/submit 2??/prj/m55 
+```
+## [Back to milestones](#milestones)
+
+
+## MS56 submission test
+### Data entry
+```text
+1
+1
+abc
+Honda
+y
+<ENTER>
+2
+qwe
+<ENTER>
+3
+<ENTER>
+1
+2
+asd
+Suzuki CRF250F
+x
+y
+<ENTER>
+6
+y
+```
+### Expected outcome
+[m56-correct-output.txt](ms5/m56-correct-output.txt)
+
+### MS56 Submission command
+```
+~profname.proflastname/submit 2??/prj/m56
+```
+
 
 ## [Back to milestones](#milestones)
 
