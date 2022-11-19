@@ -1705,7 +1705,7 @@ It also allows Motorcycles with sidecars to be parked, but this option must be k
 
 Inherit a Car and a Motorcycle class from the Vehicle class before the final stage of development of this project.
 
-> Note: that it is possible, (but unlikely) that you may have to go back to milestone 4 and do minor modifications to Vehicle to make these classes work properly. 
+> :warning: Note that it perfectly normal to go back in your code and do minor modifications and debugging to the other classes to make the Car and Motorcycle classes work.<br />If this happens, you do not need to resubmit your past milestones.
 
 ## The Car module
 Derive a class called Car from the Vehicle Class in milestone 3.2.
