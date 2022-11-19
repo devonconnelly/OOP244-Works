@@ -1932,7 +1932,7 @@ void  CarTest(Vehicle* V) {
 
 
 ### Tester program output
-> :warning: Note: The singe space right before `" <ENTER>"` in data entry is not part of the data and it is added to make copy and pasting simpler when testing.
+> :warning: Note: The single space right before `" <ENTER>"` in data entry is not part of the data and it is added to make copy and pasting simpler when testing.
 
 ```text
 Milestone 4, Car and Motorcycle:
