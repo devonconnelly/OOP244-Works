@@ -1699,8 +1699,8 @@ Before starring your milestone 4 modify your Vehicle class and have the followin
 
 ## Car and Motorcycle
 
-Seneca Valet Parking accepts two kinds of Vehicles; Car and Motorcycle.<br />
-Seneca Valet Parking also provides Carwash for the Cars, while they are parked in the parking.
+The Valet Parking accepts two kinds of Vehicles; Car and Motorcycle.<br />
+The Valet Parking also provides Carwash for the Cars, while they are parked in the parking.
 It also allows Motorcycles with sidecars to be parked, but this option must be known when the Motorcycle is entering the Parking.
 
 Inherit a Car and a Motorcycle class from the Vehicle class before the final stage of development of this project.
@@ -2139,7 +2139,7 @@ If a Vehicle leaves the Parking, it is deallocated from the memory and the Parki
 
     This function does not receive or return anything and prints the following:
 
-    - `"****** Seneca Valet Parking ******"<NEWLINE>`
+    - `"****** Valet Parking ******"<NEWLINE>`
     - `"*****  Available spots: "`
     - In 4 spaces, left justified, it will print the number of available Parking Spots
     - `" *****"<NEWLINE>`
