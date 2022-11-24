@@ -1825,7 +1825,7 @@ This function overrides the write method of the Vehicle class.
 If the Motorcycle is in an invalid empty state, this function will write the following message using the ostream object and returns the ostream object.<br />
 `"Invalid Motorcycle Object"`
 
-When the Car is not in an invalid empty state:
+When the *~~Car~~* Motorcycle is not in an invalid empty state:
 
 1.	It will write the base class.
 2.	If the class is in comma-separated mode, it will print the Has Sidecar flag and goes to newline.
