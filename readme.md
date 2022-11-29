@@ -14,8 +14,8 @@
 | [MS3](#milestone-3) | V1.0 | [Watch](https://youtu.be/ZHcojkR6Y3A) |  |
 |  | V1.1 |  | Corrected the `license` typo, printed `"T,"` in `writeType`  and removed the space before `<ENTER>` in box entry. If you have already submitted your MS3, you do not need to resubmit it; but make sure to apply the typo correction and test the `writeType()` function before upcoming milestones|
 | |V1.2 | | Clarified the requirement for a valid make and model value  |
-| [MS4](#milestone-4) | V0.9 |  | under review |
-| [MS5](#milestone-5) | V0.9 |  | under review |
+| [MS4](#milestone-4) | V0.9 | [Watch](https://youtu.be/o1fI0CYzuYs) | under review |
+| [MS5](#milestone-5) | V0.9 | [Watch Part 1](https://youtu.be/TfWpYDck8tY)<br />[Watch Part 2](https://youtu.be/ms-gFs2e1ws) | under review |
 
 
 Your task for the project for this semester is to create an application that keeps track of a Valet Parking that can park Cars and Motorcycles in a parking and retrieve them back when requested. 
@@ -1705,7 +1705,7 @@ It also allows Motorcycles with sidecars to be parked, but this option must be k
 
 Inherit a Car and a Motorcycle class from the Vehicle class before the final stage of development of this project.
 
-> :warning: Note that it perfectly normal to go back in your code and do minor modifications and debugging to the other classes to make the Car and Motorcycle classes work.<br />If this happens, you do not need to resubmit your past milestones.
+> :warning: Note: that it is possible, (but unlikely) that you may have to go back to milestone 4 and do minor modifications to Vehicle to make these classes work properly. 
 
 ## The Car module
 Derive a class called Car from the Vehicle Class in milestone 3.2.
