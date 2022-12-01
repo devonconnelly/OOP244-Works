@@ -44,7 +44,7 @@ Parking Menu, select an action:
 5- Close Parking (End of day)
 6- Exit Program
 > 6
-This will This will terminate the program!!
+This will terminate the program!
 Are you sure? (Y)es/(N)o: y
 Exiting program!
 

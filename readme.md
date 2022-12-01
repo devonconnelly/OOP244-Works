@@ -16,6 +16,7 @@
 | |V1.2 | | Clarified the requirement for a valid make and model value  |
 | [MS4](#milestone-4) | V0.9 | [Watch](https://youtu.be/o1fI0CYzuYs) | under review |
 | [MS5](#milestone-5) | V0.9 | [Watch Part 1](https://youtu.be/TfWpYDck8tY)<br />[Watch Part 2](https://youtu.be/ms-gFs2e1ws) | under review |
+| |V1.0| |Removed duplicated *"This will"* in confirmation prompt when terminating the application |
 
 
 Your task for the project for this semester is to create an application that keeps track of a Valet Parking that can park Cars and Motorcycles in a parking and retrieve them back when requested. 
@@ -2093,7 +2094,7 @@ You will modify and complete the Parking module to implement a fully functional 
 
 - **Number of Spots:**
 
-    Add an **integer** property to the Parking class for **the Number of Spots**. This value is always less than the Maximum Number of Parking Spots constant value.
+    Add an **integer** property to the Parking class for **the Number of Spots**. This value is always less than or equal to the Maximum Number of Parking Spots constant value.
 
 - **Parking Spots:**
 

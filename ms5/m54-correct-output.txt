@@ -8,7 +8,7 @@ Parking Menu, select an action:
 5- Close Parking (End of day)
 6- Exit Program
 > 5
-This will This will Remove and tow all remaining vehicles from the parking!!
+This will Remove and tow all remaining vehicles from the parking!
 Are you sure? (Y)es/(N)o: y
 Closing Parking
 
