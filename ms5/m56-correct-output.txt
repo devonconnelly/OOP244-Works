@@ -26,7 +26,7 @@ License Plate: ABC
 Make and Model: Honda
 With Carwash
 
-Press <ENTER> to continue....2 
+Press <ENTER> to continue....
 ****** Valet Parking ******
 *****  Available spots: 0    *****
 Parking Menu, select an action:
@@ -110,7 +110,7 @@ License Plate: QWEASD
 Make and Model: Cadilac XT5
 Without Carwash
 -------------------------------
-Press <ENTER> to continue....1 
+Press <ENTER> to continue....
 ****** Valet Parking ******
 *****  Available spots: 1    *****
 Parking Menu, select an action:
