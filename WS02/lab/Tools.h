@@ -8,7 +8,10 @@ namespace sdds {
 
 	// ADD: Declare read prototypes (4 prototypes)
 
-
+int read(char package[]);
+int read(int value);
+int read(double value);
+int read(char letter);
 	
 
 
