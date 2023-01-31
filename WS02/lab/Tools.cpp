@@ -1,3 +1,4 @@
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 #define _CRT_SECURE_NO_WARNINGS
 #include <cstdio>
 #include "Tools.h"
@@ -24,33 +25,40 @@ namespace sdds {
     // To Do: read functions (4 overloaded read functions)
 int read(char package[])
 {
+    int val = 0;
     char temp[60];
-    fscanf(fp, "%60[^\n]\n", temp);
-    strCpy(temp, package);
-    return 0;
+    val = fscanf(fp, "%60[^\n]\n", temp);
+    strCpy(package, temp);
+    return val;
 }
 
-int read(int value)
-{
-    int number = 0, temp = 0;
-    number = fscanf(fp, "%d,", &temp);
-    value = temp;
-    return number;
-}
-
-int read(double value)
+int read(int& value)
 {
     double number = 0, temp = 0;
     number = fscanf(fp, "%lf,", &temp);
-    value = temp;
+    if(number == 1)
+    {
+        value = temp;
+    }
     return number;
 }
 
-int read(char value)
+int read(double& value)
 {
-    char temp{}, letter{};
-    letter = fscanf(fp, "%[^ \t\n\r\v\f,]%*c", &temp);
-    return letter;
+    double number = 0, temp = 0;
+    number = fscanf(fp, "%lf,", &temp);
+    if(number == 1)
+    {
+        value = temp;
+    }
+    return number;
+}
+
+int read(char& letter)
+{
+    int val;
+    val = fscanf(fp, "%[^ \t\n\r\v\f,]%*c", &letter);
+    return val;
 }
 
     void closefile() { // Fully provided

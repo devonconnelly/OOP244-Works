@@ -1,3 +1,4 @@
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 #ifndef SDDS_TOOLS_H_
 #define SDDS_TOOLS_H_
 
@@ -9,9 +10,9 @@ namespace sdds {
 	// ADD: Declare read prototypes (4 prototypes)
 
 int read(char package[]);
-int read(int value);
-int read(double value);
-int read(char letter);
+int read(int& value);
+int read(double& value);
+int read(char& letter);
 	
 
 

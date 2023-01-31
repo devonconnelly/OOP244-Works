@@ -1,3 +1,4 @@
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
@@ -111,9 +112,10 @@ namespace sdds {
         {
             if(users[i].timeinhours > 1.0 && users[i].dayofweek == 'F')
             {
-                cout << users[i].user_id << ", " << users[i].timeinhours << ", " << users[i].Fctime << ", " << users[i].Fwifitime << ", " << users [i].Package_Name << endl << "....................................................." << endl;
+                cout << users[i].user_id << "," << users[i].timeinhours << "," << users[i].Fctime << "," << users[i].Fwifitime << "," << users [i].Package_Name << endl;
             }
         }
+        cout << "....................................................." << endl;
     }
 
          

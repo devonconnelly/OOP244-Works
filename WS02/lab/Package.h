@@ -1,8 +1,8 @@
-
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 #ifndef SDDS_PACKAGE_H_
 #define SDDS_PACKAGE_H_
 
-#define filename_r "/Users/devonconnelly/Documents/OOP244NAA/OOP-Workshops/WS02/lab/Filtered_Dataset.csv"
+#define filename_r "Filtered_Dataset.csv"
 
 namespace sdds {
 
