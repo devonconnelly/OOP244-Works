@@ -2,7 +2,7 @@
 // OOP244 Workshop 5 Part2: Operators
 // File main.cpp
 // Version 1.0
-// Date	2023/02
+// Date    2023/02
 // Author Fardad Soleimanloo
 // Description
 // Tests the Bus module
