@@ -7,7 +7,7 @@ MS2
 
 |Milestone| Revision | Approximate<br />Workload (days) | Overview | Comments |
 |------|:---:|:----:|:----|:----| 
-| [MS1](#milestone-1) | V0.9 | 5 |   |  |
+| [MS1](#milestone-1) | V0.9 | 5 | [Watch](https://youtu.be/2OWD-szjMIw)  |  |
 | [MS2](#milestone-2) | V1.0 | 9|   |  |
 | [MS3](#milestone-3) |  | 10|   |  |
 | [MS4](#milestone-4) |  | 4 |  |  |
