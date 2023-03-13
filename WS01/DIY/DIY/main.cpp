@@ -16,14 +16,15 @@
 #include "GPAlist.h"
 using namespace sdds;
 int main() {
-	if(gpaQuery("std.csv")) {
-		std::cout << "This should have failed!" << std::endl;
-	} else {
-		std::cout << "failed!, this is the correct exectution" << std::endl;
-	}
-	if(!gpaQuery("students.csv")) {
-		std::cout << "This should have worked, fix the problem!" << std::endl;
-	}
-	std::cout << "Goodbye!" << std::endl;
-	return 0;
+    if(gpaQuery("std.csv")) {
+        std::cout << "This should have failed!" << std::endl;
+    } else {
+        std::cout << "failed!, this is the correct exectution" << std::endl;
+    }
+    if(!gpaQuery("/Users/devonconnelly/Documents/C++/WS01/WS01_p2/WS01_p2/students.csv")) {
+        std::cout << "This should have worked, fix the problem!" << std::endl;
+    }
+    std::cout << "Goodbye!" << std::endl;
+    
+    return 0;
 }
