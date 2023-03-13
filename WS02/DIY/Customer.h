@@ -12,16 +12,19 @@ namespace sdds {
     };
 
     struct CustomersRecord {
-        Customers* ptr_rec;  // Dynamically holds the customers' tweets' report.
+        Customers* ptr_rec; // Dynamically holds the customers' tweets' report.
         int noOfRecords;
     };
     
        
     void read(char* str, int len);
-   
-    // to be completed
-
-
+bool read(Customers& rec);
+void read(char* str, int len);
+void addCustomer(CustomersRecord& t_rec, const Customers& c_rec);
+void display(const Customers& c_rec);
+void display(const CustomersRecord& t_rec);
+void EmptyRecord(Customers& c_rec);
+void EmptyRecord(CustomersRecord& t_rec);
 
 
 

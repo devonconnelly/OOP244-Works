@@ -22,7 +22,7 @@ int main() {
       "A very very very long name to be cut short!!!", // one argument constructor
       {"Fred Soley", 12345} ,       // two argument constructor with good data
       {nullptr, 23456},    // two argument constructor with bad name
-      {"Bad number", 1234},  // two argument constructor with bad number
+      {"Bad number", 1234},  // two argument constructor with bad number`
       {"Bad number", 123456}  // two argument constructor with bad number
                              // default constructor (sixth element)
    };
