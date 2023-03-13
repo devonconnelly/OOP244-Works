@@ -434,7 +434,7 @@ To find out what is the maximum valid value for a calendar day in a month you ca
 ### Date Construction
 - By default date is created and set to the current system date and will be set not to be date-only (it will include the hour and the minute)
 - A date can get created by receiving the date; (year, month and day values only). In this case, the Date object will be set to date-only mode. After the attributes are set, they are [validated](#date-validation-process). 
-- A date can get created using date and time; (hour, month, day, hour and minute). In this case, the Date object will not be set to date-only mode. After the attributes are set, they are [validated](#date-validation-process).
+- A date can get created using date and time; (year, month, day, hour and minute). In this case, the Date object will not be set to date-only mode. After the attributes are set, they are [validated](#date-validation-process).
 
 ### Comparison Operator Overloads
 Overload all the comparison operator overloads to compare two date objects and return a boolean.
