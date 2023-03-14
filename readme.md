@@ -509,6 +509,13 @@ After reading each integer, check the status of istream, if it is not in a fail 
 "Cannot read minute entry"
 ```
 
+##### Exmaple
+
+```text
+2023/10/abc, 20:20
+The Error message should be set to "Cannot read day entry" and extration is stopped having istream left in error sate
+```
+
 > Note if the Date is in read-only mode, after reading the three date integers, set hour and minute to zero.
 
 In any case, at the end return the reference of istream.
