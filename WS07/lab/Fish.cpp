@@ -39,10 +39,17 @@ Fish& Fish::operator=(const Fish& rhs)
     addCharge(m_clone);
     return *this;
 }
-ostream& operator<<(ostream& os, Pet& pet)
+
+ostream& Fish::outputData(ostream& os)
+{
+    Pet::outputData(os);
+    return os;
+}
+
+ostream& operator<<(ostream& os, Fish& fish)
 {
     os << "** Generic Fish **" << endl;
-    pet.outputData(os);
+    fish.outputData(os);
     return os;
 }
 }

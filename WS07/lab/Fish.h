@@ -3,7 +3,7 @@
 #include "Pet.h"
 namespace sdds
 {
-class Fish : Pet
+class Fish : public Pet
 {
 private:
     const double m_create = 2.00;
@@ -16,7 +16,8 @@ public:
     void reSpawn();
     void operator++(int num);
     Fish& operator=(const Fish& rhs);
+    std::ostream& outputData(std::ostream& os);
 };
-std::ostream& operator<<(std::ostream& os, Pet& pet);
+std::ostream& operator<<(std::ostream& os, Fish& fish);
 }
 #endif

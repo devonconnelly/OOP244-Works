@@ -3,7 +3,7 @@
 using namespace std;
 namespace sdds
 {
-Dog::Dog(char *name, int origAge) : Pet(name, origAge, COST_BASE) {}
+Dog::Dog(char *name, int origAge, int numWalks) : Pet(name, origAge, COST_BASE), m_numWalks(numWalks) {}
 
 void Dog::feed()
 {
@@ -33,11 +33,14 @@ void Dog::operator++(int num)
 {
     if(isAlive())
     {
+        //from WS07 Instructions
         double healthDelta = 0;
         healthDelta += 0.15 * (getHugs()   - 1);
         healthDelta += 0.10 * (getFeeds()  - 2);
         healthDelta += 0.10 * (getGrooms() - 1);
         healthDelta += 0.20 * (m_numWalks  - 2);
+        //
+        applyHealthDelta(healthDelta);
         Pet::operator++(num);
     }
 }
@@ -49,6 +52,14 @@ Dog& Dog::operator=(const Dog& rhs)
     addCharge(m_clone);
     return *this;
 }
+
+ostream& Dog::outputData(ostream& os)
+{
+    os << "Walks: " << m_numWalks << endl;
+    Pet::outputData(os);
+    return os;
+}
+
 ostream& operator<<(ostream& os, Dog& dog)
 {
     os << "** Generic Dog **" << endl;
