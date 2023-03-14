@@ -359,7 +359,7 @@ If an Error object is casted to a **bool**, it should return true if the message
   }
 ```
 #### `clear()` 
-This method clears the error message and returns the reference of the current Error object. After this, the Error object should be in a "no error" state.
+This method clears the error message and returns the reference of the current Error object. After this, the Error object should be in an "no Error" state with the message set to nullptr;
 
 #### ostream insertion
 The Error message should be able to be inserted into an ostream object using the **operator<<**. If the Error object is not in an error state nothing will be inserted into the ostream object.
