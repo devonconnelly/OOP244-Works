@@ -5,7 +5,18 @@ namespace sdds
 {
 class Fish : Pet
 {
-    
+private:
+    const double m_create = 2.00;
+    const double m_feed = 0.10;
+    const double m_respawn = 0.50;
+    const double m_clone = m_create * 2;
+public:
+    Fish(char* name, int origAge = 0);
+    void feed();
+    void reSpawn();
+    void operator++(int num);
+    Fish& operator=(const Fish& rhs);
 };
+std::ostream& operator<<(std::ostream& os, Pet& pet);
 }
 #endif
