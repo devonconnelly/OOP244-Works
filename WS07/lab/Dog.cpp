@@ -42,6 +42,7 @@ void Dog::operator++(int num)
         //
         applyHealthDelta(healthDelta);
         Pet::operator++(num);
+        m_numWalks = 0;
     }
 }
 
@@ -52,7 +53,6 @@ Dog& Dog::operator=(const Dog& rhs)
         Pet::operator=(rhs);
         m_numWalks = rhs.m_numWalks;
         addCharge(m_clone);
-        m_numWalks = 0;
     }
     return *this;
 }
