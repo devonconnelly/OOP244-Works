@@ -20,7 +20,7 @@ public:
     Dog& operator=(const Dog& rhs);
     std::ostream& outputData(std::ostream& os);
 };
-std::ostream& operator<<(std::ostream& os, Pet& pet);
+std::ostream& operator<<(std::ostream& os, Dog& dog);
 }
 
 #endif

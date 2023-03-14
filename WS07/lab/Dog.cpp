@@ -47,15 +47,19 @@ void Dog::operator++(int num)
 
 Dog& Dog::operator=(const Dog& rhs)
 {
-    Pet::operator=(rhs);
-    m_numWalks = rhs.m_numWalks;
-    addCharge(m_clone);
+    if (this != &rhs)
+    {
+        Pet::operator=(rhs);
+        m_numWalks = rhs.m_numWalks;
+        addCharge(m_clone);
+        m_numWalks = 0;
+    }
     return *this;
 }
 
 ostream& Dog::outputData(ostream& os)
 {
-    os << "Walks: " << m_numWalks << endl;
+    os << "   Walks: " << m_numWalks << endl;
     Pet::outputData(os);
     return os;
 }
