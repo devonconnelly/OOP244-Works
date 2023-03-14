@@ -5,7 +5,6 @@ namespace sdds
 {
 class Dog : public Pet
 {
-    //test
 private:
     const double m_create = 4.00;
     const double m_feed = 0.25;
