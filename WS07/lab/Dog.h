@@ -12,7 +12,7 @@ private:
     const double m_clone = m_create * 2;
     int m_numWalks;
 public:
-    Dog(char* name, int origAge = 0, int numWalks = 0);
+    Dog(const char* name, int origAge = 0, int numWalks = 0);
     void feed();
     void walk();
     void reSpawn();

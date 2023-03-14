@@ -4,7 +4,7 @@ using namespace std;
 namespace sdds
 {
 
-Fish::Fish(char *name, int origAge) : Pet(name, origAge, COST_BASE) {}
+Fish::Fish(const char *name, int origAge) : Pet(name, origAge, COST_BASE) {}
 
 
 void Fish::feed()

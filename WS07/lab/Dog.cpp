@@ -3,7 +3,7 @@
 using namespace std;
 namespace sdds
 {
-Dog::Dog(char *name, int origAge, int numWalks) : Pet(name, origAge, COST_BASE), m_numWalks(numWalks) {}
+Dog::Dog(const char *name, int origAge, int numWalks) : Pet(name, origAge, COST_BASE), m_numWalks(numWalks) {}
 
 void Dog::feed()
 {

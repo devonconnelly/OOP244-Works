@@ -11,7 +11,7 @@ private:
     const double m_respawn = 0.50;
     const double m_clone = m_create * 2;
 public:
-    Fish(char* name, int origAge = 0);
+    Fish(const char* name, int origAge = 0);
     void feed();
     void reSpawn();
     void operator++(int num);
