@@ -8,7 +8,7 @@ private:
     char* m_errorMessage;
 public:
     Error();
-    Error(char* errorMessage);
+    Error(const char* errorMessage);
     Error(const Error& source);
     Error& operator=(const Error& source);
     Error& operator=(const char* cString);

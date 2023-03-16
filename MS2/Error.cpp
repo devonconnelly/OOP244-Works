@@ -9,7 +9,7 @@ Error::Error()
     m_errorMessage = nullptr;
 }
 
-Error::Error(char *errorMessage)
+Error::Error(const char *errorMessage)
 {
 //    m_errorMessage = new char[strlen(errorMessage) + 1];
 //    strcpy(m_errorMessage, errorMessage);

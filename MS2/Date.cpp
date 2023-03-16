@@ -2,6 +2,7 @@
 #include <ctime>
 #include <iostream>
 #include <cstring>
+#include "Error.h"
 #include "Date.h"
 #include "Pos.h"
 using namespace std;
@@ -9,7 +10,26 @@ namespace sdds
 {
 void Date::validation()
 {
-    <#code#>;
+    if(m_year < MIN_YEAR || m_year > MAX_YEAR)
+    {
+        m_errors = "Invalid Year";
+    }
+    else if(m_month < 1 || m_month > 12)
+    {
+        m_errors = "Invalid Month";
+    }
+    else if(m_day < 1 || m_day > daysOfMonth(m_year, m_month))
+    {
+        m_errors = "Invalid Month";
+    }
+    else if(m_hour < 0 || m_hour > 23)
+    {
+        m_errors = "Invalid Hour";
+    }
+    else if(m_minute < 0 || m_minute > 59)
+    {
+        m_errors = "Invalid Minute";
+    }
 }
 
 void Date::getSystemDate(int &year, int &mon, int &day, int &hour, int &min, bool dateOnly)
@@ -114,12 +134,12 @@ Date& Date::dateOnly(bool dateOnly)
 
 Date::operator bool() const
 {
-    <#code#>;
+    return !m_errors;
 }
 
-sdds::Error &Date::error()
+const Error& Date::error()
 {
-    <#code#>;
+    return m_errors;
 }
 
 istream& operator>>(istream& istr, Date& right);
