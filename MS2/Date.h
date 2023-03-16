@@ -7,7 +7,7 @@ namespace sdds
 class Date {
 private:
     int m_year, m_month, m_day, m_hour, m_minute;
-    bool m_dateFlag;
+    bool m_dateOnly;
     int  m_numError;
 public:
     void validation();
@@ -24,7 +24,7 @@ public:
     bool operator>(const Date& right);
     bool operator<=(const Date& right);
     bool operator>=(const Date& right);
-    Date& dateOnly(bool dateOnlyFlag);
+    Date& dateOnly(bool dateOnly);
     operator bool() const;
     Error& error();
     

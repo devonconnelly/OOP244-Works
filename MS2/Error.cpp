@@ -23,9 +23,12 @@ Error::Error(const Error& source)
 
 Error& Error::operator=(const Error &source)
 {
-    if(this != &source)
+    if(source && this != &source)
     {
-        m_errorMessage = new char[strlen(source.m_errorMessage) + 1];
+        delete[] m_errorMessage;
+        int len = (int)strlen(source.m_errorMessage);
+        m_errorMessage = new char[len + 1];
+        m_errorMessage[len] = '\0';
         strcpy(m_errorMessage, source.m_errorMessage);
     }
     return *this;
@@ -41,7 +44,10 @@ Error& Error::operator=(const char *cString)
 {
     if(cString != nullptr && cString[0] != '\0')
     {
-        m_errorMessage = new char[strlen(cString) + 1];
+        delete[] m_errorMessage;
+        int len = (int)strlen(cString);
+        m_errorMessage = new char[len + 1];
+        m_errorMessage[len] = '\0';
         strcpy(m_errorMessage, cString);
     }
     else
