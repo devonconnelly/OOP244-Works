@@ -14,7 +14,6 @@ private:
 public:
     Error();
     Error(const char* errorMessage);
-    Error(const Error& source);
     Error& operator=(const Error& source);
     Error& operator=(const char* cString);
     ~Error();
