@@ -47,7 +47,7 @@ Error::~Error()
 
 Error& Error::operator=(const char *cString)
 {
-    if(cString != nullptr && cString[0] != '\0')
+    if(cString != nullptr)
     {
         delete[] m_errorMessage;
         int len = (int)strlen(cString);
