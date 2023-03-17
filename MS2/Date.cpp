@@ -34,7 +34,7 @@ void Date::validation()
     }
     else if(m_minute < 0 || m_minute > 59)
     {
-        m_errors = "Invalid Minute";
+        m_errors = "Invlid Minute";
     }
 }
 
