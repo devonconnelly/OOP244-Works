@@ -20,7 +20,7 @@ void Date::validation()
     }
     else if(m_day < 1 || m_day > daysOfMonth(m_year, m_month))
     {
-        m_errors = "Invalid Month";
+        m_errors = "Invalid Day";
     }
     else if(m_hour < 0 || m_hour > 23)
     {
@@ -63,10 +63,10 @@ int Date::daysOfMonth(int year, int month)
 
 Date::Date()
 {
-    <#code#>;
+    getSystemDate(m_year, m_month, m_day, m_hour, m_minute, m_dateOnly);
 }
 
-Date::Date(int year, int month, int day)
+Date::Date(const int& year, const int& month, const int& day)
 {
     m_dateOnly = true;
     m_year = year;
@@ -75,7 +75,7 @@ Date::Date(int year, int month, int day)
     validation();
 }
 
-Date::Date(int year, int month, int day, int hour, int minute)
+Date::Date(const int& year, const int& month, const int& day, const int& hour, const int& minute)
 {
     m_dateOnly = false;
     m_year = year;
@@ -91,34 +91,34 @@ Date::~Date()
     <#code#>;
 }
 
-bool Date::operator==(const Date& right)
+bool Date::operator==(Date& right)
 {
-    <#code#>;
+    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) == right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
 }
 
-bool Date::operator!=(const Date& right)
+bool Date::operator!=(Date& right)
 {
-    <#code#>;
+    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) != right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
 }
 
-bool Date::operator<(const Date& right)
+bool Date::operator<(Date& right)
 {
-    <#code#>;
+    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) < right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
 }
 
-bool Date::operator>(const Date& right)
+bool Date::operator>(Date& right)
 {
-    <#code#>;
+    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) > right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
 }
 
-bool Date::operator<=(const Date& right)
+bool Date::operator<=(Date& right)
 {
-    <#code#>;
+    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) <= right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
 }
 
-bool Date::operator>=(const Date& right)
+bool Date::operator>=(Date& right)
 {
-    <#code#>;
+    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) >= right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
 }
 
 Date& Date::dateOnly(bool dateOnly)
@@ -144,10 +144,14 @@ const Error& Date::error()
 
 istream& operator>>(istream& istr, Date& right);
 {
-    
+    return istr;
 }
 ostream& operator<<(ostream& ostr, const Date& right)
 {
-    
+    if(right)
+    {
+        
+    }
+    return ostr;
 }
 }

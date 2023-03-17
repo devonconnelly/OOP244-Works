@@ -18,12 +18,12 @@ public:
     Date(const int& year, const int& month, const int& day);
     Date(const int& year, const int& month, const int& day, const int& hour, const int& minute);
     ~Date();
-    bool operator==(const Date& right);
-    bool operator!=(const Date& right);
-    bool operator<(const Date& right);
-    bool operator>(const Date& right);
-    bool operator<=(const Date& right);
-    bool operator>=(const Date& right);
+    bool operator==(Date& right);
+    bool operator!=(Date& right);
+    bool operator<(Date& right);
+    bool operator>(Date& right);
+    bool operator<=(Date& right);
+    bool operator>=(Date& right);
     Date& dateOnly(bool dateOnly);
     operator bool() const;
     const Error& error();
