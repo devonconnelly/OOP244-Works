@@ -185,7 +185,6 @@ std::istream& Date::read(std::istream& istr)
                     }
                     else
                     {
-                        m_dateOnly = true;
                         m_errors = "Cannot read hour entry";
                     }
                 }
