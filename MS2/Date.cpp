@@ -9,7 +9,7 @@
 #include <cstring>
 #include "Error.h"
 #include "Date.h"
-#include "Pos.h"
+#include "POS.h"
 using namespace std;
 namespace sdds
 {
