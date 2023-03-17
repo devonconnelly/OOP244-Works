@@ -1,3 +1,8 @@
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+// Name: Devon Connelly
+// Email: dconnelly@myseneca.ca
+// ID: 105322218
+// Date Completed: Mar 17 2023
 #include <iostream>
 #include <cstring>
 #include "Error.h"
@@ -25,7 +30,6 @@ Error& Error::operator=(const Error &source)
 {
     if(source && this != &source)
     {
-        delete[] m_errorMessage;
         int len = (int)strlen(source.m_errorMessage);
         m_errorMessage = new char[len + 1];
         m_errorMessage[len] = '\0';
@@ -44,7 +48,6 @@ Error& Error::operator=(const char *cString)
 {
     if(cString != nullptr && cString[0] != '\0')
     {
-        delete[] m_errorMessage;
         int len = (int)strlen(cString);
         m_errorMessage = new char[len + 1];
         m_errorMessage[len] = '\0';
@@ -64,7 +67,7 @@ Error::operator bool() const
 
 Error& Error::Error::clear()
 {
-    m_errorMessage[0] = '\0';
+    m_errorMessage = nullptr;
     return *this;
 }
 

@@ -2,7 +2,7 @@
 #define SDDS_POS_H_
 namespace sdds
 {
-const double tax = 0.13;
+const double TAX = 0.13;
 const int MAX_SKU_LEN = 7;
 const int MIN_YEAR = 2000;
 const int MAX_YEAR = 2030;

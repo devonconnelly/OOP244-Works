@@ -1,3 +1,8 @@
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+// Name: Devon Connelly
+// Email: dconnelly@myseneca.ca
+// ID: 105322218
+// Date Completed: Mar 17 2023
 #define _CRT_SECURE_NO_WARNINGS
 #include <ctime>
 #include <iostream>
@@ -63,6 +68,7 @@ int Date::daysOfMonth(int year, int month)
 
 Date::Date()
 {
+    m_dateOnly = false;
     getSystemDate(m_year, m_month, m_day, m_hour, m_minute, m_dateOnly);
 }
 
@@ -72,7 +78,9 @@ Date::Date(const int& year, const int& month, const int& day)
     m_year = year;
     m_month = month;
     m_day = day;
+    dateOnly(m_dateOnly);
     validation();
+    
 }
 
 Date::Date(const int& year, const int& month, const int& day, const int& hour, const int& minute)
@@ -88,37 +96,37 @@ Date::Date(const int& year, const int& month, const int& day, const int& hour, c
 
 Date::~Date()
 {
-    <#code#>;
+    
 }
 
 bool Date::operator==(Date& right)
 {
-    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) == right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
+    return (uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) == right.uniqueDateValue(right.m_year, right.m_month, right.m_day, right.m_hour, right.m_minute));
 }
 
 bool Date::operator!=(Date& right)
 {
-    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) != right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
+    return (uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) != right.uniqueDateValue(right.m_year, right.m_month, right.m_day, right.m_hour, right.m_minute));
 }
 
 bool Date::operator<(Date& right)
 {
-    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) < right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
+    return (uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) < right.uniqueDateValue(right.m_year, right.m_month, right.m_day, right.m_hour, right.m_minute));
 }
 
 bool Date::operator>(Date& right)
 {
-    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) > right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
+    return (uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) > right.uniqueDateValue(right.m_year, right.m_month, right.m_day, right.m_hour, right.m_minute));
 }
 
 bool Date::operator<=(Date& right)
 {
-    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) <= right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
+    return (uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) <= right.uniqueDateValue(right.m_year, right.m_month, right.m_day, right.m_hour, right.m_minute));
 }
 
 bool Date::operator>=(Date& right)
 {
-    return uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) >= right.uniqueDateValue(m_year, m_month, m_day, m_hour, m_hour);
+    return (uniqueDateValue(m_year, m_month, m_day, m_hour, m_minute) >= right.uniqueDateValue(right.m_year, right.m_month, right.m_day, right.m_hour, right.m_minute));
 }
 
 Date& Date::dateOnly(bool dateOnly)
@@ -142,16 +150,95 @@ const Error& Date::error()
     return m_errors;
 }
 
-istream& operator>>(istream& istr, Date& right);
+std::istream& Date::read(std::istream& istr)
 {
+    m_errors.clear();
+    istr >> m_year;
+    if(!istr.fail())
+    {
+        istr.ignore();
+        istr >> m_month;
+        if(!istr.fail())
+        {
+            istr.ignore();
+            istr >> m_day;
+            if(!istr.fail())
+            {
+                if(!m_dateOnly)
+                {
+                    istr.ignore();
+                    istr >> m_hour;
+                    if(!istr.fail())
+                    {
+                        istr.ignore();
+                        istr >> m_minute;
+                        if(istr.fail())
+                        {
+                            m_errors = "Cannot read minute entry";
+                        }
+                    }
+                    else
+                    {
+                        m_dateOnly = true;
+                        m_errors = "Cannot read hour entry";
+                    }
+                }
+            }
+            else
+            {
+                m_dateOnly = true;
+                m_errors = "Cannot read day entry";
+            }
+        }
+        else
+        {
+            m_dateOnly = true;
+            m_errors = "Cannot read month entry";
+        }
+    }
+    else
+    {
+        m_dateOnly = true;
+        m_errors = "Cannot read year entry";
+    }
+
+
+    
+    validation();
+    
+    return istr;
+}
+std::ostream& Date::display(std::ostream& ostr) const
+{
+    if(*this)
+    {
+        if(m_dateOnly)
+        {
+            ostr << m_year << "/" << m_month << "/" << m_day;
+        }
+        else
+        {
+            ostr << m_year << "/" << m_month << "/" << m_day << ", " << m_hour << ":" << m_minute;
+        }
+    }
+    else
+    {
+        if(!m_dateOnly)
+        ostr << m_errors << "(" << m_year << "/" << m_month << "/" << m_day << ", " << m_hour << ":" << m_minute << ")";
+        else
+        ostr << m_errors << "(" << m_year << "/" << m_month << "/" << m_day << ")";
+    }
+    return ostr;
+}
+
+istream& operator>>(istream& istr, Date& right)
+{
+    right.read(istr);
     return istr;
 }
 ostream& operator<<(ostream& ostr, const Date& right)
 {
-    if(right)
-    {
-        
-    }
+    right.display(ostr);
     return ostr;
 }
 }

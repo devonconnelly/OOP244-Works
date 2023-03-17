@@ -7,15 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A8FA4B029C39B2F0041D116 /* 03-DateConstructorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA49C29C39B2F0041D116 /* 03-DateConstructorTests.cpp */; };
 		4A8FA4B129C39B2F0041D116 /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA49E29C39B2F0041D116 /* Error.cpp */; };
-		4A8FA4B229C39B2F0041D116 /* 04-DateLogicalOperators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA4A129C39B2F0041D116 /* 04-DateLogicalOperators.cpp */; };
-		4A8FA4B329C39B2F0041D116 /* 05-DateValidation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA4A429C39B2F0041D116 /* 05-DateValidation.cpp */; };
-		4A8FA4B429C39B2F0041D116 /* 02-constantValueTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA4A729C39B2F0041D116 /* 02-constantValueTests.cpp */; };
-		4A8FA4B529C39B2F0041D116 /* 01-ErrorTester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA4A929C39B2F0041D116 /* 01-ErrorTester.cpp */; };
 		4A8FA4B629C39B2F0041D116 /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA4AC29C39B2F0041D116 /* Date.cpp */; };
-		4A8FA4B729C39B2F0041D116 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA4AD29C39B2F0041D116 /* main.cpp */; };
 		4A8FA4B829C39B2F0041D116 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FA4AE29C39B2F0041D116 /* Utils.cpp */; };
+		4A922B4029C4E10300061E03 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A922B3D29C4E0F100061E03 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,24 +29,24 @@
 		4A8FA49029C39AF70041D116 /* MS2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MS2; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8FA49A29C39B2F0041D116 /* 02-output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "02-output.txt"; sourceTree = "<group>"; };
 		4A8FA49B29C39B2F0041D116 /* Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Date.h; sourceTree = "<group>"; };
-		4A8FA49C29C39B2F0041D116 /* 03-DateConstructorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "03-DateConstructorTests.cpp"; sourceTree = "<group>"; };
 		4A8FA49D29C39B2F0041D116 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		4A8FA49E29C39B2F0041D116 /* Error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Error.cpp; sourceTree = "<group>"; };
 		4A8FA49F29C39B2F0041D116 /* 01-output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "01-output.txt"; sourceTree = "<group>"; };
 		4A8FA4A029C39B2F0041D116 /* 04-output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "04-output.txt"; sourceTree = "<group>"; };
-		4A8FA4A129C39B2F0041D116 /* 04-DateLogicalOperators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "04-DateLogicalOperators.cpp"; sourceTree = "<group>"; };
 		4A8FA4A229C39B2F0041D116 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		4A8FA4A329C39B2F0041D116 /* dateEntries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dateEntries.txt; sourceTree = "<group>"; };
-		4A8FA4A429C39B2F0041D116 /* 05-DateValidation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "05-DateValidation.cpp"; sourceTree = "<group>"; };
 		4A8FA4A529C39B2F0041D116 /* 05-output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "05-output.txt"; sourceTree = "<group>"; };
 		4A8FA4A629C39B2F0041D116 /* 03-output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "03-output.txt"; sourceTree = "<group>"; };
-		4A8FA4A729C39B2F0041D116 /* 02-constantValueTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "02-constantValueTests.cpp"; sourceTree = "<group>"; };
 		4A8FA4A829C39B2F0041D116 /* MS2.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MS2.sln; sourceTree = "<group>"; };
-		4A8FA4A929C39B2F0041D116 /* 01-ErrorTester.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "01-ErrorTester.cpp"; sourceTree = "<group>"; };
 		4A8FA4AB29C39B2F0041D116 /* POS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POS.h; sourceTree = "<group>"; };
 		4A8FA4AC29C39B2F0041D116 /* Date.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Date.cpp; sourceTree = "<group>"; };
-		4A8FA4AD29C39B2F0041D116 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4A8FA4AE29C39B2F0041D116 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		4A922B3729C4CCAF00061E03 /* 03-DateConstructorTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "03-DateConstructorTests.cpp"; sourceTree = "<group>"; };
+		4A922B3929C4D6B300061E03 /* 04-DateLogicalOperators.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "04-DateLogicalOperators.cpp"; sourceTree = "<group>"; };
+		4A922B3B29C4D99000061E03 /* 05-DateValidation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "05-DateValidation.cpp"; sourceTree = "<group>"; };
+		4A922B3D29C4E0F100061E03 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4A922B3E29C4E0FA00061E03 /* 02-constantValueTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "02-constantValueTests.cpp"; sourceTree = "<group>"; };
+		4A922B3F29C4E0FA00061E03 /* 01-ErrorTester.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "01-ErrorTester.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,22 +63,22 @@
 		4A8FA48729C39AF70041D116 = {
 			isa = PBXGroup;
 			children = (
-				4A8FA4A929C39B2F0041D116 /* 01-ErrorTester.cpp */,
+				4A922B3F29C4E0FA00061E03 /* 01-ErrorTester.cpp */,
+				4A922B3E29C4E0FA00061E03 /* 02-constantValueTests.cpp */,
+				4A922B3D29C4E0F100061E03 /* main.cpp */,
+				4A922B3B29C4D99000061E03 /* 05-DateValidation.cpp */,
+				4A922B3929C4D6B300061E03 /* 04-DateLogicalOperators.cpp */,
+				4A922B3729C4CCAF00061E03 /* 03-DateConstructorTests.cpp */,
+				4A8FA4A329C39B2F0041D116 /* dateEntries.txt */,
 				4A8FA49F29C39B2F0041D116 /* 01-output.txt */,
-				4A8FA4A729C39B2F0041D116 /* 02-constantValueTests.cpp */,
 				4A8FA49A29C39B2F0041D116 /* 02-output.txt */,
-				4A8FA49C29C39B2F0041D116 /* 03-DateConstructorTests.cpp */,
 				4A8FA4A629C39B2F0041D116 /* 03-output.txt */,
-				4A8FA4A129C39B2F0041D116 /* 04-DateLogicalOperators.cpp */,
 				4A8FA4A029C39B2F0041D116 /* 04-output.txt */,
-				4A8FA4A429C39B2F0041D116 /* 05-DateValidation.cpp */,
 				4A8FA4A529C39B2F0041D116 /* 05-output.txt */,
 				4A8FA4AC29C39B2F0041D116 /* Date.cpp */,
 				4A8FA49B29C39B2F0041D116 /* Date.h */,
-				4A8FA4A329C39B2F0041D116 /* dateEntries.txt */,
 				4A8FA49E29C39B2F0041D116 /* Error.cpp */,
 				4A8FA49D29C39B2F0041D116 /* Error.h */,
-				4A8FA4AD29C39B2F0041D116 /* main.cpp */,
 				4A8FA4A829C39B2F0041D116 /* MS2.sln */,
 				4A8FA4AB29C39B2F0041D116 /* POS.h */,
 				4A8FA4AE29C39B2F0041D116 /* Utils.cpp */,
@@ -157,15 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A8FA4B529C39B2F0041D116 /* 01-ErrorTester.cpp in Sources */,
-				4A8FA4B229C39B2F0041D116 /* 04-DateLogicalOperators.cpp in Sources */,
-				4A8FA4B329C39B2F0041D116 /* 05-DateValidation.cpp in Sources */,
-				4A8FA4B429C39B2F0041D116 /* 02-constantValueTests.cpp in Sources */,
 				4A8FA4B829C39B2F0041D116 /* Utils.cpp in Sources */,
 				4A8FA4B629C39B2F0041D116 /* Date.cpp in Sources */,
+				4A922B4029C4E10300061E03 /* main.cpp in Sources */,
 				4A8FA4B129C39B2F0041D116 /* Error.cpp in Sources */,
-				4A8FA4B729C39B2F0041D116 /* main.cpp in Sources */,
-				4A8FA4B029C39B2F0041D116 /* 03-DateConstructorTests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
