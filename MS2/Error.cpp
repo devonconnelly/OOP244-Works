@@ -20,11 +20,6 @@ Error::Error(const char *errorMessage)
     *this = errorMessage;
 }
 
-Error::Error(const Error& source)
-{
-    m_errorMessage = nullptr;
-    *this = source;
-}
 
 Error& Error::operator=(const Error &source)
 {
