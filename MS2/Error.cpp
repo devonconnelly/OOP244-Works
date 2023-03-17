@@ -22,7 +22,7 @@ Error::Error(const char *errorMessage)
 
 Error& Error::operator=(const Error &source)
 {
-    if(this != &source)
+    if(source && this != &source)
     {
         delete[] m_errorMessage;
         int len = (int)strlen(source.m_errorMessage);
