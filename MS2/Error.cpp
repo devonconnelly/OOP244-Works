@@ -19,16 +19,17 @@ Error::Error(const char *errorMessage)
     m_errorMessage = nullptr;
     *this = errorMessage;
 }
-//Error::Error(const Error& source)
-//{
-//    m_errorMessage = nullptr;
-//    *this = source;
-//}
-//
+
+Error::Error(const Error& source)
+{
+    m_errorMessage = nullptr;
+    *this = source;
+}
+
 
 Error& Error::operator=(const Error &source)
 {
-    if(source && this != &source)
+    if(this != &source)
     {
         delete[] m_errorMessage;
         int len = (int)strlen(source.m_errorMessage);
