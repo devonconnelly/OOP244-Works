@@ -34,6 +34,7 @@ public:
     const Error& error();
     std::istream& read(std::istream& istr);
     std::ostream& display(std::ostream& ostr) const;
+    void setEmpty();
     
     
 };

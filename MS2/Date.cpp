@@ -154,6 +154,7 @@ const Error& Date::error()
 std::istream& Date::read(std::istream& istr)
 {
     m_errors.clear();
+    setEmpty();
     istr >> m_year;
     if(!istr.fail())
     {
@@ -195,19 +196,16 @@ std::istream& Date::read(std::istream& istr)
             }
             else
             {
-                m_dateOnly = true;
                 m_errors = "Cannot read day entry";
             }
         }
         else
         {
-            m_dateOnly = true;
             m_errors = "Cannot read month entry";
         }
     }
     else
     {
-        m_dateOnly = true;
         m_errors = "Cannot read year entry";
     }
     return istr;
@@ -248,5 +246,13 @@ ostream& operator<<(ostream& ostr, const Date& right)
 {
     right.display(ostr);
     return ostr;
+}
+void Date::setEmpty()
+{
+    m_year = 0;
+    m_month = 0;
+    m_day = 0;
+    m_hour = 0;
+    m_minute = 0;
 }
 }
