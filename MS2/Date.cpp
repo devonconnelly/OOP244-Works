@@ -219,13 +219,13 @@ std::ostream& Date::display(std::ostream& ostr) const
         }
         else
         {
-            ostr << m_year << "/" << setw(2) << setfill('0') << m_month << setw(0) << "/" << m_day << ", " << m_hour << ":" << m_minute;
+            ostr << m_year << "/" << setw(2) << setfill('0') << m_month << setw(0) << "/" << m_day << ", " << setw(0) << m_hour << ":" << m_minute;
         }
     }
     else
     {
         if(!m_dateOnly)
-        ostr << m_errors << "(" << m_year << "/" << setw(2) << setfill('0') << m_month << setw(0) << "/" << m_day << ", " << m_hour << ":" << m_minute << ")";
+        ostr << m_errors << "(" << m_year << "/" << setw(2) << setfill('0') << m_month << "/" << m_day << ", " << setw(0) << m_hour << ":" << m_minute << ")";
         else
         ostr << m_errors << "(" << m_year << "/" << setw(2) << setfill('0') << m_month << setw(0) << "/" << m_day << ")";
     }
