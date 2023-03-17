@@ -173,7 +173,11 @@ std::istream& Date::read(std::istream& istr)
                     {
                         istr.ignore();
                         istr >> m_minute;
-                        if(istr.fail())
+                        if(!istr.fail())
+                        {
+                            validation();
+                        }
+                        else
                         {
                             m_errors = "Cannot read minute entry";
                         }
@@ -183,6 +187,10 @@ std::istream& Date::read(std::istream& istr)
                         m_dateOnly = true;
                         m_errors = "Cannot read hour entry";
                     }
+                }
+                else
+                {
+                    validation();
                 }
             }
             else
@@ -202,11 +210,6 @@ std::istream& Date::read(std::istream& istr)
         m_dateOnly = true;
         m_errors = "Cannot read year entry";
     }
-
-
-    
-    validation();
-    
     return istr;
 }
 std::ostream& Date::display(std::ostream& ostr) const
