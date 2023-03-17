@@ -33,8 +33,8 @@ Error& Error::operator=(const Error &source)
         delete[] m_errorMessage;
         int len = (int)strlen(source.m_errorMessage);
         m_errorMessage = new char[len + 1];
-        m_errorMessage[len] = '\0';
         strcpy(m_errorMessage, source.m_errorMessage);
+        m_errorMessage[len] = '\0';
     }
     return *this;
 }
@@ -52,12 +52,8 @@ Error& Error::operator=(const char *cString)
         delete[] m_errorMessage;
         int len = (int)strlen(cString);
         m_errorMessage = new char[len + 1];
-        m_errorMessage[len] = '\0';
         strcpy(m_errorMessage, cString);
-    }
-    else
-    {
-        m_errorMessage = nullptr;
+        m_errorMessage[len] = '\0';
     }
     return *this;
 }
