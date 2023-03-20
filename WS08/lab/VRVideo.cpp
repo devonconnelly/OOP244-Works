@@ -44,6 +44,7 @@ void VRVideo::load(std::istream &istr)
     }
     else
     {
+        delete[] m_equipment;
         m_equipment = nullptr;
     }
 }
