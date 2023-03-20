@@ -573,7 +573,7 @@ Before starting milestone 3, add the following constant values to `POS.h` header
  MAX_NAME_LEN: 40
 
  POS_LIST: 1
- POS_FROM: 2
+ POS_FORM: 2
 
  ERROR_POS_SKU: "SKU too long"
  ERROR_POS_NAME: "Item name too long"
