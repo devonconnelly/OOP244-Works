@@ -47,6 +47,7 @@ void VRVideo::load(std::istream &istr)
         delete[] m_equipment;
         m_equipment = nullptr;
     }
+    delete[] temp;
 }
 
 std::ostream& VRVideo::play(std::ostream &ostr)
