@@ -359,7 +359,7 @@ If an Error object is casted to a **bool**, it should return true if the message
   }
 ```
 #### `clear()` 
-This method clears the error message and returns the reference of the current Error object. After this, the Error object should be in a "no error" state.
+This method clears the error message and returns the reference of the current Error object. After this, the Error object should be in an "no Error" state with the message set to nullptr;
 
 #### ostream insertion
 The Error message should be able to be inserted into an ostream object using the **operator<<**. If the Error object is not in an error state nothing will be inserted into the ostream object.
@@ -507,6 +507,13 @@ After reading each integer, check the status of istream, if it is not in a fail 
 "Cannot read day entry"
 "Cannot read hour entry"
 "Cannot read minute entry"
+```
+
+##### Exmaple
+
+```text
+2023/10/abc, 20:20
+The Error message should be set to "Cannot read day entry" and extration is stopped having istream left in error sate
 ```
 
 > Note if the Date is in read-only mode, after reading the three date integers, set hour and minute to zero.
