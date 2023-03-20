@@ -12,7 +12,9 @@ protected:
 public:
     Video();
     Video(int length);
-    
+    Video(const Video& source) = delete;
+    Video& operator=(const Video& source) = delete;
+    void load(std::istream& istr);
     
     
 };
