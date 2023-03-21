@@ -622,7 +622,7 @@ A boolean that indicates if the Item is taxable or not.
 #### Quantity 
 An integer value for the stock number of the `Item`.  (number of items in the shop)
 #### diaplayType
-An integer flag that can be either `POS_LIST` to display the Item in List mode or `POS_FROM` to display the Item in Form mode.
+An integer flag that can be either `POS_LIST` to display the Item in List mode or `POS_FORM` to display the Item in Form mode.
 
 ### Protect Attribute
 #### Error State
@@ -652,11 +652,10 @@ Overload the `operator+=` to receive a double reference as the left-hand operand
 
 ### Member function (Methods)
 
-#### itemType query
 This pure virtual method returns a character as the type indicator of the item in future descendants of the Item. This method does not modify the object.
   
 #### displayType
-Receives an integer (`POS_LIST` or `POS_FROM`) and sets the corresponding attribute. This method returns the reference of the current object.
+Receives an integer (`POS_LIST` or `POS_FORM`) and sets the corresponding attribute. This method returns the reference of the current object.
 
 #### cost query
 Returns the cost of the Item; that is the price of the item (plus tax if the item is taxable). This method does not modify the object.
