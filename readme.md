@@ -10,6 +10,8 @@ MS2
 | [MS1](#milestone-1) | V0.9 | 5 | [Watch](https://youtu.be/2OWD-szjMIw)  |  |
 | [MS2](#milestone-2) | V1.0 | 9|  [Watch](https://youtu.be/A9a4i5TChAc) |  |
 | [MS3](#milestone-3) | V0.9| 10|   | The text is being proof-read |
+|   | V0.91| |   | Fixed few typos |
+|   | V1.0| |   | Moved m_displayType to protected section for MS4 |
 | [MS4](#milestone-4) |  | 4 |  |  |
 | [MS5](#milestone-5) |  | 14 | |  |
 
@@ -621,10 +623,11 @@ A double value
 A boolean that indicates if the Item is taxable or not.
 #### Quantity 
 An integer value for the stock number of the `Item`.  (number of items in the shop)
-#### diaplayType
-An integer flag that can be either `POS_LIST` to display the Item in List mode or `POS_FROM` to display the Item in Form mode.
 
-### Protect Attribute
+### Protect Attributes
+
+#### diaplayType
+An integer flag that can be either `POS_LIST` to display the Item in List mode or `POS_FORM` to display the Item in Form mode.
 #### Error State
 An Error object to keep the error status of the Item.
 
@@ -652,11 +655,10 @@ Overload the `operator+=` to receive a double reference as the left-hand operand
 
 ### Member function (Methods)
 
-#### itemType query
 This pure virtual method returns a character as the type indicator of the item in future descendants of the Item. This method does not modify the object.
   
 #### displayType
-Receives an integer (`POS_LIST` or `POS_FROM`) and sets the corresponding attribute. This method returns the reference of the current object.
+Receives an integer (`POS_LIST` or `POS_FORM`) and sets the corresponding attribute. This method returns the reference of the current object.
 
 #### cost query
 Returns the cost of the Item; that is the price of the item (plus tax if the item is taxable). This method does not modify the object.
