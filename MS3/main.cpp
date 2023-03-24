@@ -1,8 +1,8 @@
-// Final Project 
-// Student POS App 
+// Final Project
+// Student POS App
 // Version 1.0
-// Date	2023-03-19
-// Author	Fardad Soleimanloo
+// Date    2023-03-19
+// Author    Fardad Soleimanloo
 // Description
 // This program test the student implementation of the Item class
 // for submission.
@@ -38,9 +38,9 @@ int main() {
    Tool T[50];
    Tool M;
    int cnt{}, i;
-   ifstream ifile("tools.csv");
-   ofstream ofile("output.csv");
-   ifstream badFile("bad_tools.csv");
+   ifstream ifile("/Users/devonconnelly/Documents/OOP244/OOP-Project/MS3/tools.csv");
+   ofstream ofile("/Users/devonconnelly/Documents/OOP244/OOP-Project/MS3/output.csv");
+   ifstream badFile("/Users/devonconnelly/Documents/OOP244/OOP-Project/MS3/bad_tools.csv");
    while(ifile) {
       ifile.ignore(2);
       ifile >> T[cnt];
@@ -89,7 +89,7 @@ int main() {
       ofile << T[i] << endl;
    }
    ofile.close();
-   displayFile("output.csv");
+   displayFile("/Users/devonconnelly/Documents/OOP244/OOP-Project/MS3/output.csv");
    cnt = 1;
    while(badFile) {
       badFile.ignore(2);
