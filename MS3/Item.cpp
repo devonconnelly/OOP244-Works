@@ -289,7 +289,7 @@ std::ostream& Item::bprint(std::ostream& ostr) {
     char name[100];
     strcpy(name, m_name);
     name[20] = '\0';
-    ostr << "| " << setw(20) << left << name << " | ";
+    ostr << "| " << setw(20) << left << name << " |";
     ostr << setw(7) << fixed << setprecision(2) << right << cost() << " | ";
     ostr << " " << (m_taxed ? "T" : " ") << "  |" << endl;
     return ostr;
