@@ -106,12 +106,12 @@ std::ostream& Item::write(std::ostream &ostr) const {
         char name[100];
         strcpy(name, m_name);
         name[20] = '\0';
-        ostr << setw(6) << left << m_SKU << "|";
+        ostr << setw(7) << left << m_SKU << "|";
         ostr << setw(20) << left << name << "|";
         ostr << setw(7) << fixed << setprecision(2) << right << m_price << "|";
         ostr << " " << (m_taxed ? "X" : " ") << " |";
         ostr << setw(4) << right << m_quantity << "|";
-        ostr << setw(10) << fixed << setprecision(2) << right << cost() * quantity() << "|";
+        ostr << setw(9) << fixed << setprecision(2) << right << cost() * quantity() << "|";
     }
     else if(m_displayType == POS_FORM)
     {
