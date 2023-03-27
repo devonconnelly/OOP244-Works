@@ -222,39 +222,39 @@ std::istream& Item::read(std::istream &istr) {
     return istr;
 }
 
-std::ofstream& Item::save(std::ofstream &ostr) const {
+std::ofstream& Item::save(std::ofstream &osftr) const {
     if(*this)
     {
-        ostr << itemType() << ',';
-        ostr << m_SKU << ',' << m_name << ',' << fixed << setprecision(2) << m_price << ',' << m_taxed << ',' << m_quantity;
+        osftr << itemType() << ',';
+        osftr << m_SKU << ',' << m_name << ',' << fixed << setprecision(2) << m_price << ',' << m_taxed << ',' << m_quantity;
     }
     else
     {
         cerr << m_error << endl;
     }
-    return ostr;
+    return osftr;
 }
 
-std::ifstream& Item::load(std::ifstream &istr) {
+std::ifstream& Item::load(std::ifstream &ifstr) {
     m_error.clear();
     
     char SKU[MAX_SKU_LEN];
     char name[MAX_NAME_LEN];
     double price;
     int quantity;
-    int taxed;
+    int taxed = 0;
     
-    istr.getline(SKU, MAX_SKU_LEN, ',');
-    istr.getline(name, MAX_NAME_LEN, ',');
-    istr >> price;
-    istr.ignore();
-    istr >> taxed;
-    istr.ignore();
-    istr >> quantity;
+    ifstr.getline(SKU, MAX_SKU_LEN, ',');
+    ifstr.getline(name, MAX_NAME_LEN, ',');
+    ifstr >> price;
+    ifstr.ignore();
+    ifstr >> taxed;
+    ifstr.ignore();
+    ifstr >> quantity;
     
     if (!m_error)
     {
-        if (!istr.fail())
+        if (!ifstr.fail())
         {
             if(price < 0) m_error = ERROR_POS_PRICE;
             if(!m_error)
@@ -283,7 +283,7 @@ std::ifstream& Item::load(std::ifstream &istr) {
         
     }
     
-    return istr;
+    return ifstr;
 }
 
 std::ostream& Item::bprint(std::ostream& ostr) {
