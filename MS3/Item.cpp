@@ -25,7 +25,7 @@ sdds::Item &Item::operator=(const Item &right) {
         strcpy(m_SKU, right.m_SKU);
         delete[] m_name;
         m_name = new char[strlen(right.m_name) + 1];
-        strncpy(m_name, right.m_name, MAX_NAME_LEN);
+        strncpy(m_name, right.m_name, strlen(right.m_name) + 1);
         m_price = right.m_price;
         m_taxed = right.m_taxed;
         m_quantity = right.m_quantity;
