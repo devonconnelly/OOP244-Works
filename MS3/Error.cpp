@@ -10,6 +10,10 @@ Error::Error()
     m_errorMessage = nullptr;
 }
 
+Error::Error(const Error& source)
+{
+    ;
+}
 Error::Error(const char *errorMessage)
 {
     m_errorMessage = nullptr;

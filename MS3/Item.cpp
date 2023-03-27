@@ -168,7 +168,7 @@ std::istream& Item::read(std::istream &istr) {
         }
         else
         {
-            if(m_name) {
+            if(m_name != nullptr) {
                 delete[] m_name;
             }
             m_name = new char[MAX_NAME_LEN + 1];
