@@ -26,6 +26,10 @@ Error& Error::operator=(const Error &source)
         strcpy(m_errorMessage, source.m_errorMessage);
         m_errorMessage[len] = '\0';
     }
+    else
+    {
+        clear();
+    }
     return *this;
 }
 
