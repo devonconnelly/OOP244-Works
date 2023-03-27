@@ -177,6 +177,7 @@ std::istream& Item::read(std::istream &istr) {
         if(istr.fail())
         {
             istr.clear();
+            istr.ignore(10000, '\n');
         }
         cout << "> ";
         istr >> m_price;
