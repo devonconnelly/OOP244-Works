@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4A7F5AE729D32B6500684F8B /* Contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F5AE529D32B6500684F8B /* Contact.cpp */; };
-		4A7F5AEE29D32B7100684F8B /* nameTester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F5AE929D32B7100684F8B /* nameTester.cpp */; };
 		4A7F5AEF29D32B7100684F8B /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F5AEA29D32B7100684F8B /* Person.cpp */; };
 		4A7F5AF029D32B7100684F8B /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F5AEB29D32B7100684F8B /* Utils.cpp */; };
+		4AAD6FB129D3AF8900F97422 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD6FB029D3AF7300F97422 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +36,7 @@
 		4A7F5AEB29D32B7100684F8B /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		4A7F5AEC29D32B7100684F8B /* names.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = names.txt; sourceTree = "<group>"; };
 		4A7F5AED29D32B7100684F8B /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		4AAD6FB029D3AF7300F97422 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 		4A5DBCC829D32B3E00E15C97 = {
 			isa = PBXGroup;
 			children = (
+				4AAD6FB029D3AF7300F97422 /* main.cpp */,
 				4A7F5AEC29D32B7100684F8B /* names.txt */,
 				4A7F5AE929D32B7100684F8B /* nameTester.cpp */,
 				4A7F5AED29D32B7100684F8B /* Tools.h */,
@@ -132,7 +134,7 @@
 			files = (
 				4A7F5AE729D32B6500684F8B /* Contact.cpp in Sources */,
 				4A7F5AEF29D32B7100684F8B /* Person.cpp in Sources */,
-				4A7F5AEE29D32B7100684F8B /* nameTester.cpp in Sources */,
+				4AAD6FB129D3AF8900F97422 /* main.cpp in Sources */,
 				4A7F5AF029D32B7100684F8B /* Utils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
