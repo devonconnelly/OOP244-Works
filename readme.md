@@ -9,9 +9,10 @@ MS2
 |------|:---:|:----:|:----|:----| 
 | [MS1](#milestone-1) | V0.9 | 5 | [Watch](https://youtu.be/2OWD-szjMIw)  |  |
 | [MS2](#milestone-2) | V1.0 | 9|  [Watch](https://youtu.be/A9a4i5TChAc) |  |
-| [MS3](#milestone-3) | V0.9| 10|   | The text is being proof-read |
+| [MS3](#milestone-3) | V0.9| 10|  [Watch](https://youtu.be/5oL2RdYeWuo) | The text is being proof-read |
 |   | V0.91| |   | Fixed few typos |
 |   | V1.0| |   | Moved m_displayType to protected section for MS4 |
+|   | V1.1| |   | corrected operator== definition |
 | [MS4](#milestone-4) |  | 4 |  |  |
 | [MS5](#milestone-5) |  | 14 | |  |
 
@@ -639,7 +640,7 @@ An Item can be copied or assigned to another item safely and is destroyed with n
 
 ### Member operator overloads
 #### operator==
-Compares two Items and returns true if the `SKU` codes are identical.
+Compares an Item to a C-string and returns true if the C-sting is a match to the `SKU` code of the Item.
 #### operator>
 Compares two items alphabetically based on their names.
 #### opertor+= 
