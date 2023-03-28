@@ -24,7 +24,7 @@ Person readName(ifstream& ifstr) {
 
 int main() {
    Person P;
-   ifstream file("names.txt");
+   ifstream file("/Users/devonconnelly/Documents/OOP244/OOP-Workshops/WS09/lab/names.txt");
    cout << "Empty name: >" << P << "<" << endl;
    cout << "Enter the following" << endl << "Homer,Jay,Simpson<ENTER>" << endl;
    cout << "Enter Comma separated name: ";
