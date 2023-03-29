@@ -39,7 +39,7 @@ std::istream& Contact::read(std::istream& istr) {
     buffer = dynRead(istr, '\n');
     strCpy(m_postalCode, buffer);
     delete[] buffer;
-    if(istr.fail()) ~*this;
+    if(istr.fail()) ~*this; //
     return istr;
 }
 
