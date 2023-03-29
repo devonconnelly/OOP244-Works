@@ -28,21 +28,27 @@ Contact::~Contact() {
 }
 
 std::istream& Contact::read(std::istream& istr) {
-    Person::read(istr);
     ~*this;
-    m_address = dynRead(istr, ',');
+    Person::read(istr);
+        m_address = dynRead(istr, ',');
     m_city = dynRead(istr, ',');
-    istr.getline(m_province, 2, ',');
-    istr.getline(m_postalCode, 6, '\n');
+    char* buffer = dynRead(istr, ',');
+    strCpy(m_province, buffer);
+    delete[] buffer;
+    buffer = nullptr;
+    buffer = dynRead(istr, '\n');
+    strCpy(m_postalCode, buffer);
+    delete[] buffer;
     if(istr.fail()) ~*this;
     return istr;
 }
 
 std::ostream& Contact::write(std::ostream& ostr) const {
-    Person::write(ostr);
+    
     if(*this) {
+        Person::write(ostr);
         ostr << std::endl;
-        ostr << m_address << "," << m_city << "," << m_province << "," << m_postalCode;
+        ostr << m_address << std::endl << m_city << std::endl << m_province << std::endl << m_postalCode;
     }
     return ostr;
 }
