@@ -141,7 +141,6 @@ std::ostream& Item::write(std::ostream &ostr) const {
         cerr << m_error;
     }
     ostr.unsetf(ios::right);
-    ostr.setf(ios::left);
     return ostr;
 }
 
