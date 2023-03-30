@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Project: Simple Point Of Sale System
 
 ## Latest Release
@@ -1168,3 +1169,10 @@ y
 
 
 
+=======
+# OOP244-Works
+- Devon Connelly
+- Student No: 105322218
+- Email Id: dconnelly@myseneca.ca
+- OOP244NAA
+>>>>>>> ce2562160f84be41489ce0a207eed0efe0149e02
