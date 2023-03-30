@@ -14,8 +14,9 @@ MS2
 |   | V1.0| |   | Moved m_displayType to protected section for MS4 |
 |   | V1.1| |   | corrected operator== definition |
 |   | V1.2| |   | missing [itemType](#itemtype) function name is added  |
-| [MS4](#milestone-4) |  | 4 |  |  |
-| [MS5](#milestone-5) |  | 14 | |  |
+| [MS4](#milestone-4) | V0.9 | 4 |  |  The text is being proof-read  |
+| [MS5](#milestone-5) | [m51](#ms51)-V0.9 | 14 | | The text is being proof-read |
+|  | [m52](#ms52)-V0.9 | 14 | | The text is being proof-read |
 
 
 Your task for the project for this semester is to create simple Point of Sale (POS) application that keeps track of a small inventory of Goods to sell and can sell them at the cashier, issuing a bill of sale. 
@@ -36,11 +37,11 @@ This project will be done in 5 milestones and each milestone will have its due d
 
 |Milestone 5<br/> Divided into<br/>five submission| Mark | Due date | Submission Policy|
 |:------|:---:|:---:|-------|
-| [m51](#ms51-submission-test) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
-| [m52](#ms52-submission-test) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
-| [m53](#ms53-submission-test) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
-| [m54](#ms54-submission-test) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
-| [m55](#ms55-submission-test) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
+| [m51](#ms51) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
+| [m52](#ms52) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
+| [m53](#ms53) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
+| [m54](#ms54) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
+| [m55](#ms55) | 12% | Apr 16th | 10% penalty for each day being late up to 5 days|
 
 > The first 4 milestones will not be marked based on the code, but their success and their timely submissions. You may modify or debug your previous code as you are going through the milestones. The only milestone that is going to scrutinized based your code will be milestone 5. If you require any feedback on your first four milestones you need to ask your professor to do so.
 
@@ -822,9 +823,117 @@ and follow the instructions.
 
 # Milestone 4
 
-> :construction: under construction
+
+## Non-perishable Item
+
+Inherit a concrete class called `NonPerishable` from the `Item` class.
+
+### itemType
+Override the pure virtual function `itemType` and return the character `'N'` to identify this `Item` to be non-perishable.
+
+### write 
+Override the write function to complete the writing of an `Item` in `POS_LIST` and `POS_FORM`.
+
+To accomplish this first make sure the Object is in a good state and then call the write of the Base class. 
+
+Then if the display type is  `LIST` then print the following to indicate this `Item` does not have an expiry date:
+```text
+"     N / A   |"
+```
+If the display type is `FORM` close the data display by printing the following line and printing newline:
+```text
+"=============^"
+```
+
+If the object is not in a good state, do nothing.
+
+# Perishable Item
+
+Inherit a concrete class called `Perishable` from the `Item` class.
+
+## Attribute
+
+Add a `Date` attribute for the expiry date of the `perishable` item.
+
+## Methods
+
+### itemType
+Override the pure virtual function `itemType` and return the character `'P'` to identify this `Item` to be `perishable`.
+
+
+## Input and Output Methods
+Override all the Input and output functions of the Base class as follows:
+
+### read
+Invoke the read of the Base class.
+
+If the object is not in a good state or `istream` has failed, do nothing, otherwise, if the object and the `istream` are in a good state, create a local instance of Date and set it to date only. then prompt the user as follows: 
+```text
+Expiry date(YYYY/MM/DD)
+> _
+```
+and extract the `date` from the `istream`. If the `date` is in a good state, set the expiry `date` to the extracted `date`, if not, set the error object of the Item to the error of the `Date`.  
+
+### write
+Invoke the write of the base class.
+
+If the object is not in a good state, do nothing otherwise, If the object is in `POS_LIST` display mode print the `date` as follows: 
+
+- space
+- date 
+- space
+- `'|'`
+
+If the object is in `POS_FORM` display mode print the `date` as follows:  
+
+- `"Expiry date: "`
+- Date
+- newline
+- `"=============^"`
+- newline
+
+### load
+Invoke the load of the Base class.
+
+If the object is not in a good state or `ifstream` has failed, do nothing, otherwise, if the object and the `ifstream` are in a good state, create a local instance of `Date` and set it to date only. Ignore one character to pass the `comma`. Then extract the `date` from the `ifstream`. If the `date` is in a good state, set the expiry date to the extracted `date`, if not, set the error object of the `Item` to the `error` of the `Date`.  
+
+### save
+Invoke the save of the Base class.
+
+If the object is in a good state, insert a comma and then the expiry date into `ofstream`, otherwise, do nothing.
+
+## Tester program
+
+<a href="MS4/main.cpp" target="_blank">main.cpp</a>
+
+## expected output
+
+<a href="MS4/correct_output.txt" target="_blank">correct_output.txt</a>
 
 ## MS4 Submission 
+
+### Files to submit
+
+```text
+POS.h 
+Date.cpp                       
+Date.h 
+Error.h
+Error.cpp
+PosIO.h
+PosIO.cpp  
+Item.h
+Item.cpp 
+NonPerishable.h
+NonPerishable.cpp
+Perishable.h
+Perishable.cpp  
+Utils.h
+Utils.cpp
+main.cpp
+nonPerInput.csv
+perishableInput.csv
+```
 
 > If you would like to successfully complete the project and be on time, **start early** and try to meet all the due dates of the milestones.
 
@@ -862,38 +971,161 @@ and follow the instructions.
 
 # Milestone 5
 
-> :construction: under construction
+## MS5 submission 
+Each submission tests one menu option of the PosApp and requires some of the functions of the PosApp of MS1 to be completed (implemented).
 
+After completion of each section upload your updates to the matrix and issue the submission command for that part: 
+```
+~profname.proflastname/submit 2??/prj/m5#
+```
+- `??` is replaced with your subject code (`00` or `44`)
+- `#` is replaced with the menu option number (`1` to `5`)
 
-## MS51 submission test
-
-> :construction: under construction
-
-### Data entry
-### Expected outcome
+### Tester program
+The tester program for all MS5 submissions is the same <a href="MS5/main.cpp" target="_blank">main.cpp</a> but each menu option has test data of its own.
 
 ### reflection 
+
 Create a file called `reflect.txt` and add the following:  
-- Your Citation if you have any borrowed code in your project.
+- Citation, for any part of the code that is not yours. 
 - Any additional (extra) work done that needs your professor's attention.
-- Your overall reflection on the project and work done in the 5 milestones. 
+- Your overall reflection on the project and work done in the milestones (can be done only in your last submissions of milestone 5)
+
+# Milestone 5 implementation
+
+## The Bill class.
+The bill class is fully implemented and uses the bprint method of the item to print a bill.
+
+Study the Bill class and understand how it works.
+
+## PosApp
+Complete the code of the PosApp as follows
+
+### Attributes
+#### Data filename
+A C-string (max 128 chars) to keep the data file name of items
+
+#### Items pointer array
+An array of Item pointers with the size `MAX_NO_ITEMS` (`MAX_NO_ITEMS` set to be 200 in POS.h; modify it if it is not 200) 
+
+> we will call this array `Iptr` from now on
+
+#### number of items
+An attribute to hold the number of items in the PosApp. This number indicates how many of the `Iptr` pointers are used in the array to keep the items in the Inventory. 
+
+> we will call this number `nptr` from now on
+
+
+#### The action title
+Every time an action title is requested print the following:
+- print `">>>> "`
+- print the title in 73 spaces, left justified filled with `'.'` character.
+
+## MS51
+
+### loadRecs Method
+Implement the loadRecs module to load all the records of the data file into the `Iptr` array. Each `Iptr` pointer should point to a dynamically allocated Item (`Perishable` or `NonPerishable`).
+- Print the action title `Loading Items`.
+- open the data file in an `ifstream` object (we will call this `input` here).
+- if opening the file was not successful create the file by opening and closing it using an `ofstream` object.
+- Empty the `PosApp` class (make sure there are no Items in the `Iptr`)
+- while the `input` is in a good state and the `Iptr` array is not full, 
+    - read one character
+    - create a dynamic Item (either `Perishable`, or `NonPershable`) based on the character being `P` or `N` and keep the address in the next available `Iptr` pointer
+    - extract the Item from the `input` and add one to the `nptr`
+
+### saveRecs
+Implement the saveRecs to save all the items pointed by `Iptr` array in the data file.
+
+- Print the action title `Saving Data`.
+- Create an instance of ofstream using the data filename.
+- loop through the Items pointed by the `Iptr` pointers and insert them into the ofstream instance up to `nptr`.
+
+
+### listItems
+- Print the action title `Listing Items`.
+- <a href="https://intro2c.sdds.ca/F-Refinements/algorithms#sorting" target="_blank">Sort all the Items</a> in `Iptr` array based on their name in ascending order. 
+- Print the Title/Header of the list: 
+```text
+ Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |
+-----|--------|--------------------|-------|---|----|---------|-------------|
+```
+- Loop through the items up to `nptr` and display the row and the `Items` in `POS_LIST` format, calculating the total asset value of the `Items`.
+- Print the footer and the total asset as follows:
+```text
+-----^--------^--------------------^-------^---^----^---------^-------------^
+                               Total Asset: $  |       3567.13|
+-----------------------------------------------^--------------^
+```
+
+## MS51 submission 
+
+### Data entry
+```text
+1
+0
+```
+
+### Output sample
+
+<a href="MS5/m51_output.txt" target="_blank">ms51_output.txt</a>
+
 
 ### MS51 Submission command
 ```
 ~profname.proflastname/submit 2??/prj/m51 
 ```
+## MS52
+
+### addItem
+Complete the implementation of addItem to add a new item to the inventory
+
+- Print the action title `Adding Item to the store`.
+- if the number of items is at maximum, print `"Inventory Full!"` and exit the function.  
+- if not, create a pointer to an item and ask the user if the item is perishable
+- Based on the user's answer dynamically create an instance of an Item (Perishable or NonPerishable) and keep the address in the Item pointer
+- In a loop extract the item from cin
+- if the item is not in a good state
+    - clear cin
+    - flush keyboard
+    - insert the item into cout
+    - insert `", try again...\n"`
+    - repeat the loop
+- if the item is in a good state add the item address to the next available element of `Iptr` and increase the `nptr`.
+- Print the action title `DONE!`.
+
 ## MS52 submission test
 
-> :construction: under construction
-
 ### Data entry
-### Expected outcome
+```text
+2
+y
+1111
+Orange
+3.99
+n
+20
+2023/04/21
+2
+n
+2222
+Tea
+12.22
+y
+10
+0
+```
+
+### Expected output
+
+<a href="MS5/m52_output.txt" target="_blank">ms52_output.txt</a>
 
 ### MS52 Submission command
 ```
 ~profname.proflastname/submit 2??/prj/m52
 ```
 ## [Back to milestones](#milestones)
+
 
 ## MS53 submission test
 
