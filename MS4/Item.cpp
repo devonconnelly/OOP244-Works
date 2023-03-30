@@ -25,7 +25,7 @@ sdds::Item &Item::operator=(const Item &right) {
         strcpy(m_SKU, right.m_SKU);
         delete[] m_name;
         m_name = new char[strlen(right.m_name) + 1];
-        strncpy(m_name, right.m_name, MAX_NAME_LEN);
+        strncpy(m_name, right.m_name, strlen(right.m_name) + 1);
         m_price = right.m_price;
         m_taxed = right.m_taxed;
         m_quantity = right.m_quantity;
@@ -68,6 +68,7 @@ int Item::operator-=(int value) {
         m_quantity = 0;
         m_error = ERROR_POS_STOCK;
     }
+    
     return m_quantity;
 }
 
@@ -88,7 +89,7 @@ Item& Item::displayType(int displayType) {
 }
 
 double Item::cost() const {
-    return m_taxed ? m_price + (m_price * 0.13) : m_price;
+    return m_taxed ? m_price + (m_price * TAX) : m_price;
 }
 
 int Item::quantity() const {
@@ -96,49 +97,56 @@ int Item::quantity() const {
 }
 
 Item& Item::clear() {
-    m_error = nullptr;
+    m_error.clear();
     return *this;
 }
 
 std::ostream& Item::write(std::ostream &ostr) const {
-    if(m_displayType == POS_LIST)
+    ostr << setfill(' ');
+    if(!m_error)
     {
-        char name[100];
-        strcpy(name, m_name);
-        name[20] = '\0';
-        ostr << setw(6) << left << m_SKU << "|";
-        ostr << setw(20) << left << name << "|";
-        ostr << setw(7) << fixed << setprecision(2) << right << m_price << "|";
-        ostr << " " << (m_taxed ? "X" : " ") << " |";
-        ostr << setw(4) << right << m_quantity << "|";
-        ostr << setw(10) << fixed << setprecision(2) << right << cost() * quantity() << "|";
-    }
-    else if(m_displayType == POS_FORM)
-    {
-        ostr << "=============v" << endl;
-        ostr << "Name:        " << m_name << endl;
-        ostr << "Sku:         " << m_SKU << endl;
-        ostr << "Price:       " << m_price << endl;
-        ostr << "Price + tax: ";
-        if(m_taxed == true)
+        if(m_displayType == POS_LIST)
         {
-            ostr << cost();
+            char name[100];
+            strcpy(name, m_name);
+            name[20] = '\0';
+            ostr << setw(7) << left << m_SKU << "|";
+            ostr << setw(20) << left << name << "|";
+            ostr << setw(7) << fixed << setprecision(2) << right << m_price << "|";
+            ostr << " " << (m_taxed ? "X" : " ") << " |";
+            ostr << setw(4) << right << m_quantity << "|";
+            ostr << setw(9) << fixed << setprecision(2) << right << cost() * quantity() << "|";
         }
         else
         {
-            ostr << "N/A";
+            ostr << "=============v" << endl;
+            ostr << "Name:        " << m_name << endl;
+            ostr << "Sku:         " << m_SKU << endl;
+            ostr << "Price:       " << m_price << endl;
+            ostr << "Price + tax: ";
+            if(m_taxed == true)
+            {
+                ostr << cost();
+            }
+            else
+            {
+                ostr << "N/A";
+            }
+            ostr << endl;
+            ostr << "Stock Qty:   " << m_quantity << endl;
         }
-        ostr << endl;
-        ostr << "Stock Qty:   " << m_quantity << endl;
     }
-    else if(*this)
+    if(m_error)
     {
-        ostr << m_error;
+        cerr << m_error;
     }
+    ostr.unsetf(ios::right);
+    ostr.setf(ios::left);
     return ostr;
 }
 
 std::istream& Item::read(std::istream &istr) {
+    clear();
     char tax;
     cout << "Sku" << endl;
     do {
@@ -164,7 +172,7 @@ std::istream& Item::read(std::istream &istr) {
         }
         else
         {
-            if(m_name) {
+            if(m_name != nullptr) {
                 delete[] m_name;
             }
             m_name = new char[MAX_NAME_LEN + 1];
@@ -177,6 +185,7 @@ std::istream& Item::read(std::istream &istr) {
         if(istr.fail())
         {
             istr.clear();
+            istr.ignore(10000, '\n');
         }
         cout << "> ";
         istr >> m_price;
@@ -221,76 +230,82 @@ std::istream& Item::read(std::istream &istr) {
     return istr;
 }
 
-std::ofstream& Item::save(std::ofstream &ostr) const {
-    if(*this)
-    {
-        ostr << itemType() << ',';
-        ostr << m_SKU << ',' << m_name << ',' << fixed << setprecision(2) << m_price << ',' << m_taxed << ',' << m_quantity;
-    }
-    else
+std::ofstream& Item::save(std::ofstream &osftr) const {
+    osftr << itemType() << ',';
+    osftr << m_SKU << ',' << m_name << ',' << fixed << setprecision(2) << m_price << ',' << m_taxed << ',' << m_quantity;
+    if(m_error)
     {
         cerr << m_error << endl;
     }
-    return ostr;
+    return osftr;
 }
 
-std::ifstream& Item::load(std::ifstream &istr) {
+std::ifstream& Item::load(std::ifstream &ifstr) {
     m_error.clear();
-    
-    char SKU[MAX_SKU_LEN];
-    char name[MAX_NAME_LEN];
+    char SKU[100];
+    char name[100];
     double price;
     int quantity;
-    int taxed;
+    int taxed = 0;
     
-    istr.getline(SKU, MAX_SKU_LEN, ',');
-    istr.getline(name, MAX_NAME_LEN, ',');
-    istr >> price;
-    istr.ignore();
-    istr >> taxed;
-    istr.ignore();
-    istr >> quantity;
-    
-    if (!m_error)
+    ifstr.getline(SKU, 100, ',');
+    if (ifstr.fail() || strlen(SKU) > MAX_SKU_LEN)
     {
-        if (!istr.fail())
+        m_error = ERROR_POS_SKU;
+    }
+    ifstr.getline(name, 100, ',');
+    if (!m_error && (ifstr.fail() || strlen(name) > MAX_NAME_LEN))
+    {
+        m_error = ERROR_POS_NAME;
+    }
+    ifstr >> price;
+    ifstr.ignore();
+    ifstr >> taxed;
+    ifstr.ignore();
+    ifstr >> quantity;
+
+    if(!m_error)
+    {
+        if (!ifstr.fail())
         {
-            if(price < 0) m_error = ERROR_POS_PRICE;
-            if(!m_error)
+            if (price < 0)
             {
-                if(quantity < 0 || quantity > MAX_NO_ITEMS) m_error = ERROR_POS_QTY;
+                m_error = ERROR_POS_PRICE;
+            }
+            else if (taxed != 0 && taxed != 1)
+            {
+                m_error = ERROR_POS_TAX;
+            }
+            else if (quantity < 0 || quantity > MAX_STOCK_NUMBER)
+            {
+                m_error = ERROR_POS_QTY;
+            }
+            else
+            {
+                strcpy(m_SKU, SKU);
+                if (m_name != nullptr)
+                {
+                    delete[] m_name;
+                }
+                m_name = new char[strlen(name) + 1];
+                strcpy(m_name, name);
+                
+                m_price = price;
+                m_quantity = quantity;
+                m_taxed = taxed == 1;
+                
             }
         }
     }
-    
-    if (!m_error)
-    {
-        if(m_name != nullptr) delete[] m_name;
-        m_name = new char [strlen(name) + 1];
-        strcpy(m_name, name);
-        strcpy(m_SKU, SKU);
-        if(taxed == 1)
-        {
-            m_taxed = true;
-        }
-        else if(taxed == 0)
-        {
-            m_taxed = false;
-        }
-        m_price = price;
-        m_quantity = quantity;
-        
-    }
-    
-    return istr;
+    return ifstr;
 }
 
 std::ostream& Item::bprint(std::ostream& ostr) {
     char name[100];
     strcpy(name, m_name);
     name[20] = '\0';
-    ostr << "| " << setw(20) << left << name << " | ";
-    ostr << setw(7) << fixed << setprecision(2) << right << cost() << " | ";
+    ostr << "| " << setw(20) << left << name << "|";
+    ostr << setw(10) << fixed << setprecision(2) << right << cost() << " | ";
     ostr << " " << (m_taxed ? "T" : " ") << "  |" << endl;
     return ostr;
 }
