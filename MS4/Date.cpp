@@ -210,7 +210,7 @@ std::ostream& Date::display(std::ostream& ostr) const
     {
         if(m_dateOnly)
         {
-            ostr << m_year << "/" << setw(2) << setfill('0') << m_month << "/" << setw(2) << m_day;
+            ostr << m_year << "/" << setfill('0') << setw(2) << m_month << "/" << setw(2) << m_day;
         }
         else
         {
