@@ -10,6 +10,10 @@ Error::Error()
     m_errorMessage = nullptr;
 }
 
+Error::Error(const Error& source)
+{
+    ;
+}
 Error::Error(const char *errorMessage)
 {
     m_errorMessage = nullptr;
@@ -25,6 +29,10 @@ Error& Error::operator=(const Error &source)
         m_errorMessage = new char[len + 1];
         strcpy(m_errorMessage, source.m_errorMessage);
         m_errorMessage[len] = '\0';
+    }
+    else
+    {
+        clear();
     }
     return *this;
 }
@@ -55,6 +63,7 @@ Error::operator bool() const
 
 Error& Error::Error::clear()
 {
+    delete[] m_errorMessage;
     m_errorMessage = nullptr;
     return *this;
 }

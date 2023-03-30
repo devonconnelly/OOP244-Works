@@ -35,8 +35,8 @@ public:
     Item& clear();
     std::ostream& write(std::ostream& ostr) const;
     std::istream& read(std::istream& istr);
-    std::ofstream& save(std::ofstream& ofstr) const;
-    std::ifstream& load(std::ifstream& ifstr);
+    std::ofstream& save(std::ofstream& ostr) const;
+    std::ifstream& load(std::ifstream& istr);
     std::ostream& bprint(std::ostream& ostr);
     
 };
