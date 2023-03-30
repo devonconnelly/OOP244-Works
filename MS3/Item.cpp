@@ -102,6 +102,7 @@ Item& Item::clear() {
 }
 
 std::ostream& Item::write(std::ostream &ostr) const {
+    ostr << setfill(' ');
     if(!m_error)
     {
         if(m_displayType == POS_LIST)
@@ -139,10 +140,13 @@ std::ostream& Item::write(std::ostream &ostr) const {
     {
         cerr << m_error;
     }
+    ostr.unsetf(ios::right);
+    ostr.setf(ios::left);
     return ostr;
 }
 
 std::istream& Item::read(std::istream &istr) {
+    clear();
     char tax;
     cout << "Sku" << endl;
     do {
