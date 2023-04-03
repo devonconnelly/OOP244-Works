@@ -7,7 +7,7 @@ const int MAX_SKU_LEN = 7;
 const int MIN_YEAR = 2000;
 const int MAX_YEAR = 2030;
 const int MAX_STOCK_NUMBER = 99;
-const int MAX_NO_ITEMS = 2000;
+const int MAX_NO_ITEMS = 200;
 
 const int MAX_NAME_LEN = 40;
 const int POS_LIST = 1;

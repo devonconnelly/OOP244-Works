@@ -299,7 +299,7 @@ std::ifstream& Item::load(std::ifstream &ifstr) {
     return ifstr;
 }
 
-std::ostream& Item::bprint(std::ostream& ostr) {
+std::ostream& Item::bprint(std::ostream& ostr) const {
     char name[100];
     strcpy(name, m_name);
     name[20] = '\0';

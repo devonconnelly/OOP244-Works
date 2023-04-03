@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		4A5350A029D74F32005E7237 /* Bill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A53509B29D74F32005E7237 /* Bill.cpp */; };
 		4A5350A229D74F5E005E7237 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A5350A129D74F5E005E7237 /* main.cpp */; };
+		4A5627BE29DB52B60036EF49 /* PosApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A81B8D429D7690000ECB987 /* PosApp.cpp */; };
+		4A5627BF29DB52B80036EF49 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A81B8D629D7692600ECB987 /* Item.cpp */; };
+		4A5627C029DB52BC0036EF49 /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A81B8D929D7697900ECB987 /* Error.cpp */; };
+		4A5627C129DB52BE0036EF49 /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A81B8DB29D76A3700ECB987 /* Date.cpp */; };
+		4A5627C229DB52C10036EF49 /* PosIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A81B8DD29D76AD600ECB987 /* PosIO.cpp */; };
+		4A5627C329DB52C30036EF49 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A81B8DF29D76B0100ECB987 /* Utils.cpp */; };
+		4A5627C429DB52C60036EF49 /* Perishable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A81B8E129D76B2600ECB987 /* Perishable.cpp */; };
+		4A5627C529DB52C80036EF49 /* NonPerishable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A81B8E329D76B4600ECB987 /* NonPerishable.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +46,16 @@
 		4A81B8D829D7696400ECB987 /* POS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS.h; sourceTree = "<group>"; };
 		4A81B8D929D7697900ECB987 /* Error.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Error.cpp; sourceTree = "<group>"; };
 		4A81B8DA29D7697900ECB987 /* Error.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		4A81B8DB29D76A3700ECB987 /* Date.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Date.cpp; sourceTree = "<group>"; };
+		4A81B8DC29D76A3700ECB987 /* Date.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Date.h; sourceTree = "<group>"; };
+		4A81B8DD29D76AD600ECB987 /* PosIO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PosIO.cpp; sourceTree = "<group>"; };
+		4A81B8DE29D76AD600ECB987 /* PosIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosIO.h; sourceTree = "<group>"; };
+		4A81B8DF29D76B0100ECB987 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		4A81B8E029D76B0100ECB987 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		4A81B8E129D76B2600ECB987 /* Perishable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Perishable.cpp; sourceTree = "<group>"; };
+		4A81B8E229D76B2600ECB987 /* Perishable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Perishable.h; sourceTree = "<group>"; };
+		4A81B8E329D76B4600ECB987 /* NonPerishable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NonPerishable.cpp; sourceTree = "<group>"; };
+		4A81B8E429D76B4600ECB987 /* NonPerishable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonPerishable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +72,16 @@
 		4A53508829D73627005E7237 = {
 			isa = PBXGroup;
 			children = (
+				4A81B8E329D76B4600ECB987 /* NonPerishable.cpp */,
+				4A81B8E429D76B4600ECB987 /* NonPerishable.h */,
+				4A81B8E129D76B2600ECB987 /* Perishable.cpp */,
+				4A81B8E229D76B2600ECB987 /* Perishable.h */,
+				4A81B8DF29D76B0100ECB987 /* Utils.cpp */,
+				4A81B8E029D76B0100ECB987 /* Utils.h */,
+				4A81B8DD29D76AD600ECB987 /* PosIO.cpp */,
+				4A81B8DE29D76AD600ECB987 /* PosIO.h */,
+				4A81B8DB29D76A3700ECB987 /* Date.cpp */,
+				4A81B8DC29D76A3700ECB987 /* Date.h */,
 				4A81B8D929D7697900ECB987 /* Error.cpp */,
 				4A81B8DA29D7697900ECB987 /* Error.h */,
 				4A81B8D829D7696400ECB987 /* POS.h */,
@@ -136,8 +164,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A5627C529DB52C80036EF49 /* NonPerishable.cpp in Sources */,
+				4A5627BF29DB52B80036EF49 /* Item.cpp in Sources */,
+				4A5627C029DB52BC0036EF49 /* Error.cpp in Sources */,
 				4A5350A229D74F5E005E7237 /* main.cpp in Sources */,
+				4A5627C329DB52C30036EF49 /* Utils.cpp in Sources */,
+				4A5627C229DB52C10036EF49 /* PosIO.cpp in Sources */,
+				4A5627C129DB52BE0036EF49 /* Date.cpp in Sources */,
+				4A5627BE29DB52B60036EF49 /* PosApp.cpp in Sources */,
 				4A5350A029D74F32005E7237 /* Bill.cpp in Sources */,
+				4A5627C429DB52C60036EF49 /* Perishable.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

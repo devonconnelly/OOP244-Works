@@ -37,7 +37,7 @@ public:
     std::istream& read(std::istream& istr);
     std::ofstream& save(std::ofstream& ostr) const;
     std::ifstream& load(std::ifstream& istr);
-    std::ostream& bprint(std::ostream& ostr);
+    std::ostream& bprint(std::ostream& ostr) const;
     
 };
 double operator+=(double& total, Item& right);

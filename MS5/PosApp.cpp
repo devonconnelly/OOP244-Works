@@ -1,5 +1,11 @@
-#include "PosApp.h"
 #include <iostream>
+#include <fstream>
+#include "PosApp.h"
+#include "PosIO.h"
+#include "POS.h"
+#include "Perishable.h"
+#include "NonPerishable.h"
+#include "Item.h"
 using namespace std;
 namespace sdds
 {
@@ -89,13 +95,37 @@ void PosApp::POS()
 {
     cout << "Running POS()" << endl;
 }
-void PosApp::saveRecs()
+ofstream& PosApp::saveRecs(ofstream& ofstr)
 {
     
+    return ofstr;
 }
-void PosApp::loadRecs()
+ifstream& PosApp::loadRecs(ifstream& ifstr)
 {
+    ifstream input(m_filename);
+    if (!input.is_open()) {
+        ofstream output(m_filename);
+        output.close();
+    }
+    for (int i = 0; i < MAX_NO_ITEMS; i++) {
+        delete m_iptr[i];
+        m_iptr[i] = nullptr;
+    }
+    m_nptr = 0;
     
+    char type;
+    while (input >> type && m_nptr < MAX_NO_ITEMS) {
+        Item* item = nullptr;
+        if (type == 'N') {
+            item = new NonPerishable();
+        } else if (type == 'P') {
+            item = new Perishable();
+        }
+        ifstr >> *item;
+        m_iptr[m_nptr] = item;
+        m_nptr++;
+    }
+    return ifstr;
 }
 PosApp::PosApp(const char filename[])
 {
