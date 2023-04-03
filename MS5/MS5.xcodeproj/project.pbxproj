@@ -39,6 +39,7 @@
 		4A53509E29D74F32005E7237 /* Bill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bill.h; sourceTree = "<group>"; };
 		4A53509F29D74F32005E7237 /* m51_output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = m51_output.txt; sourceTree = "<group>"; };
 		4A5350A129D74F5E005E7237 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4A5627C629DB6FFF0036EF49 /* posdata.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = posdata.csv; sourceTree = "<group>"; };
 		4A81B8D429D7690000ECB987 /* PosApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PosApp.cpp; sourceTree = "<group>"; };
 		4A81B8D529D7690000ECB987 /* PosApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosApp.h; sourceTree = "<group>"; };
 		4A81B8D629D7692600ECB987 /* Item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 		4A53508829D73627005E7237 = {
 			isa = PBXGroup;
 			children = (
+				4A5627C629DB6FFF0036EF49 /* posdata.csv */,
 				4A81B8E329D76B4600ECB987 /* NonPerishable.cpp */,
 				4A81B8E429D76B4600ECB987 /* NonPerishable.h */,
 				4A81B8E129D76B2600ECB987 /* Perishable.cpp */,

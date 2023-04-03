@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include "PosApp.h"
 #include "PosIO.h"
 #include "POS.h"
@@ -15,7 +16,7 @@ void PosApp::run()
     bool flag;
     cout << ">>>> Loading Items..........................................................." << endl;
     cout << "Loading data from datafile.csv" << endl;
-    
+    loadRecs();
     do
     {
         cout << "The Sene-Store" << endl;
@@ -89,46 +90,77 @@ void PosApp::stockItem()
 }
 void PosApp::listItems()
 {
-    cout << "Running listItems()" << endl;
+    int i, j;
+    double totalAsset = 0;
+    for (i = 0; i < m_nptr - 1; i++)
+           for (j = 0; j < m_nptr - i - 1; j++)
+               if (m_iptr[j] > m_iptr[j + 1]) {
+                   Item* temp = m_iptr[j];
+                   m_iptr[j] = m_iptr[j + 1];
+                   m_iptr[j + 1] = temp;
+               }
+    cout <<  " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
+    cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
+    for (int i = 0; i < m_nptr; i++)
+       {
+           m_iptr[i] -> displayType(POS_LIST);
+           cout << setw(4) << setfill(' ');
+           cout.setf(ios::right);
+           cout << i + 1;
+           cout.unsetf(ios::right);
+           cout.setf(ios::left);
+           cout << " | ";
+           m_iptr[i] -> write(cout);
+           cout << endl;
+           totalAsset += m_iptr[i]->cost();
+       }
+    cout << endl << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
+    cout << "                               Total Asset: $  |       " << totalAsset << "|" << endl;
+    cout << "-----------------------------------------------^--------------^" << endl;
 }
 void PosApp::POS()
 {
     cout << "Running POS()" << endl;
 }
-ofstream& PosApp::saveRecs(ofstream& ofstr)
+void PosApp::saveRecs()
 {
-    
-    return ofstr;
+    ofstream output(m_filename);
+    for (int i = 0; i < m_nptr; i++) {
+        output << m_iptr[i];
+        }
+    output.close();
 }
-ifstream& PosApp::loadRecs(ifstream& ifstr)
+void PosApp::loadRecs()
 {
     ifstream input(m_filename);
-    if (!input.is_open()) {
+    if (!input) {
         ofstream output(m_filename);
         output.close();
     }
     for (int i = 0; i < MAX_NO_ITEMS; i++) {
-        delete m_iptr[i];
         m_iptr[i] = nullptr;
     }
     m_nptr = 0;
     
     char type;
     while (input >> type && m_nptr < MAX_NO_ITEMS) {
+        input.ignore();
         Item* item = nullptr;
         if (type == 'N') {
             item = new NonPerishable();
         } else if (type == 'P') {
             item = new Perishable();
         }
-        ifstr >> *item;
         m_iptr[m_nptr] = item;
+        input >> *m_iptr[m_nptr];
         m_nptr++;
     }
-    return ifstr;
 }
 PosApp::PosApp(const char filename[])
 {
-    
+    if(filename)
+    {
+        strcpy(m_filename, filename);
+    }
 }
 }

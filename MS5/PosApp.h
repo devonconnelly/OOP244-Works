@@ -19,8 +19,8 @@ public:
     void stockItem();
     void listItems();
     void POS();
-    std::ofstream& saveRecs(std::ofstream& ofstr);
-    std::ifstream& loadRecs(std::ifstream& ifstr);
+    void saveRecs();
+    void loadRecs();
     void run();
     PosApp(const char filename[]);
     
