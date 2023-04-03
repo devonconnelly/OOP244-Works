@@ -13,7 +13,7 @@
 |   | V1.2| |   | missing [itemType](#itemtype) function name is added  |
 | [MS4](#milestone-4) | V0.9 | 4 | [Watch](https://youtu.be/urtlxJHtEC8) |  The text is being proof-read  |
 |  | V1.0 |  |  |  The [write oveload](#write-2) logic corrected   |
-| [MS5](#milestone-5) | [m51](#ms51)-V0.9 | 14 | | The text is being proof-read |
+| [MS5](#milestone-5) | [m51](#ms51)-V0.9 | 14 | [Watch](https://youtu.be/E_CRdXMSgTE) | The text is being proof-read |
 |  | [m52](#ms52)-V0.9 |  | | The text is being proof-read |
 |  | [m53](#ms53)-V0.9 |  | | The text is being proof-read |
 |  | [m54](#ms54)-V0.9 |  | | The text is being proof-read |
