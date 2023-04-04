@@ -15,7 +15,6 @@ void PosApp::run()
     int choice;
     bool flag;
     cout << ">>>> Loading Items..........................................................." << endl;
-    cout << "Loading data from datafile.csv" << endl;
     loadRecs();
     do
     {
@@ -74,6 +73,7 @@ void PosApp::run()
                 break;
         }
     }while(choice != 0);
+    saveRecs();
     cout << ">>>> Saving Data............................................................." << endl << "Saving data in datafile.csv" << endl << "Goodbye!" << endl;
 }
 void PosApp::addItem()
@@ -94,12 +94,12 @@ void PosApp::listItems()
     double totalAsset = 0;
     for (i = 0; i < m_nptr - 1; i++)
            for (j = 0; j < m_nptr - i - 1; j++)
-               if (m_iptr[j] > m_iptr[j + 1]) {
+               if (*m_iptr[j] > *m_iptr[j+1]) {
                    Item* temp = m_iptr[j];
                    m_iptr[j] = m_iptr[j + 1];
                    m_iptr[j + 1] = temp;
                }
-    cout <<  " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
+    cout << " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
     cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
     for (int i = 0; i < m_nptr; i++)
        {
@@ -112,9 +112,9 @@ void PosApp::listItems()
            cout << " | ";
            m_iptr[i] -> write(cout);
            cout << endl;
-           totalAsset += m_iptr[i]->cost();
+           totalAsset += m_iptr[i]->cost() * m_iptr[i]->quantity();
        }
-    cout << endl << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
+    cout << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
     cout << "                               Total Asset: $  |       " << totalAsset << "|" << endl;
     cout << "-----------------------------------------------^--------------^" << endl;
 }
@@ -151,8 +151,8 @@ void PosApp::loadRecs()
         } else if (type == 'P') {
             item = new Perishable();
         }
+        input >> *item;
         m_iptr[m_nptr] = item;
-        input >> *m_iptr[m_nptr];
         m_nptr++;
     }
 }

@@ -24,7 +24,7 @@ public:
     ~Item();
     bool operator==(const Item& right);
     bool operator==(const char sku[]);
-    bool operator>(const Item& right);
+    bool operator>(const Item& right) const;
     int operator+=(int value);
     int operator-=(int value);
     operator bool() const;

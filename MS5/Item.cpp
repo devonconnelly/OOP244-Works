@@ -47,8 +47,8 @@ bool Item::operator==(const char sku[]) {
     return !strcmp(m_SKU, sku);
 }
 
-bool Item::operator>(const Item &right) {
-    return m_name > right.m_name;
+bool Item::operator>(const Item &right) const{
+    return strcmp(m_name, right.m_name) > 0;
 }
 
 int Item::operator+=(int value) {
