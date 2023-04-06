@@ -16,15 +16,15 @@ void displayfileContent();
 int main() {
    resetDataFile();
    displayfileContent();
-   sdds::PosApp pos("posdata.csv");
+   sdds::PosApp pos("/Users/devonconnelly/Documents/OOP244/OOP-Project/MS5/posdata.csv");
    pos.run();
    displayfileContent();
    return 0;
 }
 void resetDataFile() {
    char ch{};
-   std::ofstream outfile("posdata.csv");
-   std::ifstream infile("posdataOrigin.csv");
+   std::ofstream outfile("/Users/devonconnelly/Documents/OOP244/OOP-Project/MS5/posdata.csv");
+   std::ifstream infile("/Users/devonconnelly/Documents/OOP244/OOP-Project/MS5/posdataOrigin.csv");
    while(infile.get(ch)) {
       outfile.put(ch);
    }
@@ -32,7 +32,7 @@ void resetDataFile() {
 void displayfileContent() {
    std::cout << "Data file:\n------------------\n";
    char ch{};
-   std::ifstream infile("posdata.csv");
+   std::ifstream infile("/Users/devonconnelly/Documents/OOP244/OOP-Project/MS5/posdata.csv");
    while(infile.get(ch)) {
       std::cout.put(ch);
    }
