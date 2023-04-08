@@ -47,8 +47,8 @@ bool Item::operator==(const char sku[]) {
     return !strcmp(m_SKU, sku);
 }
 
-bool Item::operator>(const Item &right) {
-    return m_name > right.m_name;
+bool Item::operator>(const Item &right) const{
+    return strcmp(m_name, right.m_name) > 0;
 }
 
 int Item::operator+=(int value) {
@@ -141,7 +141,6 @@ std::ostream& Item::write(std::ostream &ostr) const {
         cerr << m_error;
     }
     ostr.unsetf(ios::right);
-    ostr.setf(ios::left);
     return ostr;
 }
 
@@ -300,7 +299,7 @@ std::ifstream& Item::load(std::ifstream &ifstr) {
     return ifstr;
 }
 
-std::ostream& Item::bprint(std::ostream& ostr) {
+std::ostream& Item::bprint(std::ostream& ostr) const {
     char name[100];
     strcpy(name, m_name);
     name[20] = '\0';
