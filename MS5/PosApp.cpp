@@ -356,4 +356,11 @@ int PosApp::selectItem()
     }while(!flag);
     return rowChoice;
 }
+
+PosApp::~PosApp()
+{
+    for(int i=0; i < m_nptr; i++) {
+        delete m_iptr[i];
+    }
+}
 }

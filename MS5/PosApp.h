@@ -29,6 +29,7 @@ public:
     void run();
     PosApp(const char filename[]);
     int selectItem();
+    ~PosApp();
     
     
 };
