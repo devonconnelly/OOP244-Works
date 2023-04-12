@@ -23,6 +23,7 @@ public:
     void loadRecs();
     void run();
     PosApp(const char filename[]);
+    void selectItem();
     
     
 };
