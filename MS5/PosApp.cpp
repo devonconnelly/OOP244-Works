@@ -130,9 +130,6 @@ void PosApp::addItem()
                 cout << item << ", try again..." << endl;
                 flag = false;
             }
-            else {
-                flag = true;
-            }
         } while (!flag);
         m_iptr[m_nptr] = item;
         m_nptr++;
@@ -145,9 +142,20 @@ void PosApp::addItem()
 }
 void PosApp::removeItem()
 {
+    int selected;
     cout << ">>>> Remove Item............................................................." << endl;
-    cout << "Running removeItem()" << endl;
-    selectItem();
+    selected = selectItem() - 1;
+    m_iptr[selected]->displayType(POS_FORM);
+    cout << "Removing...." << endl;
+    cout << *m_iptr[selected];
+    delete m_iptr[selected];
+    m_iptr[selected] = nullptr;
+    for(int i = selected; i < m_nptr - 1; i++)
+    {
+        m_iptr[i] = m_iptr[i + 1];
+    }
+    m_nptr--;
+    cout << ">>>> DONE!................................................................." << endl;
 }
 void PosApp::stockItem()
 {
@@ -202,8 +210,10 @@ PosApp::PosApp(const char filename[])
     }
 }
 
-void PosApp::selectItem()
+int PosApp::selectItem()
 {
+    bool flag;
+    int rowChoice;
     int i, j;
     double totalAsset = 0;
     for (i = 0; i < m_nptr - 1; i++)
@@ -234,6 +244,27 @@ void PosApp::selectItem()
        }
     cout << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
     cout << "Enter the row number: ";
-    
+    do
+    {
+        cin >> rowChoice;
+        flag = true;
+        
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000,'\n');
+                cout  << "Invalid Integer, try again: ";
+                flag = false;
+            }
+            else
+            {
+                if(rowChoice < 1 || rowChoice > m_nptr)
+                {
+                    cout << "[1<=value<=" << m_nptr << "], retry: Enter the row number: ";
+                    flag = false;
+                }
+            }
+    }while(!flag);
+    return rowChoice;
 }
 }

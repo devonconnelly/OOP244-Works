@@ -21,7 +21,7 @@ public:
     Item();
     Item(const Item& source);
     Item& operator=(const Item& right);
-    ~Item();
+    virtual ~Item();
     bool operator==(const Item& right);
     bool operator==(const char sku[]);
     bool operator>(const Item& right) const;

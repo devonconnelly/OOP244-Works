@@ -57,6 +57,9 @@
 		4A81B8E229D76B2600ECB987 /* Perishable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Perishable.h; sourceTree = "<group>"; };
 		4A81B8E329D76B4600ECB987 /* NonPerishable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NonPerishable.cpp; sourceTree = "<group>"; };
 		4A81B8E429D76B4600ECB987 /* NonPerishable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonPerishable.h; sourceTree = "<group>"; };
+		4A87297629E6844500B62CBF /* m53_output.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = m53_output.txt; sourceTree = "<group>"; };
+		4A87297729E6844500B62CBF /* m55_output.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = m55_output.txt; sourceTree = "<group>"; };
+		4A87297829E6844500B62CBF /* m54_output.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = m54_output.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,9 @@
 		4A53508829D73627005E7237 = {
 			isa = PBXGroup;
 			children = (
+				4A87297629E6844500B62CBF /* m53_output.txt */,
+				4A87297829E6844500B62CBF /* m54_output.txt */,
+				4A87297729E6844500B62CBF /* m55_output.txt */,
 				4A5627C629DB6FFF0036EF49 /* posdata.csv */,
 				4A81B8E329D76B4600ECB987 /* NonPerishable.cpp */,
 				4A81B8E429D76B4600ECB987 /* NonPerishable.h */,
