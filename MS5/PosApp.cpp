@@ -29,7 +29,7 @@ void PosApp::run()
         cout << "2- Add item" << endl;
         cout << "3- Remove item" << endl;
         cout << "4- Stock item" << endl;
-        cout << "5- Point of Sale" << endl;
+        cout << "5- POS" << endl;
         cout << "0- exit program" << endl;
         cout << "> ";
 
@@ -274,21 +274,18 @@ void PosApp::loadRecs()
     m_nptr = 0;
     
     char type;
-    if(input)
-    {
-        while (input >> type && m_nptr < MAX_NO_ITEMS) {
-            input.ignore();
-            Item* item = nullptr;
-            if (type == 'N') {
-                item = new NonPerishable();
-            } else if (type == 'P') {
-                item = new Perishable();
-            }
-            input >> *item;
-            m_iptr[m_nptr] = item;
-            m_nptr++;
-            
+    while (input >> type && m_nptr < MAX_NO_ITEMS) {
+        input.ignore();
+        Item* item = nullptr;
+        if (type == 'N') {
+            item = new NonPerishable();
+        } else if (type == 'P') {
+            item = new Perishable();
         }
+        input >> *item;
+        m_iptr[m_nptr] = item;
+        m_nptr++;
+        
     }
 }
 PosApp::PosApp(const char filename[])
