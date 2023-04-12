@@ -274,17 +274,21 @@ void PosApp::loadRecs()
     m_nptr = 0;
     
     char type;
-    while (input >> type && m_nptr < MAX_NO_ITEMS) {
-        input.ignore();
-        Item* item = nullptr;
-        if (type == 'N') {
-            item = new NonPerishable();
-        } else if (type == 'P') {
-            item = new Perishable();
+    if(input)
+    {
+        while (input >> type && m_nptr < MAX_NO_ITEMS) {
+            input.ignore();
+            Item* item = nullptr;
+            if (type == 'N') {
+                item = new NonPerishable();
+            } else if (type == 'P') {
+                item = new Perishable();
+            }
+            input >> *item;
+            m_iptr[m_nptr] = item;
+            m_nptr++;
+            
         }
-        input >> *item;
-        m_iptr[m_nptr] = item;
-        m_nptr++;
     }
 }
 PosApp::PosApp(const char filename[])
