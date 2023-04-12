@@ -52,23 +52,18 @@ void PosApp::run()
         switch(choice)
         {
             case 1:
-                cout << ">>>> Listing Items..........................................................." << endl;
                 listItems();
                 break;
             case 2:
-                cout << ">>>> Adding Item to the store................................................" << endl;
                 addItem();
                 break;
             case 3:
-                cout << ">>>> Remove Item............................................................." << endl;
                 removeItem();
                 break;
             case 4:
-                cout << ">>>> Select an item to stock................................................." << endl;
                 stockItem();
                 break;
             case 5:
-                cout << ">>>> Starting Point of Sale.................................................." << endl;
                 POS();
                 break;
         }
@@ -79,6 +74,7 @@ void PosApp::run()
 
 void PosApp::listItems()
 {
+    cout << ">>>> Listing Items..........................................................." << endl;
     int i, j;
     double totalAsset = 0;
     for (i = 0; i < m_nptr - 1; i++)
@@ -110,6 +106,7 @@ void PosApp::listItems()
 
 void PosApp::addItem()
 {
+    cout << ">>>> Adding Item to the store................................................" << endl;
     if(m_nptr != MAX_NO_ITEMS)
     {
         Item* item = nullptr;
@@ -123,18 +120,20 @@ void PosApp::addItem()
         else if(type == 'n' || type == 'N') {
             item = new NonPerishable();
         }
-        while(item && !flag) {
+        do {
+            flag = true;
             cin.ignore(10000, '\n');
             cin >> *item;
             if (cin.fail()) {
                 cin.clear();
                 cin.ignore(10000, '\n');
                 cout << item << ", try again..." << endl;
+                flag = false;
             }
             else {
                 flag = true;
             }
-        }
+        } while (!flag);
         m_iptr[m_nptr] = item;
         m_nptr++;
         cout << ">>>> DONE!................................................................." << endl;
@@ -146,15 +145,19 @@ void PosApp::addItem()
 }
 void PosApp::removeItem()
 {
+    cout << ">>>> Remove Item............................................................." << endl;
     cout << "Running removeItem()" << endl;
+    selectItem();
 }
 void PosApp::stockItem()
 {
+    cout << ">>>> Select an item to stock................................................." << endl;
     cout << "Running stockItem()" << endl;
 }
 
 void PosApp::POS()
 {
+    cout << ">>>> Starting Point of Sale.................................................." << endl;
     cout << "Running POS()" << endl;
 }
 void PosApp::saveRecs()
@@ -199,4 +202,38 @@ PosApp::PosApp(const char filename[])
     }
 }
 
+void PosApp::selectItem()
+{
+    int i, j;
+    double totalAsset = 0;
+    for (i = 0; i < m_nptr - 1; i++)
+           for (j = 0; j < m_nptr - i - 1; j++)
+               if (*m_iptr[j] > *m_iptr[j+1]) {
+                   Item* temp = m_iptr[j];
+                   m_iptr[j] = m_iptr[j + 1];
+                   m_iptr[j + 1] = temp;
+               }
+    cout << ">>>> Item Selection by row number............................................" << endl << "Press <ENTER> to start....";
+    cin.ignore(10000, '\n');
+    cin.get();
+    cout << ">>>> Listing Items..........................................................." << endl;
+    cout << " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
+    cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
+    for (int i = 0; i < m_nptr; i++)
+       {
+           m_iptr[i] -> displayType(POS_LIST);
+           cout << setw(4) << setfill(' ');
+           cout.setf(ios::right);
+           cout << i + 1;
+           cout.unsetf(ios::right);
+           cout.setf(ios::left);
+           cout << " | ";
+           m_iptr[i] -> write(cout);
+           cout << endl;
+           totalAsset += m_iptr[i]->cost() * m_iptr[i]->quantity();
+       }
+    cout << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
+    cout << "Enter the row number: ";
+    
+}
 }
