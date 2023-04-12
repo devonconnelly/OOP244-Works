@@ -307,7 +307,6 @@ int PosApp::selectItem()
     bool flag;
     int rowChoice;
     int i, j;
-    double totalAsset = 0;
     for (i = 0; i < m_nptr - 1; i++)
            for (j = 0; j < m_nptr - i - 1; j++)
                if (*m_iptr[j] > *m_iptr[j+1]) {
