@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <iomanip>
 #include "PosApp.h"
 #include "PosIO.h"
 #include "POS.h"
@@ -179,8 +180,8 @@ void PosApp::stockItem()
                 cout  << "Invalid Integer, try again: ";
                 flag = false;
             }
-            else if(quantity < 1 || quantity > m_nptr) {
-                    cout << "[1<=value<=" << MAX_STOCK_NUMBER << "], retry: Enter quantity to add: ";
+            else if(quantity < 1 || quantity > MAX_STOCK_NUMBER) {
+                    cout << "[1<=value<=" << 69 << "], retry: Enter quantity to add: ";
                     flag = false;
                 }
     }while(!flag);
