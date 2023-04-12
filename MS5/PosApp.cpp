@@ -282,9 +282,12 @@ void PosApp::loadRecs()
         } else if (type == 'P') {
             item = new Perishable();
         }
-        input >> *item;
-        m_iptr[m_nptr] = item;
-        m_nptr++;
+        if(item != nullptr)
+        {
+            input >> *item;
+            m_iptr[m_nptr] = item;
+            m_nptr++;
+        }
         
     }
 }
