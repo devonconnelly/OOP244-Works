@@ -39,14 +39,11 @@ void PosApp::run()
                     cout  << "Invalid Integer, try again: ";
                     flag = false;
                 }
-                else
-                {
-                    if(choice < 0 || choice > 5)
+                else if(choice < 0 || choice > 5)
                     {
                         cout << "[0<=value<=5], retry: > ";
                         flag = false;
                     }
-                }
         }while(!flag);
         
         switch(choice)
@@ -86,8 +83,7 @@ void PosApp::listItems()
                }
     cout << " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
     cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
-    for (int i = 0; i < m_nptr; i++)
-       {
+    for (int i = 0; i < m_nptr; i++) {
            m_iptr[i] -> displayType(POS_LIST);
            cout << setw(4) << setfill(' ');
            cout.setf(ios::right);
@@ -145,13 +141,12 @@ void PosApp::removeItem()
     int selected;
     cout << ">>>> Remove Item............................................................." << endl;
     selected = selectItem() - 1;
-    m_iptr[selected]->displayType(POS_FORM);
     cout << "Removing...." << endl;
+    m_iptr[selected]->displayType(POS_FORM);
     cout << *m_iptr[selected];
     delete m_iptr[selected];
     m_iptr[selected] = nullptr;
-    for(int i = selected; i < m_nptr - 1; i++)
-    {
+    for(int i = selected; i < m_nptr - 1; i++) {
         m_iptr[i] = m_iptr[i + 1];
     }
     m_nptr--;
@@ -159,8 +154,33 @@ void PosApp::removeItem()
 }
 void PosApp::stockItem()
 {
+    int selected;
+    bool flag;
+    int quantity;
     cout << ">>>> Select an item to stock................................................." << endl;
-    cout << "Running stockItem()" << endl;
+    selected = selectItem() - 1;
+    cout << "Selected Item:" << endl;
+    m_iptr[selected]->displayType(POS_FORM);
+    cout << *m_iptr[selected];
+    cout << "Enter quantity to add: ";
+    do
+    {
+        cin >> quantity;
+        flag = true;
+        
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(10000,'\n');
+                cout  << "Invalid Integer, try again: ";
+                flag = false;
+            }
+            else if(quantity < 1 || quantity > m_nptr) {
+                    cout << "[1<=value<=" << MAX_STOCK_NUMBER << "], retry: Enter quantity to add: ";
+                    flag = false;
+                }
+    }while(!flag);
+    *m_iptr[selected] += quantity;
+    cout << ">>>> DONE!................................................................." << endl;
 }
 
 void PosApp::POS()
