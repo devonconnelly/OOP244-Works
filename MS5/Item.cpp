@@ -310,7 +310,7 @@ std::ostream& Item::bprint(std::ostream& ostr) const {
     return ostr;
 }
 double operator+=(double& total, Item& right) {
-    total += right.cost() * right.quantity();
+    total += right.cost();
     return total;
 }
 }

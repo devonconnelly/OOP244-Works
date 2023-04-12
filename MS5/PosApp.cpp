@@ -1,3 +1,8 @@
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+// Name: Devon Connelly
+// Email: dconnelly@myseneca.ca
+// ID: 105322218
+// Date Completed: April 12 2023
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -186,13 +191,14 @@ void PosApp::stockItem()
 void PosApp::POS()
 {
     char sku[MAX_SKU_LEN];
-    int index = -1;
+    int index;
     double total = 0;
     Item* orders[MAX_NO_ITEMS];
     int numOrders = 0;
     cout << ">>>> Starting Point of Sale.................................................." << endl;
     cin.ignore(10000, '\n');
     do {
+        index = -1;
         cout << "Enter SKU or <ENTER> only to end sale..." << endl;
         do {
             cout << "> ";
@@ -217,7 +223,6 @@ void PosApp::POS()
                     cout << *m_iptr[index] << endl;
                     cout << ">>>>> Added to bill" << endl;
                     cout << ">>>>> Total: " << total << endl;
-                    index = -1;
                 }
                 else
                 {
@@ -235,10 +240,17 @@ void PosApp::POS()
             }
         }
     }while(strlen(sku) != 0 && !cin.fail());
+    cout << setfill(' ');
+    cout << "+" << string(21, '-') << "v" << string(11, '-') << "v" <<  string(5, '-') << "+" << endl;
+    cout << "| Item" << setw(17) << "|" << setw(18) << " Price | Tax +" << endl;
+    cout << "+" << string(21, '-') << "v" << string(11, '-') << "v" <<  string(5, '-') << "+" << endl;
     for(int i=0; i < numOrders; i++)
     {
         orders[i]->bprint(cout);
     }
+    cout << "+" << string(21, '-') << "^" << string(11, '-') << "^" <<  string(5, '-') << "+" << endl;
+    cout << "| total:" << setw(25) << right << total << " |" << endl;
+    cout << "^" << string(33, '-') << "^" << endl;
 }
 void PosApp::saveRecs()
 {
