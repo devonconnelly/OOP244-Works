@@ -74,20 +74,9 @@ void PosApp::run()
         }
     }while(choice != 0);
     saveRecs();
-    cout << ">>>> Saving Data............................................................." << endl << "Saving data in datafile.csv" << endl << "Goodbye!" << endl;
+    cout << ">>>> Saving Data............................................................." << endl << "Goodbye!" << endl;
 }
-void PosApp::addItem()
-{
-    cout << "Running addItem()" << endl;
-}
-void PosApp::removeItem()
-{
-    cout << "Running removeItem()" << endl;
-}
-void PosApp::stockItem()
-{
-    cout << "Running stockItem()" << endl;
-}
+
 void PosApp::listItems()
 {
     int i, j;
@@ -118,6 +107,52 @@ void PosApp::listItems()
     cout << "                               Total Asset: $  |       " << totalAsset << "|" << endl;
     cout << "-----------------------------------------------^--------------^" << endl;
 }
+
+void PosApp::addItem()
+{
+    if(m_nptr != MAX_NO_ITEMS)
+    {
+        Item* item = nullptr;
+        bool flag = false;
+        char type;
+        cout << "Is the Item perishable? (Y)es/(N)o: ";
+        cin >> type;
+        if(type == 'y' || type == 'Y') {
+            item = new Perishable();
+        }
+        else if(type == 'n' || type == 'N') {
+            item = new NonPerishable();
+        }
+        while(item && !flag) {
+            cin.ignore(10000, '\n');
+            cin >> *item;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cout << item << ", try again..." << endl;
+            }
+            else {
+                flag = true;
+            }
+        }
+        m_iptr[m_nptr] = item;
+        m_nptr++;
+        cout << ">>>> DONE!................................................................." << endl;
+    }
+    else
+    {
+        cout << "Inventory Full!" << endl;
+    }
+}
+void PosApp::removeItem()
+{
+    cout << "Running removeItem()" << endl;
+}
+void PosApp::stockItem()
+{
+    cout << "Running stockItem()" << endl;
+}
+
 void PosApp::POS()
 {
     cout << "Running POS()" << endl;
@@ -126,7 +161,7 @@ void PosApp::saveRecs()
 {
     ofstream output(m_filename);
     for (int i = 0; i < m_nptr; i++) {
-        output << m_iptr[i];
+        output << *m_iptr[i] << endl;
         }
     output.close();
 }
@@ -163,4 +198,5 @@ PosApp::PosApp(const char filename[])
         strcpy(m_filename, filename);
     }
 }
+
 }
