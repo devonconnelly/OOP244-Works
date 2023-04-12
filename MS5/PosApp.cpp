@@ -185,8 +185,60 @@ void PosApp::stockItem()
 
 void PosApp::POS()
 {
+    char sku[MAX_SKU_LEN];
+    int index = -1;
+    double total = 0;
+    Item* orders[MAX_NO_ITEMS];
+    int numOrders = 0;
     cout << ">>>> Starting Point of Sale.................................................." << endl;
-    cout << "Running POS()" << endl;
+    cin.ignore(10000, '\n');
+    do {
+        cout << "Enter SKU or <ENTER> only to end sale..." << endl;
+        do {
+            cout << "> ";
+            cin.getline(sku, MAX_NAME_LEN + 1);
+            if(strlen(sku) > MAX_SKU_LEN) {
+                cout << "SKU too long" << endl;
+            }
+        }while(strlen(sku) > MAX_SKU_LEN);
+        if(strlen(sku) != 0)
+        {
+            for(int i = 0; i < m_nptr && index == -1; i++) {
+                if(*m_iptr[i] == sku) {
+                    index = i;
+                }
+            }
+            if(index != -1) {
+                if(m_iptr[index]->quantity() > 0) {
+                    total += *m_iptr[index];
+                    *m_iptr[index] -= 1;
+                    m_iptr[index]->displayType(POS_FORM);
+                    orders[numOrders++] = m_iptr[index];
+                    cout << *m_iptr[index] << endl;
+                    cout << ">>>>> Added to bill" << endl;
+                    cout << ">>>>> Total: " << total << endl;
+                    index = -1;
+                }
+                else
+                {
+                    cout << "Item out of stock" << endl;
+                }
+            }
+            else
+            {
+                cout << "!!!!! Item Not Found !!!!!" << endl;
+            }
+            if(cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+            }
+        }
+    }while(strlen(sku) != 0 && !cin.fail());
+    for(int i=0; i < numOrders; i++)
+    {
+        orders[i]->bprint(cout);
+    }
 }
 void PosApp::saveRecs()
 {

@@ -122,7 +122,7 @@ std::ostream& Item::write(std::ostream &ostr) const {
             ostr << "=============v" << endl;
             ostr << "Name:        " << m_name << endl;
             ostr << "Sku:         " << m_SKU << endl;
-            ostr << "Price:       " << m_price << endl;
+            ostr << "Price:       " << fixed << setprecision(2) << m_price << endl;
             ostr << "Price + tax: ";
             if(m_taxed == true)
             {
@@ -301,6 +301,7 @@ std::ifstream& Item::load(std::ifstream &ifstr) {
 
 std::ostream& Item::bprint(std::ostream& ostr) const {
     char name[100];
+    ostr << setfill(' ');
     strcpy(name, m_name);
     name[20] = '\0';
     ostr << "| " << setw(20) << left << name << "|";
