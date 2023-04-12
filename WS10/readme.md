@@ -1,19 +1,19 @@
-# Workshop #9: Derived Classes and Resources
-Version 1.1 (corrected main and correct_output.ctx)
+# Workshop 10: Function Templates
 
-# The Contact Class
+- (v1.1 ) added "or equal" to the validation condition.
+
+In this workshop, you are to code a function template for validating if a value is greater than a minimum value.
 
 ## Learning Outcomes
 
 Upon successful completion of this workshop, you will have demonstrated the abilities to:
 
-- Apply [the rule of three](https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)) for the derived classes with resources.
-- Use your acquired skills throughout the semester to read a file into dynamically allocated memory.
-- describe what you have learned in completing this workshop
+-	code a function template
+-	implement a call to a function template
+-	describe the syntax of a constrained cast and its purpose
+-	describe what you have learned in completing this workshop
 
 ## Submission Policy
-
-
 The workshop is divided into one coding part and one non-coding part:
 
 - Part 1 (**LAB**): A step-by-step guided workshop, worth 100% of the workshop's total mark
@@ -90,104 +90,24 @@ To check the output, use a program that can compare text files.  Search online f
 ### Custom code submission
 
 If you have any additional custom code, (i.e. functions, classes etc) that you want to reuse in the workshop save them under a module called Utils (`Utils.cpp and Utils.h`) and submit them with your workshop using the instructions in the "[Submitting Utils Module](#submitting-utils-module)" section.
-# PART 1 (100%)
 
-## The Person class and Tools module (fully implemented)
+# Part 1 (100%)
 
-The **Person** class encapsulates a person with first, middle and last name and is instantiated in an empty state.  
+Create a function template called validate in a file called `validate.h` that accepts four arguments (a minimum value, an array of test values, the number of elements in the array, and an array of Boolean for validation results) and returns a bool that is true only if ALL the test-value elements are greater than or equal to the minimum, and false otherwise. 
+Also, as the validation test is being done on each element, the result of validation is saved for each element in the corresponding (same index) boolean array element. So, the caller program can determine exactly which elements of the testValue array are valid or invalid. 
+Make sure the function is designed in a way that all test objects (min, and test elements) are not copied or modified in the function. 
 
-All the name fields are stored dynamically and are read from istream through comma-separated data entry.
+## `Employee` Module, `Student` Module (supplied)
 
-> The C-string manipulation and dynamic memory allocation logic are provided by the Tools module.
+**Do not modify these modules!**  Look at the code and make sure you understand it.
 
-A Person is valid if it has valid first and last names. The middle name is optional, therefore the data entry for a Person can be done in the following two ways:
-
-1- A Person with a middle name<br />
-Data entry:
-```Text
-Homer,Jay,Simpson<ENTER>
-```
-Displayed as follows:
-```Text
-Homer Jay Simpson
-```
-2- A Person without a middle name<br />
-Data entry:
-```Text
-Lisa,,Simpson<ENTER>
-```
-Displayed as follows
-```Text
-Lisa Simpson<ENTER>
-```
-
-Walk through the Person class using the ```nameTester.cpp``` program; study and understand it. 
-
-
-## The Contact class
-Create a Class Module called **Contact**, derived from the **Person** class. A contact is a person with an address.
-
-The Contact class stores the address in four attributes:
-1- Address (Dynamic, unknown length)
-2- City (Dynamic, unknown length)
-3- Province: stored by two characters (for the province code, like ON, AL, BC, etc...)
-4- Postal code: stored in six characters. 
-
-Like a **Person**, **Contact** is instantiated in an empty state and later is populated from istream using comma-separated values. All the attributes defined in Contact are mandatory and can not be empty or not provided. 
-
-A Contact is read from istream as follows:
-```Text
-     Homer,Jay,Simpson<ENTER>
-     70 the pond road,North York,ON,M3J3M6<ENTER>
-OR
-     Homer,,Simpson<ENTER>
-     70 the pond road,North York,ON,M3J3M6<ENTER>
-```
-And it is displayed as follows:
-```Text
-     Homer Jay Simpson
-     70 the pond road
-     North York ON
-     M3J 3M6
-OR
-     Homer Simpson
-     70 the pond road
-     North York ON
-     M3J 3M6
-```
-If any data other than the middle name is missing or exceeds the field length, the Contact should be put in an invalid state.
-
-Displaying an invalid **Contact** object will be quietly ignored and no action will be taken.
-
-### the Contact class implementation
-
-- Initialize all the attributes to their default empty states in the class declaration. (as a result your defualt constructor should be empty)
-- Use the Tools functions for your C-string work and dynamic memory allocation. (do not include ```<cstring>```)
-- Invoke the base class's constructors and Methods in copy construction and copy assignment to make sure the base class's resources are managed properly. 
-- Override all the virtual functions and virtual operators of the Person class and implement [the rule of three](https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)).
-- Apart from the overridden methods and operators, you can create any additional method to help you implement this class.
-
-## Tester program
+### Tester Program
 
 <a href="lab/main.cpp" target="_blank">main.cpp</a>
 
-## output
-
+### Sample Output
 
 <a href="lab/correct_output.txt" target="_blank">correct_output.txt</a>
-
-```
-## Files needed for submission
-```Text
-Tools.h
-Tools.cpp
-Person.h
-Person.cpp
-Contact.h
-Contact.cpp
-w9_tester.cpp
-contacts.txt
-```
 
 ## PART 1 Submission 
 
@@ -204,8 +124,7 @@ Then, run the following command from your account
 
 and follow the instructions.
 
-> **⚠️Important:** Please note that a successful submission does not guarantee full credit for this workshop. If the professor is not satisfied with your implementation, your professor may ask you to resubmit. Re-submissions will attract a penalty.
-
+> **??Important:** Please note that a successful submission does not guarantee full credit for this workshop. If the professor is not satisfied with your implementation, your professor may ask you to resubmit. Re-submissions will attract a penalty.
 
 # Part 2: Reflection
 
