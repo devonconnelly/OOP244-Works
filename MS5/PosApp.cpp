@@ -285,6 +285,7 @@ void PosApp::loadRecs()
         input >> *item;
         m_iptr[m_nptr] = item;
         m_nptr++;
+        delete[] item;
     }
 }
 PosApp::PosApp(const char filename[])
