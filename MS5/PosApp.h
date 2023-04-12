@@ -22,7 +22,7 @@ public:
     void addItem();
     void removeItem();
     void stockItem();
-    void listItems();
+    void listItems(bool flag);
     void POS();
     void saveRecs();
     void loadRecs();

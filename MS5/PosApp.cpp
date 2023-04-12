@@ -55,7 +55,7 @@ void PosApp::run()
         switch(choice)
         {
             case 1:
-                listItems();
+                listItems(true);
                 break;
             case 2:
                 addItem();
@@ -75,7 +75,7 @@ void PosApp::run()
     cout << ">>>> Saving Data............................................................." << endl << "Goodbye!" << endl;
 }
 
-void PosApp::listItems()
+void PosApp::listItems(bool flag)
 {
     cout << ">>>> Listing Items..........................................................." << endl;
     int i, j;
@@ -102,8 +102,11 @@ void PosApp::listItems()
            totalAsset += m_iptr[i]->cost() * m_iptr[i]->quantity();
        }
     cout << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
-    cout << "                               Total Asset: $  |       " << totalAsset << "|" << endl;
-    cout << "-----------------------------------------------^--------------^" << endl << endl;
+    if(flag)
+    {
+        cout << "                               Total Asset: $  |       " << totalAsset << "|" << endl;
+        cout << "-----------------------------------------------^--------------^" << endl << endl;
+    }
 }
 
 void PosApp::addItem()
@@ -315,23 +318,7 @@ int PosApp::selectItem()
     cout << ">>>> Item Selection by row number............................................" << endl << "Press <ENTER> to start....";
     cin.ignore(10000, '\n');
     cin.get();
-    cout << ">>>> Listing Items..........................................................." << endl;
-    cout << " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
-    cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
-    for (int i = 0; i < m_nptr; i++)
-       {
-           m_iptr[i] -> displayType(POS_LIST);
-           cout << setw(4) << setfill(' ');
-           cout.setf(ios::right);
-           cout << i + 1;
-           cout.unsetf(ios::right);
-           cout.setf(ios::left);
-           cout << " | ";
-           m_iptr[i] -> write(cout);
-           cout << endl;
-           totalAsset += m_iptr[i]->cost() * m_iptr[i]->quantity();
-       }
-    cout << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
+    listItems(false);
     cout << "Enter the row number: ";
     do
     {
