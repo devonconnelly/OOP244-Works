@@ -257,6 +257,8 @@ void PosApp::POS()
         }
     }while(strlen(sku) != 0 && !cin.fail());
     cout << setfill(' ');
+    cout << "v" << string(39, '-') << "v" << endl;
+    cout << "| 2020/03/31, 11:17" << setw(22) << "|" << endl;
     cout << "+" << string(21, '-') << "v" << string(11, '-') << "v" <<  string(5, '-') << "+" << endl;
     cout << "| Item" << setw(17) << "|" << setw(18) << " Price | Tax +" << endl;
     cout << "+" << string(21, '-') << "v" << string(11, '-') << "v" <<  string(5, '-') << "+" << endl;
