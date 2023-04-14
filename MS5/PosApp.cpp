@@ -192,8 +192,8 @@ void PosApp::stockItem()
                 cout  << "Invalid Integer, try again: ";
                 flag = false;
             }
-            else if(quantity < 1 || quantity > MAX_STOCK_NUMBER) {
-                    cout << "[1<=value<=" << 69 << "], retry: Enter quantity to add: ";
+            else if(quantity < 1 || quantity > MAX_STOCK_NUMBER - m_iptr[selected]->quantity()) {
+                    cout << "[1<=value<=" << MAX_STOCK_NUMBER - m_iptr[selected]->quantity() << "], retry: Enter quantity to add: ";
                     flag = false;
                 }
     }while(!flag);
@@ -208,8 +208,10 @@ void PosApp::POS()
     double total = 0;
     Item* orders[MAX_NO_ITEMS];
     int numOrders = 0;
+    
     cout << ">>>> Starting Point of Sale.................................................." << endl;
     cin.ignore(10000, '\n');
+    
     do {
         index = -1;
         cout << "Enter SKU or <ENTER> only to end sale..." << endl;
@@ -220,6 +222,7 @@ void PosApp::POS()
                 cout << "SKU too long" << endl;
             }
         }while(strlen(sku) > MAX_SKU_LEN);
+        
         if(strlen(sku) != 0)
         {
             for(int i = 0; i < m_nptr && index == -1; i++) {
