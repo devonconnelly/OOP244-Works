@@ -1,8 +1,17 @@
-// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
-// Name: Devon Connelly
-// Email: dconnelly@myseneca.ca
-// ID: 105322218
-// Date Completed: April 12 2023
+/* Citation and Sources...
+Final Project Milestone 5
+Module: PosApp
+Filename: PosApp.cpp
+Version 1.0
+Author    Devon Connelly
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2023/04/14 Submission
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------*/
 #include <iostream>
 #include <fstream>
 #include <cstring>
