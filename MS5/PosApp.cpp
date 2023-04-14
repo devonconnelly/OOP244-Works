@@ -16,6 +16,7 @@ that my professor provided to complete my project milestones.
 #include <fstream>
 #include <cstring>
 #include <iomanip>
+#include "Bill.h"
 #include "PosApp.h"
 #include "PosIO.h"
 #include "POS.h"
@@ -205,8 +206,7 @@ void PosApp::POS()
 {
     char sku[MAX_SKU_LEN];
     int index;
-    double total = 0;
-    Item* orders[MAX_NO_ITEMS];
+    Bill bill;
     int numOrders = 0;
     
     cout << ">>>> Starting Point of Sale.................................................." << endl;
@@ -232,13 +232,12 @@ void PosApp::POS()
             }
             if(index != -1) {
                 if(m_iptr[index]->quantity() > 0) {
-                    total += *m_iptr[index];
-                    *m_iptr[index] -= 1;
                     m_iptr[index]->displayType(POS_FORM);
-                    orders[numOrders++] = m_iptr[index];
+                    bill.add(m_iptr[index]);
+                    *m_iptr[index] -= 1;
                     cout << *m_iptr[index] << endl;
                     cout << ">>>>> Added to bill" << endl;
-                    cout << ">>>>> Total: " << total << endl;
+                    cout << ">>>>> Total: " << bill.total() << endl;
                 }
                 else
                 {
@@ -256,19 +255,7 @@ void PosApp::POS()
             }
         }
     }while(strlen(sku) != 0 && !cin.fail());
-    cout << setfill(' ');
-    cout << "v" << string(39, '-') << "v" << endl;
-    cout << "| 2020/03/31, 11:17" << setw(22) << "|" << endl;
-    cout << "+" << string(21, '-') << "v" << string(11, '-') << "v" <<  string(5, '-') << "+" << endl;
-    cout << "| Item" << setw(17) << "|" << setw(18) << " Price | Tax +" << endl;
-    cout << "+" << string(21, '-') << "v" << string(11, '-') << "v" <<  string(5, '-') << "+" << endl;
-    for(int i=0; i < numOrders; i++)
-    {
-        orders[i]->bprint(cout);
-    }
-    cout << "+" << string(21, '-') << "^" << string(11, '-') << "^" <<  string(5, '-') << "+" << endl;
-    cout << "| total:" << setw(25) << right << total << " |" << endl;
-    cout << "^" << string(33, '-') << "^" << endl;
+    bill.print(cout);
 }
 void PosApp::saveRecs()
 {
