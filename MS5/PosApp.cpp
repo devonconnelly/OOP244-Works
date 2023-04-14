@@ -207,7 +207,6 @@ void PosApp::POS()
     char sku[MAX_SKU_LEN];
     int index;
     Bill bill;
-    int numOrders = 0;
     
     cout << ">>>> Starting Point of Sale.................................................." << endl;
     cin.ignore(10000, '\n');
