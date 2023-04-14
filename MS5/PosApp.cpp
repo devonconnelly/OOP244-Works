@@ -198,7 +198,7 @@ void PosApp::stockItem()
                 }
     }while(!flag);
     *m_iptr[selected] += quantity;
-    cout << ">>>> DONE!................................................................." << endl;
+    cout << ">>>> DONE!..................................................................." << endl;
 }
 
 void PosApp::POS()
